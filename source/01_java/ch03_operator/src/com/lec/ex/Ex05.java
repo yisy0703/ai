@@ -5,11 +5,11 @@ public class Ex05 {
 		int h=100;
 		String result; // 짝홀수 여부의 결과
 		result = (h%2==0) ? "짝수입니다" : "홀수입니다"; 
-//		if(h%2==0) {
-//			result = "짝수입니다";
-//		}else {
-//			result = "홀수입니다";
-//		}
+		if(h%2==0) {
+			result = "짝수입니다";
+		}else {
+			result = "홀수입니다";
+		}
 		System.out.println(result);
 	}
 }
