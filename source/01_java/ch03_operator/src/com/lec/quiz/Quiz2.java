@@ -18,3 +18,14 @@ public class Quiz2 {
 		scanner.close();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
