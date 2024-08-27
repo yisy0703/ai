@@ -11,5 +11,19 @@ package com.lec.ex;
  * false || false =>false
  */
 public class Ex04 {
-
+	public static void main(String[] args) {
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
