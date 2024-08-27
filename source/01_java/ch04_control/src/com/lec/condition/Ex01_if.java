@@ -7,7 +7,8 @@ public class Ex01_if {
 			System.out.println("참 잘했어요");
 		}else if(score >= 70) {
 			System.out.println("괜찮아요");
-		}
-		System.out.println("프로그램 끝");
-	}
-}
+		}else {
+			System.out.println("분발하세요");
+		} // if
+	}// main
+} // class
