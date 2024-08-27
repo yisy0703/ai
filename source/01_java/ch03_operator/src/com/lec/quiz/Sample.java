@@ -6,7 +6,9 @@ public class Sample {
 		//String name = new String("Hong");
 		//System.out.println(name.toUpperCase());
 		Scanner sc = new Scanner(System.in); //
-		
+		System.out.print("정수를 입력하세요 >");
 		int su = sc.nextInt(); // 키보드로부터 입력받은 정수를 반환하는 기능
+		String result = (su%3 == 0) ? "3의 배수입니다":"3의 배수가 아닙니다";
+		
 	}
 }
