@@ -7,5 +7,7 @@ public class Ex02 {
 		System.out.println("n1=" + n1 + ", n2=" + n2);
 		n2 = n1++ ; // n1값을 n2에 할당한 후 n1을 1증가 (n2=11, n1=12)
 		System.out.println("n1=" + n1 + ", n2=" + n2);
+		n1--;
+		System.out.println("n1=" + n1 + ", n2=" + n2);
 	}
 }
