@@ -19,7 +19,10 @@ public class Ex01 {
 		System.out.printf("%d %c %d = %.1f(실수결과)\n", n1, '/', n2, resultDouble);
 		result = n1 % n2;
 		System.out.printf("%d %c %d = %d\n", n1, '%', n2, result);
-		// 나머지 연산자의 용도 : 짝홀수 판별, 5의 배수 판별
+		// 나머지 연산자의 용도 : 짝홀수 판별, n의 배수 판별
+		if( n1%2 == 0 ) {
+			System.out.println("n1은 짝수입니다");
+		}
 	}
 }
 
