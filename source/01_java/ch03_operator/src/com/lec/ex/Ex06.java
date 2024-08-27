@@ -8,6 +8,9 @@ public class Ex06 {
 		n1 *= 2; // n1 = n1 * 2
 		System.out.println("n1 = " + n1);
 		int n2, n3;
-		n2 = n3 = n1 = 10;
+		n2 = n3 = n1 = 10; // 우결합성
+		System.out.println("n1 = " + n1);
+		System.out.println("n2 = " + n2);
+		System.out.println("n3 = " + n3);
 	}
 }
