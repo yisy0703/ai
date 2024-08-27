@@ -22,6 +22,13 @@ public class Ex01 {
 		// 나머지 연산자의 용도 : 짝홀수 판별, n의 배수 판별
 		if( n1%2 == 0 ) {
 			System.out.println("n1은 짝수입니다");
+		}else {
+			System.out.println("n1은 홀수입니다");
+		}
+		if ( n1%5 == 0 ) {
+			System.out.println("n1은 5의 배수입니다");
+		}else {
+			System.out.println("n1은 5의 배수가 아닙니다");
 		}
 	}
 }
