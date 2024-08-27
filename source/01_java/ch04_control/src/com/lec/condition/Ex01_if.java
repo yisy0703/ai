@@ -5,8 +5,8 @@ public class Ex01_if {
 		int score = 65;
 		if(score >= 90) {
 			System.out.println("참 잘했어요");
-		}else {
-			System.out.println("재시험 보세요");
+		}else if(score >= 70) {
+			System.out.println("괜찮아요");
 		}
 		System.out.println("프로그램 끝");
 	}
