@@ -6,6 +6,9 @@ public class Ex05 {
 		String result; // 짝홀수 여부의 결과
 		if(h%2==0) {
 			result = "짝수입니다";
+		}else {
+			result = "홀수입니다";
 		}
+		System.out.println(result);
 	}
 }
