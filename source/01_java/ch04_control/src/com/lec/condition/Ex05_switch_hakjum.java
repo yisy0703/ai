@@ -6,8 +6,8 @@ public class Ex05_switch_hakjum {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("점수는?");
 		int score = scanner.nextInt();
-		switch(score/10){
-		case 10: 
+		int temp = (score==100)? (score-1) : score; // temp에는 score가 100일 때만 99할당. 그외엔 score와 동일 값 할당
+		switch(temp/10){		 
 		case 9:
 			System.out.println("A학점"); break;
 		case 8:
