@@ -9,5 +9,8 @@ public class Ex03 {
 		
 		result = n1==n2;
 		System.out.printf("%d %s %d = %b\n", n1, "==", n2, result);
+		
+		result = n1!=n2;
+		System.out.printf("%d %s %d = %b\n", n1, "!=", n2, result);
 	}
 }
