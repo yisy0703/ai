@@ -9,5 +9,6 @@ public class Quiz3_gugudan {
 		for(int i=1 ; i<=9 ; i++) {
 			System.out.println(dansu + " * " + i + " = " + dansu*i);
 		}
+		scanner.close();
 	}
 }
