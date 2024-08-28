@@ -27,10 +27,12 @@ public class Quiz4_srp_com {
 //		case 0 : youStr="가위"; break;
 //		case 1 : youStr="바위"; break;
 //		default : youStr="보"; break;
-//		}
-		
-		// 컴퓨터도 0~2 난수 0 <= Math.random()*3 < 3		
-		System.out.println("당신은 " + youStr);
+//		}		
+		// 컴퓨터도 0~2 난수 0 <= Math.random()*3 < 3
+		int com = 1; // 0~2사이의 정수 난수;
+		String comStr = (com==0) ? "가위" : (com==1) ? "바위" : "보";
+		System.out.println("당신은 " + youStr + ", 컴퓨터는 " + comStr);
+		// if문이나 switch문 이용해서 가위바위보 결과 출력
 	}
 }
 
