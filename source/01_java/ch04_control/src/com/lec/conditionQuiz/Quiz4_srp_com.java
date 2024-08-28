@@ -16,18 +16,18 @@ public class Quiz4_srp_com {
 			System.exit(0); // 프로그램 정상 강제 종료
 		}
 		String youStr; // 가위나 바위나 보를 저장
-//		switch(you) {
-//		case 0 : youStr="가위"; break;
-//		case 1 : youStr="바위"; break;
-//		case 2 : youStr="보"; break;
-//		}
-		if(you==0) {
-			youStr = "가위";
-		}else if(you==1){
-			youStr = "바위";
-		}else {
-			youStr = "보";
-		}		
+		switch(you) {
+		case 0 : youStr="가위"; break;
+		case 1 : youStr="바위"; break;
+		default : youStr="보"; break;
+		}
+//		if(you==0) {
+//			youStr = "가위";
+//		}else if(you==1){
+//			youStr = "바위";
+//		}else {
+//			youStr = "보";
+//		}		
 		// 컴퓨터도 0~2 난수 0 <= Math.random()*3 < 3		
 		System.out.println("당신은 " + youStr);
 	}
