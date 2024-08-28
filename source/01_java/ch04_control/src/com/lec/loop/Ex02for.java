@@ -7,7 +7,7 @@ public class Ex02for {
 		for( int i=1 ; i<=10 ; i++ ) {
 			total += i; //total = total + i;
 			if(i==10) {
-				System.out.print(i + '=' );
+				System.out.print(i + "=" );
 			}else {
 				System.out.print(i + "+");
 			}
