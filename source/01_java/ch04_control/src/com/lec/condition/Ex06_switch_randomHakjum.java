@@ -10,6 +10,35 @@ public class Ex06_switch_randomHakjum {
 		// 0 <= (int)(Math.random()*101) <101 : 정수 난수(0~100)
 		// 0 <= Math.random()*45 < 45 : 실수
 		// 1 <= (int)(Math.random()*45+1) < 46 : 정수
-		System.out.println( (int)(Math.random()*101) );
+		int score = (int)(Math.random()*101);
+		System.out.print( "점수는 " + score + " - ");
+		switch(score/10) {
+		case 10:
+		case 9:
+			System.out.println("A학점"); break; // 제어문 탈출
+		case 8:
+			System.out.println("B학점"); break;
+		case 7:
+			System.out.println("C학점"); break;
+		case 6:
+			System.out.println("D학점"); break;
+		default:
+			System.out.println("F학점");
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
