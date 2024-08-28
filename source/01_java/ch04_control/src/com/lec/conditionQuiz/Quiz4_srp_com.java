@@ -15,7 +15,7 @@ public class Quiz4_srp_com {
 			System.out.println("떼끼");
 			System.exit(0); // 프로그램 정상 강제 종료
 		}
-		String youStr = (you==0) ? "가위" : (you==1) ? "바위":"보" ;
+		String youStr = (you==0) ?  "가위"  :  (you==1) ? "바위":"보"  ;
 //		if(you==0) {
 //			youStr = "가위";
 //		}else if(you==1){
