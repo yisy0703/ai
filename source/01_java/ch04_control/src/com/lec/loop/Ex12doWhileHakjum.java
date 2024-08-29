@@ -4,8 +4,10 @@ import java.util.Scanner;
 public class Ex12doWhileHakjum {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		int score;
+		do {
 			System.out.print("점수는?");
-			int score = scanner.nextInt();
+			score = scanner.nextInt();
 			if( 90 <= score && score <= 100 ) {
 				System.out.println("A학점");
 			}else if( 80 <= score && score < 90) {
@@ -17,6 +19,7 @@ public class Ex12doWhileHakjum {
 			}else if( 0 <= score && score < 60) {
 				System.out.println("F학점");
 			}
+		}while(score>100 || score<0) ;
 		scanner.close();
 	}
 }
