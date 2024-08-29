@@ -13,9 +13,13 @@ public class Quiz1_sort {
 			for(int j=i+1 ; j<arr.length ; j++) {
 				if(arr[i] > arr[j]) { 
 					// i번째와 j번째 바꿔
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
 				}
 			}
 		}
+		System.out.println("정렬후 : " + Arrays.toString(arr));
 	}
 }
 
