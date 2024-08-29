@@ -4,6 +4,7 @@ public class Ex04_arrayCopy {
 	public static void main(String[] args) {
 		int[] score = {100, 20, 30, 40, 50};
 		int[] s = new int[score.length];
+		System.arraycopy(score, 0, s, 0, score.length);
 //		for(int idx=0 ; idx<s.length ; idx++) {
 //			s[idx] = score[idx];
 //		}
