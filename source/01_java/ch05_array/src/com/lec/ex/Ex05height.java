@@ -35,20 +35,3 @@ public class Ex05height {
 		System.out.printf("최단신 %s의 키는 %d\n", names[minIdx], minHeight);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
