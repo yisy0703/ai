@@ -14,5 +14,8 @@ public class RectMain {
 		System.out.printf("r1의 데이터 : %d, %d\n", r1.getWidth(), r1.getHeight());
 		System.out.printf("r2의 데이터 : %d, %d\n", r2.getWidth(), r2.getHeight());
 		System.out.printf("r3의 데이터 : %d, %d\n", r3.getWidth(), r3.getHeight());
+		System.out.println("r1의 넓이 : " + r1.area());
+		System.out.println("r2의 넓이 : " + r2.area());
+		System.out.println("r3의 넓이 : " + r3.area());
 	}
 }
