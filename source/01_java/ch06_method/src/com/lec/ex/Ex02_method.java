@@ -10,7 +10,7 @@ public class Ex02_method {
 		return sum;
 	}
 	private static String evenOdd(int value) { // value가 짝수인지 홀수인지를 return
-		String result = "짝수입니다";
+		String result = (value%2==0) ? "짝수입니다" : "홀수입니다";
 		return result;
 //		if (value%2==0) {
 //			return "짝수입니다";
