@@ -24,13 +24,22 @@ public class Car {
 		// 객체의 인스턴스변수와 매개변수(지역변수)의 우선순위는 지역변수 높음
 		this.color = color;
 	}
+	public String getColor() {
+		return color;
+	}
 	// cc (setter&getter)
 	public void setCc(int cc) {
 		this.cc = cc;
 	}
+	public int getCc() {
+		return cc;
+	}
 	// speed(setter&getter)
 	public void setSpeed(int speed) {
 		this.speed = speed;
+	}
+	public int getSpeed() {
+		return speed;
 	}
 }
 
