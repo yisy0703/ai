@@ -3,7 +3,8 @@ package com.lec.ex1_car;
 public class CarMain {
 	public static void main(String[] args) {
 		Car myPorsche = new Car();
-		myPorsche.color="빨강";
+		//myPorsche.color="빨강";
+		myPorsche.setColor("빨강");
 		myPorsche.cc = 2400;
 		System.out.println(myPorsche.color + "색차량 배기량은 " + 
 				myPorsche.cc + ", 속도는 " + myPorsche.speed);
