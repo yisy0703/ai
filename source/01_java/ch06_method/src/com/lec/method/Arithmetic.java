@@ -1,6 +1,10 @@
 package com.lec.method;
 // sum(10, 100), sum(10) - 함수 오버로딩 / evenOdd(10) / abs(-9)
 public class Arithmetic {
+	public static int abs(int value) { // value의 절대값을 return
+		int result = (value>=0)? value : -value;
+		return result;
+	}
 	public int sum(int from, int to) { // from부터 to까지 누적합 return
 		int sum = 0; // 누적변수
 		for(int i=from ; i<=to ; i++) {
