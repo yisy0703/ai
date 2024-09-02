@@ -21,11 +21,17 @@ public class Car {
 	// color (setter&getter)
 	public void setColor(String color) {
 		// this. : 내 객체의
+		// 객체의 인스턴스변수와 매개변수(지역변수)의 우선순위는 지역변수 높음
 		this.color = color;
 	}
 	// cc (setter&getter)
-	
+	public void setCc(int cc) {
+		this.cc = cc;
+	}
 	// speed(setter&getter)
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 }
 
 

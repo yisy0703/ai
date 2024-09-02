@@ -5,7 +5,8 @@ public class CarMain {
 		Car myPorsche = new Car();
 		//myPorsche.color="빨강";
 		myPorsche.setColor("빨강");
-		myPorsche.cc = 2400;
+		//myPorsche.cc = 2400;
+		myPorsche.setCc(2400);
 		System.out.println(myPorsche.color + "색차량 배기량은 " + 
 				myPorsche.cc + ", 속도는 " + myPorsche.speed);
 		myPorsche.drive();
@@ -14,7 +15,8 @@ public class CarMain {
 		System.out.println(myPorsche.color + "색차량 배기량은 " + 
 				myPorsche.cc + ", 속도는 " + myPorsche.speed);
 		Car yourPorsche = new Car();
-		yourPorsche.color = "gray";
+		//yourPorsche.color = "gray";
+		yourPorsche.setColor("gray");
 		yourPorsche.drive();
 		System.out.println(myPorsche.color + "색차량 배기량은 " + 
 				myPorsche.cc + ", 속도는 " + myPorsche.speed);
