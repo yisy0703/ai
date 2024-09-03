@@ -37,8 +37,15 @@ public class Account {
 	}
 	public String infoString() {
 		// 100-1 "홍길동"님 잔액 : 100 을 return
-		return accountNo + " \"" + ownerName + "\"님 잔액 : " + balance;
+		//return accountNo + " \"" + ownerName + "\"님 잔액 : " + balance;
+		return String.format("%s \"%s\"님 잔액 : %d", accountNo, ownerName, balance);
 	}
+	public String getAccountNo() {return accountNo;}
+	public void setAccountNo(String accountNo) {this.accountNo = accountNo;}
+	public String getOwnerName() {return ownerName;}
+	public void setOwnerName(String ownerName) {this.ownerName = ownerName;}
+	public long getBalance() {return balance;}
+	public void setBalance(long balance) {this.balance = balance;}
 }
 
 
