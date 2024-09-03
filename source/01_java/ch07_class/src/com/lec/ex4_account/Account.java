@@ -33,10 +33,11 @@ public class Account {
 	public void infoPrint() {
 		// 100-1 "홍길동"님 잔액 : 100 을 출력
 		//System.out.println(accountNo + " \"" + ownerName + "\"님 잔액 : " + balance);
-		System.out.printf("100-1 \"홍길동\"님 잔액 : 100", accountNo, ownerName, balance);
+		System.out.printf("%s \"%s\"님 잔액 : %d\n", accountNo, ownerName, balance);
 	}
 	public String infoString() {
 		// 100-1 "홍길동"님 잔액 : 100 을 return
+		return accountNo + " \"" + ownerName + "\"님 잔액 : " + balance;
 	}
 }
 

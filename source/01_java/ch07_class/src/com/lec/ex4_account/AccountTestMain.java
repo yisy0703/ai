@@ -5,6 +5,6 @@ public class AccountTestMain {
 		hong.deposite(100);
 		hong.withdraw(150);
 		hong.infoPrint();
-		//System.out.println(hong.infoString());
+		System.out.println(hong.infoString());
 	}
 }
