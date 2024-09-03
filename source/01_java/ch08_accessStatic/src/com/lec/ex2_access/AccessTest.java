@@ -1,4 +1,4 @@
-package com.lec.ex3_access;
+package com.lec.ex2_access;
 
 public class AccessTest {
 	private int privateMember; // 같은 클래스 내에서만 사용 가능
