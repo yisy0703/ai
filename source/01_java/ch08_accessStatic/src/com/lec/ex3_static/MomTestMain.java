@@ -1,6 +1,7 @@
 package com.lec.ex3_static;
 
 public class MomTestMain {
+
 	public static void main(String[] args) {
 		Child.method();
 		System.out.println(Child.mom.money);
