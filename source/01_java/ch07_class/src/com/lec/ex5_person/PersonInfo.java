@@ -28,7 +28,7 @@ public class PersonInfo {
 		String result = "이름 : " + name ;
 		result += "\n나이 : " + age;
 		result += "\n성별 : " + (gender=='m' ? "남자":"여자");
-		result += "\n생년월일 : " + birth;
+		result += "\n생년월일 : " + (birth==null? "" : birth);
 		return result;
 //		return    "이름 : " + name +
 //				"\n나이 : " + age + 
