@@ -31,8 +31,12 @@ public class Account {
 		} // if
 	}//withdraw
 	public void infoPrint() {
-		// 100-1 "홍길동"님 잔액 : 100
-		System.out.println(accountNo + " \"" + ownerName + "\"님 잔액 : " + balance);
+		// 100-1 "홍길동"님 잔액 : 100 을 출력
+		//System.out.println(accountNo + " \"" + ownerName + "\"님 잔액 : " + balance);
+		System.out.printf("100-1 \"홍길동\"님 잔액 : 100", accountNo, ownerName, balance);
+	}
+	public String infoString() {
+		// 100-1 "홍길동"님 잔액 : 100 을 return
 	}
 }
 
