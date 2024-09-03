@@ -3,10 +3,12 @@ package com.lec.ex3_static;
 // child1.takeMoney(3000);
 public class Child {
 	private String name;
-	Mom mom;
+	static Mom mom = new Mom();
 	public Child(String name) {
 		this.name = name;
-		mom = new Mom();
+	}
+	public static void method() {
+		System.out.println("method");
 	}
 	public void takeMoney(int money) {
 		if(mom.money >= money) {
