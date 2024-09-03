@@ -19,16 +19,16 @@ public class Member {
 		this.gender = gender;
 	}
 	public String infoString() {
-		String genderStr = (gender=='M' || gender=='m') ? "³²ÀÚ" : (gender=='F' || gender=='f') ? "¿©ÀÚ":"";
-		return String.format("¾ÆÀÌµğ = %s\nÀÌ¸§ = %s\nÀÌ¸ŞÀÏ = %s\nÁÖ¼Ò = %s\n»ıÀÏ = %s\n¼ºº° = %s\n", 
+		String genderStr = (gender=='M' || gender=='m') ? "ë‚¨ì" : (gender=='F' || gender=='f') ? "ì—¬ì":"";
+		return String.format("ì•„ì´ë”” = %s\nì´ë¦„ = %s\nì´ë©”ì¼ = %s\nì£¼ì†Œ = %s\nìƒì¼ = %s\nì„±ë³„ = %s\n", 
 							 id, name, email, address, birth, genderStr);
 		
-//		String result = "¾ÆÀÌµğ = "+ id +"\n";
-//		result += "ÀÌ¸§ = " + name + "\n";
-//		result += "ÀÌ¸ŞÀÏ = " + email + "\n";
-//		result += "ÁÖ¼Ò = " + address + "\n";
-//		result += "»ıÀÏ = " + birth + "\n";
-//		result += "¼ºº° = " + genderStr + "\n";
+//		String result = "ì•„ì´ë”” = "+ id +"\n";
+//		result += "ì´ë¦„ = " + name + "\n";
+//		result += "ì´ë©”ì¼ = " + email + "\n";
+//		result += "ì£¼ì†Œ = " + address + "\n";
+//		result += "ìƒì¼ = " + birth + "\n";
+//		result += "ì„±ë³„ = " + genderStr + "\n";
 //		return result;
 	}
 	public String getId() {return id;}

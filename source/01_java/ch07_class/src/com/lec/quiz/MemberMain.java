@@ -2,10 +2,10 @@ package com.lec.quiz;
 
 public class MemberMain {
 	public static void main(String[] args) {
-		Member member1 = new Member("aaa", "xxx", "È«±æµ¿", "hong@company.com",
-                "¼­¿ï½Ã °­³²±¸", "2000-01-01", 'M');
-		Member member2 = new Member("bbb", "xxx", "½Å±æµ¿", "shin@company.com", 
-				"¼­¿ï½Ã ¼­´ë¹®±¸ ½ÅÃÌ·Î 141", "1999-01-02", 'F');
+		Member member1 = new Member("aaa", "xxx", "í™ê¸¸ë™", "hong@company.com",
+                "ì„œìš¸ì‹œ ê°•ë‚¨êµ¬", "2000-01-01", 'M');
+		Member member2 = new Member("bbb", "xxx", "ì‹ ê¸¸ë™", "shin@company.com", 
+				"ì„œìš¸ì‹œ ì„œëŒ€ë¬¸êµ¬ ì‹ ì´Œë¡œ 141", "1999-01-02", 'F');
 		//System.out.println(member1.infoString());
 		Member[] members = {member1, member2};
 		for(Member member : members) {
