@@ -23,6 +23,27 @@ public class StudentTestMain {
 		String[] titles = {"이름","국어","영어","수학","총점","평균"};
 		int[] tot = new int[5]; // tot[0]:국어누적, tot[1]:영어누적, tot[2]:수학누적, tot[3]:총점누적, tot[4]:avg누적
 		line();
+		System.out.println("\t\t\t\t성적표");
+		line('-');
+		for(String title : titles ) {
+			System.out.print("\t" + title);
+		}
+		System.out.println(); // 개행
+		line('~');
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
