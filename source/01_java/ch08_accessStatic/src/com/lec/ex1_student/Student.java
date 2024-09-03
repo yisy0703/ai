@@ -20,7 +20,48 @@ public class Student {
 //		avg = (double)tot/3;
 	}
 	public void infoPrint() {
-		
+		// \t정우성\t100\t100\t100\t300\t100.0
+		// \t정우성\t 90\t 90\t100\t300\t100.0
+		System.out.printf("\t%s\t%3d\t%3d\t%3d\t%3d\t%5.1f", name, kor, eng, mat, tot, avg);
+	}
+	public String infoString() {
+		return String.format("\t%s\t%3d\t%3d\t%3d\t%3d\t%5.1f", name, kor, eng, mat, tot, avg);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getKor() {
+		return kor;
+	}
+	public void setKor(int kor) {
+		this.kor = kor;
+	}
+	public int getEng() {
+		return eng;
+	}
+	public void setEng(int eng) {
+		this.eng = eng;
+	}
+	public int getMat() {
+		return mat;
+	}
+	public void setMat(int mat) {
+		this.mat = mat;
+	}
+	public int getTot() {
+		return tot;
+	}
+	public void setTot(int tot) {
+		this.tot = tot;
+	}
+	public double getAvg() {
+		return avg;
+	}
+	public void setAvg(double avg) {
+		this.avg = avg;
 	}
 }
 
