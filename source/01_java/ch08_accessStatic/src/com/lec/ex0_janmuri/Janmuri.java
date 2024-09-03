@@ -12,6 +12,7 @@ class PersonInfo{
 }
 public class Janmuri {
 	public static void main(String[] args) {
-		PersonInfo p = new PersonInfo();
+		PersonInfo p = new PersonInfo("홍길동","010-9999-999");
+		System.out.println(p.info());
 	}
 }
