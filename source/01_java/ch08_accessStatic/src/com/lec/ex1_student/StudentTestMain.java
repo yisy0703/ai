@@ -36,8 +36,16 @@ public class StudentTestMain {
 			tot[1] += student.getEng();
 			tot[2] += student.getMat();
 			tot[3] += student.getTot();
-			tot[4] = tot[4] + student.getAvg();
+			// tot[4] = (int)(tot[4] + student.getAvg());
+			tot[4] += student.getAvg();
 		}
+		line('~');
+		System.out.print("\t총점");
+		for(int t : tot) {
+			System.out.print("\t" + t);
+		}
+		System.out.println();//개행
+		line();
 	}	
 }
 
