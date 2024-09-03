@@ -30,8 +30,15 @@ public class StudentTestMain {
 		}
 		System.out.println(); // 개행
 		line('~');
-	}
-	
+		for(Student student : students) {
+			System.out.println(student.infoString());
+			tot[0] += student.getKor(); //tot[0] = tot[0] + student.getKor(); 
+			tot[1] += student.getEng();
+			tot[2] += student.getMat();
+			tot[3] += student.getTot();
+			tot[4] = tot[4] + student.getAvg();
+		}
+	}	
 }
 
 
