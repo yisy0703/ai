@@ -5,4 +5,49 @@ package com.lec.ex4_account;
 public class Account {
 	private String accountNo; // 계좌번호
 	private String ownerName; // 예금주
+	private long   balance;   // 예금 잔액
+	// 생성자 없으면 JVM이 디폴트 생성자 함수 자동 생성
+	//public Account() {} // 디폴트 생성자 함수
+	public Account(String accountNo, String ownerName) {
+		this.accountNo = accountNo;
+		this.ownerName = ownerName;
+	}
+	public Account(String accountNo, String ownerName, long balance) {
+		this.accountNo = accountNo;
+		this.ownerName = ownerName;
+		this.balance   = balance;
+	}
+	public void deposite(long money) { // 무조건 예금하기
+		balance += money; //balance = balance + money;
+		System.out.println(money + "원 예금하여 잔액 : " + balance);
+	}
+	public void withdraw(long money) { // 잔액이 있을 경우만 인출하기
+		if(balance >= money) {
+			balance -= money; //balance = balance - money;
+			System.out.println(money +"원 인출하여 잔액 : " + balance);
+		}else {
+			// ch14에서는 강제 예외 발생
+			System.out.println("잔액이 부족하여 인출 불가합니다");
+		} // if
+	}//withdraw
+	public void infoPrint() {
+		// 100-1 "홍길동"님 잔액 : 100
+		System.out.println(accountNo + " \"" + ownerName + "\"님 잔액 : " + balance);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
