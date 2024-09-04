@@ -16,10 +16,12 @@ public class Customer extends Person{
 	}
 	public void buy(int price) {
 		sum += price; // 구매금액 누적
-		if(vip==false && sum>=1000000) {
+		if(vip==false && sum>= Constant.VIPLIMIT) {
 			vip = true;
 			System.out.println(getName() + "님 VIP로 업그레이드 되셨습니다 짱입니다");
 		}
+		int thisPoint = (int)(price * Constant.POINTRATE); // 금번 포인트
+		point += thisPoint; // 포인트 누적
 	}
 }
 
