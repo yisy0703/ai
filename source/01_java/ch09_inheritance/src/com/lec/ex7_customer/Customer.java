@@ -22,6 +22,10 @@ public class Customer extends Person{
 		}
 		int thisPoint = (int)(price * Constant.POINTRATE); // 금번 포인트
 		point += thisPoint; // 포인트 누적
+		System.out.println(getName() + "님 감사. 구매액 : " + price);
+		System.out.println("금번 포인트 : " + thisPoint);
+		System.out.println("누적 포인트 : " + point);
+		System.out.println("누적금액 : " + sum);
 	}
 }
 
