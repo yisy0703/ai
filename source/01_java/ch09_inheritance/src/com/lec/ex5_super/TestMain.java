@@ -9,5 +9,9 @@ public class TestMain {
 		mom.intro();
 		Baby baby1 = new Baby();
 		Baby baby2 = new Baby("아기곰", "귀여워");
+		baby1.setName("작은아기곰");
+		baby1.setCharacter("너무 귀여워");
+		baby1.intro();
+		baby2.intro();
 	}
 }
