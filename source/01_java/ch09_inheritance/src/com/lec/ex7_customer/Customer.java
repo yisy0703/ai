@@ -1,6 +1,7 @@
 package com.lec.ex7_customer;
 // Customer c = new Customer("홍", "010-9999-9999","서울","12-12")
 // c.buy(1200)
+// sysout(c.infoString())
 public class Customer extends Person{
 	private String address;
 	private int sum; // 구매금액 누적
