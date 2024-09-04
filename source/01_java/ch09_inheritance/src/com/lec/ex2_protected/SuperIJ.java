@@ -1,9 +1,10 @@
 package com.lec.ex2_protected;
 
 public class SuperIJ {
-	private int i;
-	private int j;
-	public SuperIJ() {
+	protected int i;
+	protected int j;
+	public SuperIJ() { 
+		// 부모클래스 생성자 함수는 기본적으로 매개변수 없는 생성자 호출 
 		System.out.println("매개변수 없는 SuperIJ 생성자 함수");
 	}
 	public SuperIJ(int i, int j) {
