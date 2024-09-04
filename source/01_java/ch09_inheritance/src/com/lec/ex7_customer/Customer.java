@@ -1,5 +1,5 @@
 package com.lec.ex7_customer;
-
-public class Customer {
-
+// new Customer("홍", "010-9999-9999","서울","12-12")
+public class Customer extends Person{
+	
 }
