@@ -28,6 +28,12 @@ public class Customer extends Person{
 		System.out.println("누적 포인트 : " + point);
 		System.out.println("누적금액 : " + sum);
 	}
+	@Override
+	public String infoString() {
+		String result =  super.infoString() + "  [포인트]" + point + "  [구매누적]" + sum;
+		result += (vip) ? " ♥ VIP 고객이십니다 ♥" : "";
+		return result;
+	}
 }
 
 
