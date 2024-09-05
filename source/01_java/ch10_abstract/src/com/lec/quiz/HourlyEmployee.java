@@ -1,5 +1,5 @@
 package com.lec.quiz;
-//name, hoursWorked, moneyPerHour, computePay(),computeIncentive()
+//name, hoursWorked, moneyPerHour, computePay(abstract),computeIncentive(final)
 public class HourlyEmployee extends Employee{
 	private int hoursWorked;
 	private int moneyPerHour;
@@ -10,7 +10,6 @@ public class HourlyEmployee extends Employee{
 	}
 	@Override
 	public int computePay() {
-		return hoursWorked*moneyPerHour;
+		return hoursWorked * moneyPerHour;
 	}
-
 }
