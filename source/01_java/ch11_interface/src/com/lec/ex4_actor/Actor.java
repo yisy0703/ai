@@ -15,22 +15,18 @@ public class Actor implements IPoliceMan, IFireFighter, IChef{
 	}
 	@Override
 	public void outFire() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "은 소방관입니다. 불을 끕니다");
 	}
 	@Override
 	public void saveMan() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "은 소방관입니다. 사람을 구합니다");
 	}
 	@Override
 	public void canCatchCriminal() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "은 경찰관입니다. 범인을 잡습니다");
 	}
 	@Override
 	public void canSearch() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(name + "은 경찰관입니다. 물건을 찾습니다");
 	}
 }
