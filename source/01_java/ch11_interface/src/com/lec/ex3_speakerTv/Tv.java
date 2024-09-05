@@ -11,9 +11,9 @@ public class Tv implements IVolume {
 	public void volumeUp() { // 1씩 증가
 		if(volumeLevel < MAX_VOLUME) {
 			volumeLevel++;
-			System.out.println("스피커 볼륨을 1올려 현재 볼륨은 " + volumeLevel);
+			System.out.println("TV 볼륨을 1올려 현재 볼륨은 " + volumeLevel);
 		}else {
-			System.out.println("스피커 볼륨이 최대치("+MAX_VOLUME+")여서 올리지 못했습니다");
+			System.out.println("TV 볼륨이 최대치("+MAX_VOLUME+")여서 올리지 못했습니다");
 		}
 	}
 	@Override
@@ -47,9 +47,9 @@ public class Tv implements IVolume {
 	public void volumeDown() {
 		if(volumeLevel > MIN_VOLUME ) {
 			volumeLevel--;
-			System.out.println("스피커 볼륨을 1만큼 내려 현재 볼륨은 " + volumeLevel);
+			System.out.println("TV 볼륨을 1만큼 내려 현재 볼륨은 " + volumeLevel);
 		}else {
-			System.out.println("스피커 볼륨이 최소치(" + MAX_VOLUME +")여서 내리지 못했습니다");
+			System.out.println("TV 볼륨이 최소치(" + MAX_VOLUME +")여서 내리지 못했습니다");
 		}//if
 	}//volumeDown
 }//class
