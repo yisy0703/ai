@@ -1,4 +1,4 @@
-package com.lec.ex8_store;
+package com.lec.ex1_store;
 // HeadQuarterStore를 상속받은 측에서 반드시 override 하도록
 // 추상클래스 : 추상메소드가 1개 이상
 public abstract class HeadQuarterStore{
