@@ -11,4 +11,5 @@ public class HeadQuarterStore{
 	public void bibim() { System.out.println("비빔밥 : 9,000원");	}
 	public void sunde() { System.out.println("순대국 : 8,000원");	}
 	public void gongi() { System.out.println("공기밥 : 1,000원");	}
+	public String getStoreName() {return storeName;}
 }
