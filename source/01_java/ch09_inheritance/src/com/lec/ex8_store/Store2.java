@@ -10,4 +10,8 @@ public class Store2 extends HeadQuarterStore {
 	public void bibim() {System.out.println("비빔밥 : 8,000원");}
 	@Override
 	public void gongi() {System.out.println("공기밥 : 무료");}
+	@Override
+	public String toString() {
+		return "★" + getStoreName() + "★";
+	}
 }

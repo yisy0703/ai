@@ -8,7 +8,7 @@ public class StoreMain {
 				new Store3("= = 증권가 3호점 = =")
 		};
 		for(int idx=0 ; idx<stores.length ; idx++) {
-			System.out.println(stores[idx]);
+			System.out.println(stores[idx].toString());
 		}
 //		HeadQuarterStore head = new HeadQuarterStore("= = 본사 = =");
 //		Store1 st1 = new Store1("= = 주택가 1호점 = =");
