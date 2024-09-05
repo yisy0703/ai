@@ -1,8 +1,9 @@
 package com.lec.ex2_store;
 //김치찌개-8,000  부대찌개-8,000(v)  비빔밥-8,000(v) 순대국-8,000  공기밥-무료(v)
-public class Store2 extends HeadQuarterStore {
+public class Store2 implements HeadQuarterStore {
+	private String storeName;
 	public Store2(String storeName) {
-		super(storeName);
+		this.storeName = storeName;
 	}
 	@Override
 	public void kimchi() {System.out.println("김치찌개 8,000원");}
@@ -16,6 +17,6 @@ public class Store2 extends HeadQuarterStore {
 	public void gongi() {System.out.println("공기밥 무료");}
 	@Override
 	public String toString() {
-		return "★" + getStoreName() + "★";
+		return "★" + storeName + "★";
 	}
 }
