@@ -18,8 +18,19 @@ public class Speaker implements IVolume {
 	}
 	@Override
 	public void volumeDown() {
-		// TODO Auto-generated method stub
-
+		if(volumeLevel > MIN_VOLUME ) {
+			volumeLevel--;
+			System.out.println("스피커 볼륨을 1만큼 내려 현재 볼륨은 " + volumeLevel);
+		}else {
+			System.out.println("스피커 볼륨이 최소치(" + MAX_VOLUME +")여서 내리지 못했습니다");
+		}
 	}
-
 }
+
+
+
+
+
+
+
+
