@@ -49,7 +49,7 @@ public class Tv implements IVolume {
 			volumeLevel--;
 			System.out.println("TV 볼륨을 1만큼 내려 현재 볼륨은 " + volumeLevel);
 		}else {
-			System.out.println("TV 볼륨이 최소치(" + MAX_VOLUME +")여서 내리지 못했습니다");
+			System.out.println("TV 볼륨이 최소치(" + MIN_VOLUME +")여서 내리지 못했습니다");
 		}//if
 	}//volumeDown
 }//class
