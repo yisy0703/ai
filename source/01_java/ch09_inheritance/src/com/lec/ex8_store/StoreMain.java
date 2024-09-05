@@ -15,6 +15,15 @@ public class StoreMain {
 			stores[idx].sunde();
 			stores[idx].gongi();
 		} // 일반for
+		// 위의 일반for문을 확장 for문으로 수정해 보세요
+		for(HeadQuarterStore store : stores) {
+			System.out.println(store);
+			store.kimchi();
+			store.bude();
+			store.bibim();
+			store.sunde();
+			store.gongi();
+		}// 확장 for
 //		HeadQuarterStore head = new HeadQuarterStore("= = 본사 = =");
 //		Store1 st1 = new Store1("= = 주택가 1호점 = =");
 //		Store2 st2 = new Store2("= = 대학가 2호점 = =");
