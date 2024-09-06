@@ -9,22 +9,9 @@ public class RobotTestMain {
 			robot.shape();
 			robot.actionWalk();
 			robot.actionRun();
-			if(robot instanceof SuperRobot) {
-				SuperRobot tempRobot = (SuperRobot)robot;
-				tempRobot.actionFly();
-				tempRobot.actionMssile();
-				tempRobot.actionKnife();
-			}else if(robot instanceof StandardRobot) {
-				StandardRobot tempRobot = (StandardRobot)robot;
-				tempRobot.actionFly();
-				tempRobot.actionMssile();
-				tempRobot.actionKnife();
-			}else if(robot instanceof LowRobot) {
-				LowRobot tempRobot = (LowRobot)robot;
-				tempRobot.actionFly();
-				tempRobot.actionMssile();
-				tempRobot.actionKnife();
-			}//if
+			robot.actionFly();
+			robot.actionMssile();
+			robot.actionKnife();
 		}//for
 	}//main
 }//class
