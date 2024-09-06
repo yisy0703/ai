@@ -13,6 +13,7 @@ public class RobotTestMain {
 			robot.actionMssile();
 			robot.actionKnife();
 		}//for
+		System.out.println("SuperRobot의 나는 부품을 높~~~~~~~이 나는 기능으로 업그레드");
 	}//main
 }//class
 
