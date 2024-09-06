@@ -1,4 +1,4 @@
-package singleton1;
+ package singleton1;
 /* 데이터 영역 메모리    | heap메모리 영역
  * 클래스(설계도)static | 일반변수       */
 public class Single {
