@@ -14,6 +14,7 @@ public abstract class Car {
 	public void isEngine() { engine.engine();}
 	public void isKmPerLitter() {km.kmPerLiter();}
 	public void isFuel() {fuel.fuel();}
+	// setter
 	public void setEngine(EngineImpl engine) {this.engine = engine;}
 	public void setKm(KmImpl km) {this.km = km;}
 	public void setFuel(FuelImpl fuel) {this.fuel = fuel;}

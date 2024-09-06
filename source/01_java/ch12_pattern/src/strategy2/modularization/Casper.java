@@ -11,6 +11,6 @@ public class Casper extends Car {
 	}
 	@Override
 	public void shape() {
-		System.out.println("★ 소나타 차량은 문, 시트, 핸들로 이루어져 있습니다");
+		System.out.println("★ 캐스퍼 차량은 문, 시트, 핸들로 이루어져 있습니다");
 	}
 }
