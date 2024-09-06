@@ -4,25 +4,33 @@ public class RobotTestMain {
 		SuperRobot    superRobot    = new SuperRobot();
 		StandardRobot standardRobot = new StandardRobot();
 		LowRobot      lowRobot      = new LowRobot();
-		superRobot.shape();
-		superRobot.actionWalk();
-		superRobot.actionRun();
-		superRobot.actionFly();
-		superRobot.actionMssile();
-		superRobot.actionKnife();
-		// -----------------------
-		standardRobot.shape();
-		standardRobot.actionWalk();
-		standardRobot.actionRun();
-		standardRobot.actionFly();
-		standardRobot.actionMssile();
-		standardRobot.actionKnife();
-		// -----------------------
-		lowRobot.shape();
-		lowRobot.actionWalk();
-		lowRobot.actionRun();
-		lowRobot.actionFly();
-		lowRobot.actionMssile();
-		lowRobot.actionKnife();
+		Robot[] robots = {superRobot, standardRobot, lowRobot};
+		for(Robot robot : robots) {
+			robot.shape();
+			robot.actionWalk();
+			robot.actionRun();
+			if(robot instanceof SuperRobot) {
+				SuperRobot tempRobot = (SuperRobot)robot;
+				tempRobot.actionFly();
+				tempRobot.actionMssile();
+				tempRobot.actionKnife();
+			}else if(robot instanceof StandardRobot) {
+				StandardRobot tempRobot = (StandardRobot)robot;
+				tempRobot.actionFly();
+				tempRobot.actionMssile();
+				tempRobot.actionKnife();
+			}else if(robot instanceof LowRobot) {
+				LowRobot tempRobot = (LowRobot)robot;
+				tempRobot.actionFly();
+				tempRobot.actionMssile();
+				tempRobot.actionKnife();
+			}
+		}
 	}
 }
+
+
+
+
+
+
