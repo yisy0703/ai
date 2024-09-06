@@ -1,17 +1,23 @@
 package strategy1.step4.modularization;
+import strategy1.step4.interfaces.*;
 public class SuperRobot extends Robot{
-	@Override
-	public void actionFly() {
-		System.out.println("날 수 있습니다");
+	private FlyImpl fly;
+	private MissileImpl missile;
+	private KnifeImpl   knife;
+	public SuperRobot() {
+		setFly(new FlyYes());//fly = new FlyYes();
+		setMissile(new MissileYes());
+		setKnife(new KnifeLazer());
 	}
 	@Override
-	public void actionMssile() {
-		System.out.println("미사일을 쏠 수 있습니다");
-	}
+	public void actionFly() { fly.fly(); }
 	@Override
-	public void actionKnife() {
-		System.out.println("레이저 검이 있습니다");
-	}
+	public void actionMssile() {missile.missile();}
+	@Override
+	public void actionKnife() {knife.knife();}
+	public void setFly(FlyImpl fly) {this.fly = fly;}
+	public void setMissile(MissileImpl missile) {this.missile = missile;}
+	public void setKnife(KnifeImpl knife) {	this.knife = knife;	}
 }
 
 
