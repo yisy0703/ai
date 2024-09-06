@@ -1,4 +1,4 @@
-package strategy1.step1;
+package strategy1.step2;
 public class SuperRobot {
 	public void shape() {
 		System.out.println("SuperRobot의 외형은 팔, 다리, 머리, 몸통이 있습니다 = = =");
