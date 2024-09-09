@@ -1,4 +1,5 @@
 package com.lec.quiz;
+import java.text.SimpleDateFormat;
 // Sawon s = new Sawon("24a001","홍길동",Sawon.COMPUTER, 2024, 9, 9)
 //new Sawon("24a001","홍길동",Sawon.COMPUTER)
 import java.util.Date;
@@ -26,7 +27,9 @@ public class Sawon {
 	}// sysout(s)	
 	@Override
 	public String toString() {
-		return "[사번]" + no + " [이름]" + name + " [부서]" + dept + " [입사일]" + hiredate;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년M월d일(E)");
+		return "[사번]" + no + " [이름]" + name + " [부서]" + dept 
+				+ " [입사일]" + sdf.format(hiredate);
 	}
 }
 
