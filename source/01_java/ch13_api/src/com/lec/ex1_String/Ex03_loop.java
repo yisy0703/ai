@@ -14,7 +14,8 @@ public class Ex03_loop {
 			case "U": case "u":
 				System.out.println("수정로직수행");
 			}
-		}while(!fn.equals("X") && !fn.equals("x"));
+//		}while(!fn.equals("X") && !fn.equals("x"));
+		}while( ! fn.equalsIgnoreCase("x"));
 		scanner.close();
 	}
 }
