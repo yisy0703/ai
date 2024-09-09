@@ -1,0 +1,20 @@
+package com.lec.ex1_String;
+import java.util.Scanner;
+// I:입력로직, U:수정로직, X:종료
+public class Ex03_loop {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String fn;
+		do {
+			System.out.print("I:입력, U:수정, X:종료");
+			fn = scanner.next(); // "X"
+			switch (fn) {
+			case "I": 
+				System.out.println("입력로직수행");break;
+			case "U":
+				System.out.println("수정로직수행");
+			}
+		}while(! fn.equals("X"));
+		scanner.close();
+	}
+}
