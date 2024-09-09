@@ -9,12 +9,20 @@ public class Ex03_loop {
 			System.out.print("I:입력, U:수정, X:종료");
 			fn = scanner.next(); // "X"
 			switch (fn) {
-			case "I": 
+			case "I": case "i":
 				System.out.println("입력로직수행");break;
-			case "U":
+			case "U": case "u":
 				System.out.println("수정로직수행");
 			}
-		}while(! fn.equals("X"));
+		}while(!fn.equals("X") && !fn.equals("x"));
 		scanner.close();
 	}
 }
+
+
+
+
+
+
+
+
