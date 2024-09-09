@@ -9,5 +9,8 @@ public class Ex01 {
 		System.out.print("이름 : ");
 		String name = scanner.next(); // white space(space, tab, \n)앞까지만 return하고 나머지는 버퍼에
 		System.out.println("입력한 이름 : " + name);
+		System.out.print("주소 : ");
+		String address = scanner.nextLine(); // "\n"앞의 값을 return하고 나머지는 버퍼에서 지움
+		System.out.println("입력한 주소는 : " + address);
 	}
 }
