@@ -23,6 +23,10 @@ public class Ex01_HashMap {
 		hashMap.put(22, "Lee soonsin");
 		hashMap.put(40, "Shin gildong");
 		Iterator<Integer> iterator = hashMap.keySet().iterator(); // 반복자
+		while(iterator.hasNext()) {
+			Integer key = iterator.next(); // 
+			System.out.println(key + "의 데이터는 " + hashMap.get(key));
+		}
 	}
 }
 
