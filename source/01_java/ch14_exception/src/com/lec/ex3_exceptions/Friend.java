@@ -27,16 +27,20 @@ public class Friend {
 		String nameOut = name.substring(0, name.length()-1) + "*";
 		result += "[이름]" + nameOut;
 		// 전화
-		String telOut = tel.substring(tel.lastIndexOf("-")+1);
-		result += " [전화]***-****-" + telOut;
+		if(tel!=null) {
+			String telOut = tel.substring(tel.lastIndexOf("-")+1);
+			result += " [전화]***-****-" + telOut;
+		}
 		// 생일
-		SimpleDateFormat sdf = new SimpleDateFormat("M월d일");
-		String birthOut = sdf.format(birthday);
-		result += " [생일]" + birthOut;
-		// 오늘이 생일인지 아닌지
-		String today = sdf.format(new Date()); // "9월10일"
-		if(today.equals(birthOut)) {
-			result += " ♬ 생일축하 ♬";
+		if(birthday!=null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("M월d일");
+			String birthOut = sdf.format(birthday);
+			result += " [생일]" + birthOut;
+			// 오늘이 생일인지 아닌지
+			String today = sdf.format(new Date()); // "9월10일"
+			if(today.equals(birthOut)) {
+				result += " ♬ 생일축하 ♬";
+			}
 		}
 		return result;
 	}
