@@ -1,7 +1,8 @@
 package com.lec.ex1_trycatch;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-// 첫번째 정수를 제대로 입력할 때까지 입력받음, 두번째 정수를 제대로 입력하지 않으면 1로 처리하여 수행하도록
+// 첫번째 정수를 제대로 입력할 때까지 입력받음, 
+// 두번째 정수를 제대로 입력하지 않으면 1로 할당받고, 곱셈, 덧셈, 뺄셈을 출력
 public class Ex03 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -13,6 +14,7 @@ public class Ex03 {
 				break;
 			}catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
+				scanner.nextLine(); // 버퍼지우는 목적
 			}
 		}while(true);
 		System.out.print("두번째 정수는 ");
