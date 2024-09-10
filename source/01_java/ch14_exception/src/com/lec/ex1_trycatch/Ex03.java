@@ -18,8 +18,14 @@ public class Ex03 {
 			}
 		}while(true);
 		System.out.print("두번째 정수는 ");
-		j = scanner.nextInt(); // InputMismatchException
-		System.out.println("i/j = " + (i/j));//ArithmeticException
+		try {
+			j = scanner.nextInt(); // InputMismatchException
+			System.out.println("i/j = " + (i/j));//ArithmeticException
+		}catch (ArithmeticException e) {
+			System.out.println("0으로 나눌 수 없습니다 : " + e.getMessage());
+		}catch(Exception e) {
+			System.out.println("두번째 정수를 잘못 입력하셔서 1로 처리합니다");
+		}
 		System.out.println("i*j = " + (i*j));
 		System.out.println("i+j = " + (i+j));
 		System.out.println("i-j = " + (i-j));
