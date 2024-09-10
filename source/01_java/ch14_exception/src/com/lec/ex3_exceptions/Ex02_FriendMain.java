@@ -8,5 +8,7 @@ public class Ex02_FriendMain {
 		System.out.println(friend2);
 		Friend friend3 = new Friend("김길동");
 		System.out.println(friend3);
+		Friend friend4 = new Friend("박길동", "010-7894-4564");
+		System.out.println(friend4);
 	}
 }
