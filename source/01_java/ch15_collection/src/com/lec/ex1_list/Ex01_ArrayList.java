@@ -20,6 +20,7 @@ public class Ex01_ArrayList {
 		arrayList.set(1, "s t r 1"); // 1번 인덱스 값 수정
 		arrayList.add("str3");
 		System.out.println(arrayList);
+		System.out.println("현재 arrayList 사이즈 : " + arrayList.size());
 	}
 }
 
