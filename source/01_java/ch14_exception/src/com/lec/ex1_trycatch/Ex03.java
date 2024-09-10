@@ -6,13 +6,15 @@ public class Ex03 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int i=0, j=1;
-		try {
-			System.out.print("첫번째 정수는 ");
-			i = scanner.nextInt(); // InputMismatchException
-		}catch (InputMismatchException e) {
-			System.out.println(e.getMessage());
-		}
-		
+		do {
+			try {
+				System.out.print("첫번째 정수는 ");
+				i = scanner.nextInt(); // InputMismatchException
+				break;
+			}catch (InputMismatchException e) {
+				System.out.println(e.getMessage());
+			}
+		}while(true);
 		System.out.print("두번째 정수는 ");
 		j = scanner.nextInt(); // InputMismatchException
 		System.out.println("i/j = " + (i/j));//ArithmeticException
