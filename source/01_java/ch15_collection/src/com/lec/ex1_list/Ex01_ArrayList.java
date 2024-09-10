@@ -21,6 +21,22 @@ public class Ex01_ArrayList {
 		arrayList.add("str3");
 		System.out.println(arrayList);
 		System.out.println("현재 arrayList 사이즈 : " + arrayList.size());
+		for(String arr : arrayList) {
+			System.out.print(arr + "\t");
+		}
+		System.out.println();
+		for(int idx=0 ; idx<arrayList.size() ; idx++) {
+			System.out.println(idx + "번째 : " + arrayList.get(idx));
+		}
+		arrayList.remove(1); // 1번 인덱스 값 제거 (2번인덱스->1번인덱스, 3번인덱스->2번인덱스)
+		System.out.println(arrayList);
+		arrayList.remove(arrayList.size()-1); // 맨 마지막 인덱스 값 제거
+		System.out.println(arrayList);
+		System.out.println(arrayList.isEmpty()? "arrayList데이터가 없음":"데이터 있음");
+		arrayList.clear(); // arrayList의 모든 데이터 제거System.out.println(arrayList);
+		System.out.println(arrayList);
+		System.out.println(arrayList.isEmpty()? "arrayList데이터가 없음":"데이터 있음");
+		System.out.println(arrayList.size());
 	}
 }
 
