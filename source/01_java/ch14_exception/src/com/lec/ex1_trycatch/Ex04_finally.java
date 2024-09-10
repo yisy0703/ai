@@ -7,6 +7,8 @@ public class Ex04_finally {
 				System.out.println("arr[" + i + "] = " + arr[i]);
 			}catch (ArrayIndexOutOfBoundsException e) {
 				System.out.println("예외 메세지 : " + e.getMessage());
+			}catch(Exception e) {
+				
 			}finally {
 				System.out.println("try절 실행후에도, catch 절 실행후에도 실행되는 절\n");
 			}
