@@ -1,3 +1,3 @@
 git add .
-git commit -m "Java io"
+git commit -m "Java collection"
 git push -u origin main
