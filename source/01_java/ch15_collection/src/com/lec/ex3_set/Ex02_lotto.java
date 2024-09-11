@@ -2,6 +2,7 @@ package com.lec.ex3_set;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.TreeSet;
 // Math.random(실수난수) Random객체
 public class Ex02_lotto {
 	public static void main(String[] args) {
@@ -22,7 +23,8 @@ public class Ex02_lotto {
 			}//for - j
 		}//for-i
 		System.out.println("lottoArr : " +Arrays.toString(lottoArr));
-		HashSet<Integer> lottoSet = new HashSet<Integer>();
+		// HashSet<Integer> lottoSet = new HashSet<Integer>();
+		TreeSet<Integer> lottoSet = new TreeSet<Integer>();
 		int count = 0;
 		while(lottoSet.size()<6) {
 			lottoSet.add(random.nextInt(45)+1);
