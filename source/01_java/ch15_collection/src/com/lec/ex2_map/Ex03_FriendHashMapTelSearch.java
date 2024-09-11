@@ -21,9 +21,10 @@ public class Ex03_FriendHashMapTelSearch {
 				System.out.println("검색되지 않는 전화번호입니다");
 			}else {
 				System.out.println("검색한 정보는 " + searchFriend);
-			}
-		}
-	}
+			}//if
+		}//while
+		scanner.close();
+	}//main
 }
 
 
