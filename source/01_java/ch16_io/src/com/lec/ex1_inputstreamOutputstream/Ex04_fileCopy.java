@@ -9,6 +9,7 @@ public class Ex04_fileCopy {
 		try {
 			is = new FileInputStream("D:/ai/lecNote/01_java/bts_7.mp4");
 			os = new FileOutputStream("D:\\ai\\lecNote\\01_java\\bts_copy.mp4");
+			
 			int cnt = 0;
 			while(true) { // read & write
 				int i = is.read(); 
@@ -19,7 +20,7 @@ public class Ex04_fileCopy {
 					System.out.println(cnt + "/7,460,545 번");
 				}
 			}
-			System.out.println("파일 복사 완료");
+			System.out.println("파일 복사 완료 : " + cnt + "번");
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		} finally {
