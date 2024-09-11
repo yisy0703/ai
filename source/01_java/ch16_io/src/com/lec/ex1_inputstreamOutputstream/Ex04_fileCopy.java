@@ -25,23 +25,11 @@ public class Ex04_fileCopy {
 		} finally {
 			try {
 				if(is!=null) is.close();
-				if(os!=null) os.close()
+				if(os!=null) os.close();
 			} catch (IOException e2) {
 				// TODO: handle exception
 			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}		
 		long end = System.currentTimeMillis(); // 1970.1.1부터 종료시점까지의 밀리세컨
 		System.out.println((end-start)/1000.0 + "초 걸림");
 	}
