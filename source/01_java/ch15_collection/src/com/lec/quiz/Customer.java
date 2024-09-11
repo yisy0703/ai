@@ -17,4 +17,10 @@ public class Customer {
 	public void setTel(String tel) {this.tel = tel;}
 	public void setAddress(String address) {this.address = address;}
 	public String getTel() {return tel;}
+	public String getName() {
+		return name;
+	}
+	public String getAddress() {
+		return address;
+	}
 }
