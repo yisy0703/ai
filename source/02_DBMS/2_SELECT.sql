@@ -34,6 +34,32 @@ SELECT * FROM EMP WHERE SAL^=3000;
     
 -- 4. 조건절에 논리연산자 : AND, OR, NOT
     -- EX1. 급여(SAL)가 2000이상 3000이하인 직원의 모든 필드
+    SELECT * FROM EMP WHERE SAL>=2000 AND SAL<=3000; -- 2000 <= SAL <=3000
+    
+    -- EX2. 82년도에 입사한 사원의 모든 필드(82/01/01이상, 82/12/31이하)
+    SELECT * FROM EMP WHERE HIREDATE>='82/01/01' AND HIREDATE<='82/12/31';
+    
+    -- EX3. 연봉(SAL*12)이 2400이상인 직원의 ENAME, SAL, 연봉(ANNUALSAL)을 출력
+    SELECT ENAME, SAL, SAL*12 "연봉" -- (3)
+        FROM EMP             -- (1)
+        WHERE SAL*12>=2400   -- (2)
+        ORDER BY SAL*12;     -- (4)
+    SELECT ENAME, SAL, SAL*12 "연봉" -- (3)
+        FROM EMP             -- (1)
+        WHERE SAL*12>=2400   -- (2)WHERE 절에는 필드의 별칭 사용 불가
+        ORDER BY 연봉;     -- (4)ORDER BY절에는 필드의 별칭 사용 가능
+    -- EX4. 10번부서(DEPTNO)이거나 JOB이 MANAGER인 직원의 모든 필드
+    SELECT * FROM EMP WHERE DEPTNO=10 OR JOB='MANAGER';
+    -- EX5. 10번 부서가 아닌 직원의 모든 필드
+    SELECT * FROM EMP WHERE DEPTNO != 10;
+    SELECT * FROM EMP WHERE NOT DEPTNO=10;
+
+-- 5. 산술연산자(SELECT절, WHERE절, ORDER BY절)
+SELECT EMPNO, ENAME, SAL, SAL*1.1 UPGRADESAL FROM EMP;
+    -- EX. 모든 사원의 ENAME, SAL(급여), COMM(상여), 연봉(SAL*12 + COMM)을 출력
+    SELECT ENAME, SAL, COMM, SAL*12+COMM 연봉 FROM EMP; -- 산술연산결과는 NULL을 포함하면 결과도 NULL
+    -- NVL(널일수도있는값, 널이면대체할값)
+    SELECT 
 
 
 
