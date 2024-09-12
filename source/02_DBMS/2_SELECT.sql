@@ -131,7 +131,23 @@ SELECT EMPNO, ENAME, SAL FROM EMP WHERE SAL BETWEEN 3000 AND 1500;
     -- EX. 부서번호가 10,20,40번을 제외한 부서의 직원들 모든 정보
     SELECT * FROM EMP WHERE DEPTNO NOT IN (10,20,40);
     SELECT * FROM EMP WHERE DEPTNO!=10 AND DEPTNO!=20 AND DEPTNO!=40;
-    -- 
+    -- EX. 직책이 MANAGER이거나 ANALYST인 사원의 모든 필드
+    SELECT * FROM EMP WHERE JOB IN ('MANAGER', 'ANALYST');
+
+-- (3) LIKE 포맷 : %(0글자이상), _(한글자)를 포함한 패턴
+    -- EX. 이름이 M으로 시작하는 사원의 모든 필드
+    SELECT * FROM EMP WHERE ENAME LIKE 'M%';
+    -- EX. 이름에 N이 들어가는 사원의 모든 필드
+    SELECT * FROM EMP WHERE ENAME LIKE '%N%';
+    -- EX. 이름에 N이 들어가거나 JOB에 N이 들어가는 사원의 모든 필드
+    SELECT * FROM EMP WHERE ENAME LIKE '%N%' OR JOB LIKE '%N%';
+    -- EX. 이름이 S로 끝나는 사원의 모든 필드
+    
+    -- EX. SAL 이 5로 끝나는 사원의 모든 필드
+    
+    -- EX. 82년도에 입사한 사원의 모든 필드
+    
+    -- EX. 1월에 입사한 사원의 모든 필드
 
 
 
