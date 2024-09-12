@@ -205,7 +205,6 @@ SELECT * FROM EMP WHERE DEPTNO IN (10,20) ORDER BY ENAME;
 -- (단 HEADING을 employee과 Monthly Salary로 출력)
 SELECT ENAME employee, SAL "Monthly Salary" FROM EMP 
   WHERE SAL>=1500 AND DEPTNO IN (10,30);
-SELECT ENAME employee, SAL "Monthly Salary" FROM EMP ;
 
 --7. hiredate가 1982년인 사원의 모든 정보를 출력
 SELECT * FROM EMP WHERE HIREDATE LIKE '82/%';
@@ -220,7 +219,9 @@ SELECT ENAME, SAL FROM EMP
 
 --9. comm이 sal보다 10%가 많은 모든 사원에 대하여 이름, 급여, 상여금을 
 --출력하는 SELECT 문을 작성
-SELECT ENAME, SAL, COMM FROM EMP WHERE COMM>SAL*1.1 ;
+SELECT ENAME, SAL, COMM 
+    FROM EMP 
+    WHERE COMM>SAL*1.1 ;
 
 --10. job이 CLERK이거나 ANALYST이고 sal이 1000,3000,5000이 아닌 모든 사원의 정보를 출력
 SELECT * FROM EMP WHERE JOB IN ('CLERK','ANALYST') 
