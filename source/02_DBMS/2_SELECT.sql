@@ -205,7 +205,7 @@ SELECT * FROM EMP WHERE DEPTNO IN (10,20) ORDER BY ENAME;
 -- (단 HEADING을 employee과 Monthly Salary로 출력)
 SELECT ENAME employee, SAL "Monthly Salary" FROM EMP 
   WHERE SAL>=1500 AND DEPTNO IN (10,30);
-SELECT ENAME employee, SAL "Monthly Salary" FROM EMP 
+SELECT ENAME employee, SAL "Monthly Salary" FROM EMP ;
 
 --7. hiredate가 1982년인 사원의 모든 정보를 출력
 SELECT * FROM EMP WHERE HIREDATE LIKE '82/%';
