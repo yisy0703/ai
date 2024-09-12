@@ -25,11 +25,15 @@ SELECT * FROM EMP WHERE SAL<>3000;
 SELECT * FROM EMP WHERE SAL!=3000;
 SELECT * FROM EMP WHERE SAL^=3000;
     -- 비교연산자는 숫자, 문자, 날짜형 모두 가능
-    -- 'A' < 'AA' < 'AAA' < 'AAAA' < 'AAAB' <'B'
+    -- 'A' < 'AA' < 'AAA' < 'AAAA' < 'AAAB' <'B'<'a'
     -- EX1. 사원이름이 'A','B','C'로 시작하는 사원의 모든 필드
     SELECT * FROM EMP WHERE ENAME < 'D';
     -- EX2. 81년도 이전에 입사한 사원의 모든 필드
-
+    SELECT * FROM EMP WHERE HIREDATE < '81/01/01' ;
+    ALTER SESSION SET NLS_DATE_FORMAT = 'RR/MM/DD';
+    
+-- 4. 조건절에 논리연산자 : AND, OR, NOT
+    -- EX1. 급여(SAL)가 2000이상 3000이하인 직원의 모든 필드
 
 
 
