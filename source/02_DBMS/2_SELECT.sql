@@ -142,7 +142,7 @@ SELECT EMPNO, ENAME, SAL FROM EMP WHERE SAL BETWEEN 3000 AND 1500;
     -- EX. 이름에 N이 들어가거나 JOB에 N이 들어가는 사원의 모든 필드
     SELECT * FROM EMP WHERE ENAME LIKE '%N%' OR JOB LIKE '%N%';
     -- EX. 이름이 S로 끝나는 사원의 모든 필드
-    
+    SELECT * FROM EMP WHERE 
     -- EX. SAL 이 5로 끝나는 사원의 모든 필드
     
     -- EX. 82년도에 입사한 사원의 모든 필드
