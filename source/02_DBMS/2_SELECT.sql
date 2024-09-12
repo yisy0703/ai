@@ -58,10 +58,12 @@ SELECT * FROM EMP WHERE SAL^=3000;
 SELECT EMPNO, ENAME, SAL, SAL*1.1 UPGRADESAL FROM EMP;
     -- EX. 모든 사원의 ENAME, SAL(급여), COMM(상여), 연봉(SAL*12 + COMM)을 출력
     SELECT ENAME, SAL, COMM, SAL*12+COMM 연봉 FROM EMP; -- 산술연산결과는 NULL을 포함하면 결과도 NULL
-    -- NVL(널일수도있는값, 널이면대체할값)
-    SELECT 
+    -- NVL(널일수도있는값, 널이면대체할값) : 널일수도있는값과 널이면대체할값의 타입이 일치
+    SELECT ENAME, SAL, NVL(COMM,0), SAL*12+NVL(COMM, 0) ANNUALSAL FROM EMP;
+    -- MGR일 널이면 'CEO'라고 출력
+    SELECT EMPNO, ENAME, NVL(TO_CHAR(MGR), 'CEO') MGR FROM EMP;
 
-
+-- 6. 연결연산자(||)
 
 
 
