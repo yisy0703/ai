@@ -1,4 +1,4 @@
-1. Oracle setup 후, cmd창을 띄워 다음 실행합니다
+1. Oracle setup 후, cmd창(관리자권한)을 띄워 다음 실행합니다
 2. 관리자 계정으로 접속 후 scott 계정 생성, 권한부여
 c:\~> sqlplus system/비번
          sqlplus "/as sysdba
