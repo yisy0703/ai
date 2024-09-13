@@ -97,7 +97,7 @@ SELECT * FROM EMP, SALGRADE
             AND HIREDATE LIKE '81%'
         ORDER BY GRADE DESC;
 
--- ★ <총 연습문제> Part1
+-- ★ ★ ★ <총 연습문제> ★ ★ ★ Part1
 --1. 모든 사원에 대한 이름, 부서번호, 부서명을 출력하는 SELECT 문장을 작성하여라.
 SELECT ENAME, E.DEPTNO, DNAME 
     FROM EMP E, DEPT D 
@@ -192,10 +192,48 @@ SELECT WORKER.EMPNO, WORKER.ENAME, WORKER.MGR, MANAGER.EMPNO, MANAGER.ENAME
     SELECT * FROM EMP;
     SELECT * FROM DEPT;
     
+-- ★ 4. OUTER JOIN : JOIN시 조건에 만족되지 않은 행까지 출력(정보가 부족한 쪽에 +기호)
+-- (1) SELF JOIN에서의 OUTER JOIN 
+SELECT W.ENAME, W.MGR, M.EMPNO, M.ENAME
+    FROM EMP W, EMP M
+    WHERE W.MGR=M.EMPNO(+);
+    -- SMITH의 상사는 FORD다(상사가 없는 직원은 KING의 상사는 없다라고 출력)
+    SELECT W.ENAME || '의 상사는 ' || NVL(M.ENAME, '없') || '다' "MESSAGE"
+        FROM EMP W, EMP M
+        WHERE W.MGR=M.EMPNO(+);
+    -- 말단사원
+    SELECT M.EMPNO, M.ENAME
+        FROM EMP W, EMP M
+        WHERE W.MGR(+)=M.EMPNO AND W.ENAME IS NULL;
 
+-- (2) EQUI JOIN에서의 OUTER JOIN 
+SELECT * FROM EMP E, DEPT D 
+    WHERE E.DEPTNO(+)=D.DEPTNO; -- 40번 부서 출력
 
+-- ★ ★ ★ <총 연습문제> ★ ★ ★ part2
+--1. 이름, 직속상사명
 
+--2. 이름, 급여, 업무, 직속상사명
 
+--3. 이름, 급여, 업무, 직속상사명 . (상사가 없는 직원까지 전체 직원 다 출력.
+    --상사가 없을 시 '없음'으로 출력)
 
+--4. 이름, 급여, 부서명, 직속상사명
+
+--5. 상사가 없는 직원과 상사가 있는 직원 모두에 대해 이름, 급여, 부서코드, 부서명, 근무지, 직속상사명을 출력하시오(단, 직속상사가 없을 경우 직속상사명에는 ‘없음’으로 대신 출력하시오)
+
+--6. 이름, 급여, 등급, 부서명, 직속상사명. 급여가 2000이상인 사람
+
+--7. 이름, 급여, 등급, 부서명, 직속상사명, (직속상사가 없는 직원까지 전체직원 부서명 순 정렬)
+
+--8. 이름, 급여, 등급, 부서명, 연봉, 직속상사명. 연봉=(급여+comm)*12으로 계산
+
+--9. 8번을 부서명 순 부서가 같으면 급여가 큰 순 정렬
+
+--10. 사원테이블에서 사원명, 사원의 상사를 검색하시오(상사가 없는 직원까지 전체).
+
+--11. 사원명, 상사명, 상사의 상사명을 검색하시오(self join)
+
+--12. 위의 결과에서 상위 상사가 없는 모든 직원의 이름도 출력되도록 수정하시오(outer join)
 
 
