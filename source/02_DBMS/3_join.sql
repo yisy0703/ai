@@ -216,7 +216,7 @@ SELECT W.ENAME, M.ENAME MANAGER
     FROM EMP W, EMP M 
     WHERE W.MGR=M.EMPNO;
 --2. 이름, 급여, 업무, 직속상사명
-SELECT W.ENAME, W.SAL, W.JOB, M.ENAME "MANAGER"
+SELECT W.ENAME, W.SAL, W.JOB, M.ENAME MANAGER
     FROM EMP W, EMP M
     WHERE W.MGR=M.EMPNO;
 --3. 이름, 급여, 업무, 직속상사명 . (상사가 없는 직원까지 전체 직원 다 출력.
