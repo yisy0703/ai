@@ -1,3 +1,3 @@
 git add .
-git commit -m "단일행함수"
+git commit -m "join"
 git push -u origin main
