@@ -21,6 +21,12 @@ SELECT TRUNC(34.567, -1) FROM DUAL;
 SELECT CEIL(34.567) FROM DUAL; -- 소수점에서 올림
 
 SELECT ROUND(34.567) FROM DUAL; -- 소수점에서 반올림
+SELECT ROUND(34.567, 2) FROM DUAL; -- 소수점 두자리에서 반올림
+SELECT ROUND(34.567, -1) FROM DUAL; -- 일의자리에서 반올림
+
+SELECT MOD(9, 2) FROM DUAL;
+    -- 홀수년도에 입사한 사원의 모든 정보 출력
+    SELECT * FROM EMP WHERE MOD( TO_CHAR(HIREDATE, 'RR'), 2)=1;
 
 
 
