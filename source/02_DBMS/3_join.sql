@@ -97,7 +97,7 @@ SELECT * FROM EMP, SALGRADE
             AND HIREDATE LIKE '81%'
         ORDER BY GRADE DESC;
 
--- ★ <셤 연습문제> Part1
+-- ★ <총 연습문제> Part1
 --1. 모든 사원에 대한 이름, 부서번호, 부서명을 출력하는 SELECT 문장을 작성하여라.
 SELECT ENAME, E.DEPTNO, DNAME 
     FROM EMP E, DEPT D 
