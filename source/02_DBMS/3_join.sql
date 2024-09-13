@@ -66,12 +66,36 @@ SELECT * FROM EMP, SALGRADE
         FROM EMP, SALGRADE
         WHERE SAL BETWEEN LOSAL AND HISAL;
     -- 탄탄EX1. COMM이 NULL이 아닌 사원의 이름, 급여, 급여등급, 부서번호, 부서명, 근무지
+    SELECT ENAME, SAL, GRADE, E.DEPTNO, DNAME, LOC
+        FROM EMP E, SALGRADE, DEPT D
+        WHERE SAL BETWEEN LOSAL AND HISAL AND E.DEPTNO=D.DEPTNO
+            AND COMM IS NOT NULL;
+    
     -- 탄탄EX2. 이름, 급여, 입사일, 급여등급(신입순)
+    SELECT ENAME, SAL, HIREDATE, GRADE FROM EMP, SALGRADE
+        WHERE SAL BETWEEN LOSAL AND HISAL
+        ORDER BY HIREDATE DESC;
     -- 탄탄EX3. 이름, 급여, 급여등급, 연봉, 부서명(부서명 정렬, 부서명 같으면 연봉순 정렬)
                                 -- 연봉=(SAL+COMM)*12
+    SELECT ENAME, SAL, GRADE, (SAL+NVL(COMM, 0))*12 "ANUUALSAL", DNAME
+        FROM EMP E, SALGRADE, DEPT D
+        WHERE SAL BETWEEN LOSAL AND HISAL
+            AND E.DEPTNO=D.DEPTNO
+        ORDER BY DNAME, ANUUALSAL DESC;
     -- 탄탄EX4. 이름, 직책, 급여, 등급, 부서번호, 부서명(급여가 1000~3000사이. 
                                 -- 정렬조건:부서번호순, 직책순, 급여큰순)
-    -- 탄탄EX5. 이름, 급여, 등급, 입사일, 근무지(81년 입사한 직원만 등급 큰순)
+    SELECT ENAME, JOB, SAL, GRADE, E.DEPTNO, DNAME
+        FROM EMP E, DEPT D, SALGRADE
+        WHERE E.DEPTNO=D.DEPTNO AND SAL BETWEEN LOSAL AND HISAL
+            AND SAL BETWEEN 1000 AND 3000
+        ORDER BY DEPTNO, JOB, SAL DESC;
+        
+    -- 탄탄EX5. 이름, 급여, 등급, 입사일, 근무지(81년에 입사한 직원만 등급 큰순)
+    SELECT ENAME, SAL, GRADE, HIREDATE, LOC
+        FROM EMP E, DEPT D, SALGRADE
+        WHERE E.DEPTNO=D.DEPTNO AND SAL BETWEEN LOSAL AND HISAL
+            AND HIREDATE LIKE '81%'
+        ORDER BY GRADE DESC;
 
 
 
