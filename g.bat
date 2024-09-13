@@ -1,3 +1,3 @@
 git add .
-git commit -m "select"
+git commit -m "JOIN"
 git push -u origin main
