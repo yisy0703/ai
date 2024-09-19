@@ -156,5 +156,36 @@ SELECT ADD_MONTHS(SYSDATE, 1) FROM DUAL;
     INSERT INTO EMP VALUES (9999, '홍길동', NULL, NULL, '80/08/31', 900, NULL, 40);
     SELECT * FROM EMP;
     ROLLBACK; -- DML언어(데이터입력, 수정, 삭제) 취소
-    
+-- (6) LAST_DAY(특정시점) : 특정시점의 말일(28, 29, 30, 31)
+SELECT LAST_DAY(SYSDATE) FROM DUAL;
+    -- EX. 이름, 입사일, 첫월급날(말일)
+    SELECT ENAME, HIREDATE, LAST_DAY(HIREDATE) FROM EMP;
+-- (7) ROUND(날짜, XX) : 날짜 반올림(XX:'YEAR', 'MONTH', 'DAY', 생략)
+    -- TRUNC(날짜, XX) : 날짜 버림
+SELECT ROUND(34.56), ROUND(34.56, 1) FROM DUAL;
+SELECT TO_CHAR(ROUND(SYSDATE), 'MM/DD HH24:MI') FROM DUAL; -- 가까운 0시0분
+SELECT ROUND(SYSDATE, 'DAY') FROM DUAL; -- 가까운 일요일
+SELECT ROUND(SYSDATE, 'MONTH') FROM DUAL; -- 가까운 1일
+SELECT ROUND(SYSDATE, 'YEAR') FROM DUAL; -- 가까운 1월 1일
+
+SELECT TO_CHAR(TRUNC(SYSDATE), 'MM/DD HH24:MI') FROM DUAL; -- 오늘 0시0분
+SELECT TRUNC(SYSDATE, 'DAY') FROM DUAL; -- 지난 일요일
+SELECT TRUNC(SYSDATE, 'MONTH') FROM DUAL; -- 이번달 1일
+SELECT TRUNC(SYSDATE, 'YEAR') FROM DUAL; -- 올해 1월 1일
+    -- EX. 이름, 입사일, 첫월급날(16일)
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE, 'MONTH')+15 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(15일) : ROUND기준 15/16을 14/15로 
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE+1, 'MONTH')+14 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(12일) : ROUND기준 15/16을 11/12로
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE+4, 'MONTH')+11 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(25일) : ROUND기준 15/16을 24/25로
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE-9, 'MONTH')+24 월급날 FROM EMP;
+
+-- 4. 형변환함수 (TO_CHAR:문자로 변환시키는 함수, TO_DATE:날짜형으로 변환시키는 함수, TO_NUMBER:숫자로변환시키는 함수)
+-- (1) TO_CHAR(날짜형, '출력형식') 
+    -- YYYY 년도4자리 / RR 년도2자리 / MM 월 / DD 일 / DY 목 / DAY 목요일
+    -- HH24 / HH12 / HH (12시간) / MI 분 / SS 초 / AM 오전/오후
+
+
+
 
