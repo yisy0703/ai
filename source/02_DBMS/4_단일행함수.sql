@@ -28,6 +28,13 @@ SELECT MOD(9, 2) FROM DUAL;
     -- 홀수년도에 입사한 사원의 모든 정보 출력
     SELECT * FROM EMP WHERE MOD( TO_CHAR(HIREDATE, 'RR'), 2)=1;
 
+-- 2. 문자관련함수
+-- (1) 대소문자 관련
+SELECT UPPER('abcABC') FROM DUAL; -- 대문자로
+SELECT LOWER('abcABC') FROM DUAL; -- 소문자로
+SELECT INITCAP('welcome to oracle') FROM DUAL; -- 어절단위로 나눠서 첫문자만 대문자 
+SELECT INITCAP('WELCOME TO ORACLE') FROM DUAL; -- 어절단위로 나눠서 첫문자만 대문자 
+    -- EX. 이름이 SCOTT인 직원의 모든 필드
 
 
 
