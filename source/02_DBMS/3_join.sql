@@ -264,5 +264,4 @@ SELECT W.ENAME, M.ENAME, MM.ENAME
 --12. 위의 결과에서 상위 상사가 없는 모든 직원의 이름도 출력되도록 수정하시오(outer join)
 SELECT W.ENAME, M.ENAME, MM.ENAME
     FROM EMP W, EMP M, EMP MM
-    WHERE W.MGR=M.EMPNO(+) AND M.MGR=MM.EMPNO(+);
-    
+    WHERE W.MGR=M.EMPNO(+) AND M.MGR=MM.EMPNO(+);    
