@@ -84,11 +84,35 @@ SELECT LPAD(ENAME, 10, '-'), LPAD(SAL,5,'$') FROM EMP;
     SELECT EMPNO,
             INITCAP(ENAME) ENAME,
             LPAD(LPAD(SUBSTR(JOB, -1, 1), LENGTH(JOB), '*'), 9) JOB,
-            SUBSTR(HIREDATE, 1, 6) || '**'
+            SUBSTR(TO_CHAR(HIREDATE, 'RR/MM/DD'), 1, 6) || '**'
         FROM EMP;
     SELECT EMPNO,
             INITCAP(ENAME) ENAME,
             LPAD(LPAD(SUBSTR(JOB, -1, 1), LENGTH(JOB), '*'), 9) JOB,
             TO_CHAR(HIREDATE, 'RR/MM/') || '**'
         FROM EMP;
+-- (6) INSTR(STR, 찾을문자) : STR에서 찾을문자가 첫번째로 나오는 위치(처음1, 없으면 0)
+-- INSTR(STR, 찾을문자, 시작위치) : STR의 시작위치부터 찾을 문자가 나오는 위치
+SELECT INSTR('ABCABCABC', 'B'), INSTR('ABCABCABC', 'B', 3) FROM DUAL;
+    -- EX. 9월에 입사한 사원의 모든 필드 (날짜 RR/MM/DD)
+    SELECT * FROM EMP WHERE INSTR(HIREDATE, '09', 4)=4;
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 4, 2) = '09';
+    SELECT * FROM EMP WHERE HIREDATE LIKE '__/09/__';
+    -- EX. 9일에 입사한 사원의 모든 필드
+    SELECT * FROM EMP WHERE INSTR(HIREDATE, '09', 7) = 7;
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 7, 2) = '09';
+    SELECT * FROM EMP WHERE HIREDATE LIKE '%/09';
+    -- EX. 9일 아닌 날에 입사한 사원의 모든 필드
+    SELECT * FROM EMP WHERE INSTR(HIREDATE, '09', 7) = 0;
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 7, 2) != '09';
+    SELECT * FROM EMP WHERE HIREDATE NOT LIKE '%/09';
+-- (7) 여백제거 : TRIM(STR), LTRIM(STR), RTRIM(STR)
+SELECT '  ORACLE   ' "MSG" FROM DUAL;
+SELECT TRIM('  ORACLE   ') "MSG" FROM DUAL;
+SELECT LTRIM('  ORACLE   ') "MSG" FROM DUAL;
+SELECT RTRIM('  ORACLE   ') "MSG" FROM DUAL;
+
+
+
+
 
