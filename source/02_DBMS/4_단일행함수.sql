@@ -207,7 +207,7 @@ SELECT TO_CHAR(1234.56, '9,999.9') FROM DUAL; -- 소수점 자리가 부족할 �
         WHERE HIREDATE BETWEEN TO_DATE('81/05/01', 'RR/MM/DD') AND
                             TO_DATE('83/05/01','RR/MM/DD');
                         
-    ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
+    ALTER SESSION SET NLS_DATE_FORMAT = 'RR-MM-DD';
 -- (4) TO_NUMBER(문자, '패턴')
 SELECT TO_NUMBER('3,456', '9,999') FROM DUAL;
 
@@ -239,12 +239,14 @@ SELECT LEVEL, LPAD('└', LEVEL*2)||ENAME FROM EMP
 
 -- <총 연습문제>
 -- 1. 현재 날짜를 출력하고 TITLE에 “Current Date”로 출력하는 SELECT 문장을 기술하시오.
-
+SELECT SYSDATE "Current Date" FROM DUAL;
 -- 2. EMP 테이블에서 현재 급여에 15%가 증가된 급여를 계산하여,
 -- 사원번호,이름,업무,급여,증가된 급여(New Salary),증가액(Increase)를 출력하는 SELECT 문장
 
+
 --3. 이름, 입사일, 입사일로부터 6개월 후 돌아오는 월요일 구하여 출력하는 SELECT 문장을 기술하시오.
 
+    
 --4. 이름, 입사일, 입사일로부터 현재까지의 개월수, 급여, 입사일부터 현재까지의 받은 급여의 총계를 출력
 
 --5. 모든 사원의 이름과 급여(15자리로 출력 좌측의 빈 곳은 “*”로 대치)를 출력
@@ -275,6 +277,4 @@ SELECT LEVEL, LPAD('└', LEVEL*2)||ENAME FROM EMP
 --13. 사원 테이블에서 부서 번호가 20인 사원의 사번, 이름, 직무, 급여를 출력하시오.
     --(급여는 앞에 $를 삽입하고3자리마다 ,를 출력한다)
 
-    
-    
-    
+ALTER SESSION SET NLS_DATE_FORMAT = 'RR/MM/DD';
