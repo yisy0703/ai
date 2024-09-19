@@ -116,3 +116,68 @@ SELECT RTRIM('  ORACLE   ') "MSG" FROM DUAL;
 SELECT REPLACE(ENAME, 'A', 'XX') FROM EMP;
 SELECT REPLACE(SAL, '0', 'X') FROM EMP;
 SELECT REPLACE(HIREDATE, 0, 'X') FROM EMP;
+
+-- 3. 날짜관련함수 및 예약어
+-- (1) SYSDATE : 지금
+SELECT SYSDATE FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'RR/MM/DD HH:MI') FROM DUAL;
+-- (2) 날짜 계산 : 오라클 기본 타입(문자, 숫자 , 날짜) 중 숫자, 날짜 타입은 연산가능
+SELECT 
+        TO_CHAR(SYSDATE, 'RR/MM/DD HH:MI'),
+        TO_CHAR(SYSDATE+1, 'RR/MM/DD HH:MI')
+    FROM DUAL;
+    -- 개강시점(24/08/26 09:30)부터 현재(24/09/09 11:48)까지 몇일 지났나? 
+    SELECT TRUNC(SYSDATE-TO_DATE('24/08/26 09:30', 'RR/MM/DD HH24:MI')) FROM DUAL;
+    -- 현재부터 수료까지 몇일 남았나?
+    SELECT TRUNC(TO_DATE('25/03/07 18:00', 'RR/MM/DD HH24:MI')-SYSDATE) FROM DUAL;
+    -- EMP에서 이름, 입사일, 근무일수
+    SELECT ENAME, HIREDATE, TRUNC(SYSDATE-HIREDATE) FROM EMP;
+    -- EMP에서 이름, 입사일, 근무일수, 근무주수, 근무년수
+    SELECT ENAME, HIREDATE,
+        TRUNC(SYSDATE-HIREDATE) DAY,
+        TRUNC( (SYSDATE-HIREDATE) /7) WEEK,
+        TRUNC( (SYSDATE-HIREDATE) / 365 ) YEAR
+        FROM EMP;
+-- (3) MONTHS_BETWEEN(날짜형1, 날짜형2) : 두 날짜형 데이터 간 개월수 (날짜형1이 큰 시점)
+    -- EX. 이름, 입사일, 근무월수
+    SELECT ENAME, HIREDATE, TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE)) MONTH FROM EMP;
+    -- EX. 수료시점까지 남은 개월수
+    SELECT 
+        TRUNC(MONTHS_BETWEEN(TO_DATE('25/03/07 18:00','RR/MM/DD HH24:MI'), SYSDATE), 
+             2) 
+        FROM DUAL;
+-- (4) NEXT_DAY(특정시점, '토') : 특정시점부터 처음 돌아오는 토요일
+SELECT NEXT_DAY(SYSDATE, '토') FROM DUAL;
+
+-- (5) ADD_MONTHS(특정시점, 개월수) : 특정시점부터 몇개월 후
+SELECT ADD_MONTHS(SYSDATE, 1) FROM DUAL;
+    -- EX. 이름, 입사일, 수습종료기간(수습기간은 입사일로부터 6개월까지)
+    SELECT ENAME, HIREDATE, ADD_MONTHS(HIREDATE, 6) FROM EMP;
+    -- 입사일을 8월 31일로 하면 6개월 후는 2월28일
+    INSERT INTO EMP VALUES (9999, '홍길동', NULL, NULL, '80/08/31', 900, NULL, 40);
+    SELECT * FROM EMP;
+    ROLLBACK; -- DML언어(데이터입력, 수정, 삭제) 취소
+-- (6) LAST_DAY(특정시점) : 특정시점의 말일(28, 29, 30, 31)
+SELECT LAST_DAY(SYSDATE) FROM DUAL;
+    -- EX. 이름, 입사일, 첫월급날(말일)
+    SELECT ENAME, HIREDATE, LAST_DAY(HIREDATE) FROM EMP;
+-- (7) ROUND(날짜, XX) : 날짜 반올림(XX:'YEAR', 'MONTH', 'DAY', 생략)
+    -- TRUNC(날짜, XX) : 날짜 버림
+SELECT ROUND(34.56), ROUND(34.56, 1) FROM DUAL;
+SELECT TO_CHAR(ROUND(SYSDATE), 'MM/DD HH24:MI') FROM DUAL; -- 가까운 0시0분
+SELECT ROUND(SYSDATE, 'DAY') FROM DUAL; -- 가까운 일요일
+SELECT ROUND(SYSDATE, 'MONTH') FROM DUAL; -- 가까운 1일
+SELECT ROUND(SYSDATE, 'YEAR') FROM DUAL; -- 가까운 1월 1일
+
+SELECT TO_CHAR(TRUNC(SYSDATE), 'MM/DD HH24:MI') FROM DUAL; -- 오늘 0시0분
+SELECT TRUNC(SYSDATE, 'DAY') FROM DUAL; -- 지난 일요일
+SELECT TRUNC(SYSDATE, 'MONTH') FROM DUAL; -- 이번달 1일
+SELECT TRUNC(SYSDATE, 'YEAR') FROM DUAL; -- 올해 1월 1일
+    -- EX. 이름, 입사일, 첫월급날(16일)
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE, 'MONTH')+15 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(15일) : ROUND기준 15/16을 14/15로 
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE+1, 'MONTH')+14 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(12일) : ROUND기준 15/16을 11/12로
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE+4, 'MONTH')+11 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(25일) : ROUND기준 15/16을 24/25로
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE-9, 'MONTH')+24 월급날 FROM EMP;
