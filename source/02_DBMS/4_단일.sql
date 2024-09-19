@@ -5,268 +5,305 @@ SELECT HIREDATE, TO_CHAR(HIREDATE, 'YYYY-MM-DD HH24:MI:SS') FROM EMP; -- 단일�
 
 SELECT AVG(SAL) FROM EMP; -- 그룹함수(INPUT 14행 -> OUTPUT 1행)
 SELECT DEPTNO, AVG(SAL) FROM EMP GROUP BY DEPTNO; -- INPUT N행 -> OUTPUT 1행
-SELECT * FROM EMP WHERE ENAME='SMITH'; -- 1행
-SELECT * FROM DEPT; -- 4행
-SELECT * FROM EMP, DEPT WHERE ENAME='SMITH'; -- CROSS JOIN : 4행(1*4)
 
--- ★ 1. EQUI JOIN(동등조인 = 공통필드값이 일치되는 조건만 JOIN)
-SELECT * FROM EMP, DEPT WHERE ENAME='SMITH' AND EMP.DEPTNO=DEPT.DEPTNO;
-SELECT * FROM EMP, DEPT WHERE EMP.DEPTNO=DEPT.DEPTNO;
-SELECT * 
-    FROM EMP E, DEPT D
-    WHERE E.DEPTNO=D.DEPTNO;
-    -- EX. 모든 사원의 사번, 이름, 직책, 상사사번, 부서번호, 부서이름, 근무지
-    SELECT EMPNO, ENAME, JOB, MGR, E.DEPTNO, DNAME, LOC
-        FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO;
-    -- EX. 급여가 2000이상인 직원에 대해, 이름, 직책, 급여, 부서명, 근무지
-    SELECT ENAME, JOB, SAL, DNAME, LOC
-        FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO AND SAL>=2000;
-    -- EX. 20번 부서 직원의 이름, 부서번호, 근무지 
-    SELECT ENAME, D.DEPTNO, LOC FROM EMP E, DEPT D 
-        WHERE E.DEPTNO=D.DEPTNO AND E.DEPTNO=20;
-    -- EX. LOC이 CHICAGO인 사람의 이름, 업무, 급여, 부서번호
-    SELECT ENAME, JOB, SAL, E.DEPTNO FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO AND LOC='CHICAGO';
-    -- EX. 82년도 입사한 10번, 20번 부서 직원의 이름, 급여, 근무지 출력(급여순)
-    SELECT ENAME, SAL, LOC FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO 
-            AND HIREDATE BETWEEN '82/01/01' AND '82/12/31'
-            AND E.DEPTNO IN (10,20)
-        ORDER BY SAL;
-    SELECT ENAME, SAL, LOC FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO 
-            AND HIREDATE LIKE '82/__/__'
-            AND E.DEPTNO IN (10,20)
-        ORDER BY SAL;
-    -- 탄탄EX1. NEW YORK에서 근무하는 사원의 이름과 급여를 출력
-    SELECT ENAME, SAL FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO AND LOC='NEW YORK';
-    -- 탄탄EX2. ACCOUNTING 부서 소속 사원의 이름과 입사일 출력
-    SELECT ENAME, HIREDATE FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO AND DNAME='ACCOUNTING';
-    -- 탄탄EX3. 직급이 MANAGER인 사원의 이름, 부서명 출력
-    SELECT ENAME, DNAME FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO AND JOB='MANAGER';
-    -- 탄탄EX4 COMM이 NULL이 아닌 사원의 이름, 급여, 부서번호, 근무지를 출력
-    SELECT ENAME, SAL, E.DEPTNO, LOC FROM EMP E, DEPT D
-        WHERE D.DEPTNO=E.DEPTNO AND COMM IS NOT NULL;
-    -- EX. COMM이 NULL이고 SAL이 1200이상인 사원의 이름, 급여, 부서번호, 부서명
-                         -- (부서명순, 급여큰순 정렬)
-    SELECT ENAME, SAL, E.DEPTNO, DNAME FROM EMP E, DEPT D
-        WHERE E.DEPTNO=D.DEPTNO AND COMM IS NULL AND SAL>=1200
-        ORDER BY DNAME, SAL DESC;
+-- ★ 단일행함수 = 숫자관련함수, 문자관련함수, 날짜관련함수, 형변환함수, NVL, etc..
+-- 1. 숫자관련함수
+    -- DUAL테이블 : 오라클에서 제공한 1행1열짜리 DUMMY TABLE
+SELECT * FROM DUAL;
+DESC DUAL;
+SELECT FLOOR(34.567) FROM DUAL; -- 소수점에서 내림(버림)
+SELECT FLOOR(34.567*10)/10 FROM DUAL; -- 345/10 => 34.5
+SELECT TRUNC(34.567, 1) FROM DUAL; -- 소수점 한자리에서 내림
+SELECT TRUNC(34.567) FROM DUAL;
+SELECT FLOOR(34.567/10)*10 FROM DUAL; -- 일의 자리에서 내림
+SELECT TRUNC(34.567, -1) FROM DUAL;
+    -- EX. EMP에서 이름, 급여(십의 자리에서 내림)
+    SELECT ENAME, SAL, TRUNC(SAL, -2) FROM EMP;
+SELECT CEIL(34.567) FROM DUAL; -- 소수점에서 올림
 
--- ★ 2. NON-EQUI JOIN
-SELECT * FROM EMP WHERE ENAME='SCOTT'; -- 1행(직원정보)
-SELECT * FROM SALGRADE; -- 5행(급여등급)
-SELECT * FROM EMP, SALGRADE WHERE ENAME='SCOTT'; -- CROSS JOIN
-SELECT * FROM EMP, SALGRADE 
-    WHERE ENAME='SCOTT' AND SAL BETWEEN LOSAL AND HISAL;
-SELECT * FROM EMP, SALGRADE
-    WHERE ENAME='SCOTT' AND SAL>=LOSAL AND SAL<=HISAL;
-    -- EX. 모든사원의 사번, 이름, 상사사번, 급여, 급여등급(1등급, 2등급...)
-    SELECT EMPNO, ENAME, MGR, SAL, GRADE||'등급' GRADE
-        FROM EMP, SALGRADE
-        WHERE SAL BETWEEN LOSAL AND HISAL;
-    -- 탄탄EX1. COMM이 NULL이 아닌 사원의 이름, 급여, 급여등급, 부서번호, 부서명, 근무지
-    SELECT ENAME, SAL, GRADE, E.DEPTNO, DNAME, LOC
-        FROM EMP E, SALGRADE, DEPT D
-        WHERE SAL BETWEEN LOSAL AND HISAL AND E.DEPTNO=D.DEPTNO
-            AND COMM IS NOT NULL;
+SELECT ROUND(34.567) FROM DUAL; -- 소수점에서 반올림
+SELECT ROUND(34.567, 2) FROM DUAL; -- 소수점 두자리에서 반올림
+SELECT ROUND(34.567, -1) FROM DUAL; -- 일의자리에서 반올림
+
+SELECT MOD(9, 2) FROM DUAL;
+    -- 홀수년도에 입사한 사원의 모든 정보 출력
+    SELECT * FROM EMP WHERE MOD( TO_CHAR(HIREDATE, 'RR'), 2)=1;
+
+-- 2. 문자관련함수
+-- (1) 대소문자 관련
+SELECT UPPER('abcABC') FROM DUAL; -- 대문자로
+SELECT LOWER('abcABC') FROM DUAL; -- 소문자로
+SELECT INITCAP('welcome to oracle') FROM DUAL; -- 어절단위로 나눠서 첫문자만 대문자 
+SELECT INITCAP('WELCOME TO ORACLE') FROM DUAL; -- 어절단위로 나눠서 첫문자만 대문자 
+    -- EX. 이름이 SCOTT인 직원의 모든 필드
+    SELECT * FROM EMP WHERE UPPER(ENAME)='SCOTT';
+    SELECT * FROM EMP WHERE INITCAP(ENAME) = 'Scott';
+    SELECT * FROM EMP WHERE LOWER(ENAME) = 'scott';
+-- (2) 문자 연결(CONCAT함수, ||연산자)
+SELECT 'AB'||'CD'||'EF'||'GH' FROM DUAL;
+SELECT CONCAT(CONCAT('AB','CD'), CONCAT('EF','GH')) FROM DUAL;
+    -- "SMITH는 MANAGER다" 포맷으로 EMP테이블 데이터를 출력
+    SELECT ENAME || '는 ' || JOB || '다' FROM EMP;
+    SELECT CONCAT( CONCAT(ENAME, '는 '), CONCAT(JOB, '다') ) FROM EMP;
+
+-- (3)SUBSTR(STR, 시작위치, 문자갯수) : STR을 시작위치부터 문자갯수만큼 문자 추출
+--   SUBSTRB(STR, 시작바이트위치, 바이트갯수) : STR을 시작부터 바이트갯수만큼 문자 추출
+                -- O R A C L E
+                -- 1 2 3 4 5 6
+                ---6-5-7-3-2-1
+SELECT SUBSTR('ORACLE', 1, 1) FROM DUAL;
+SELECT SUBSTRB('ORACLE', 4, 2) FROM DUAL;
+SELECT SUBSTR('데이터베이스', 4,2) FROM DUAL;
+SELECT SUBSTRB('데이터베이스',4, 3) FROM DUAL;
+    -- 9월에 입사한 사원의 모든 필드 (날짜형 표기 : 'RR/MM/DD')
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 4, 2) = '09'; -- DATE(날짜)형도 가능
+    DESC EMP;
+    -- 9일 입사한 사원의 모든 필드
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, -2, 2) = '09';
     
-    -- 탄탄EX2. 이름, 급여, 입사일, 급여등급(신입순)
-    SELECT ENAME, SAL, HIREDATE, GRADE FROM EMP, SALGRADE
-        WHERE SAL BETWEEN LOSAL AND HISAL
-        ORDER BY HIREDATE DESC;
-    -- 탄탄EX3. 이름, 급여, 급여등급, 연봉, 부서명(부서명 정렬, 부서명 같으면 연봉순 정렬)
-                                -- 연봉=(SAL+COMM)*12
-    SELECT ENAME, SAL, GRADE, (SAL+NVL(COMM, 0))*12 "ANUUALSAL", DNAME
-        FROM EMP E, SALGRADE, DEPT D
-        WHERE SAL BETWEEN LOSAL AND HISAL
-            AND E.DEPTNO=D.DEPTNO
-        ORDER BY DNAME, ANUUALSAL DESC;
-    -- 탄탄EX4. 이름, 직책, 급여, 등급, 부서번호, 부서명(급여가 1000~3000사이. 
-                                -- 정렬조건:부서번호순, 직책순, 급여큰순)
-    SELECT ENAME, JOB, SAL, GRADE, E.DEPTNO, DNAME
-        FROM EMP E, DEPT D, SALGRADE
-        WHERE E.DEPTNO=D.DEPTNO AND SAL BETWEEN LOSAL AND HISAL
-            AND SAL BETWEEN 1000 AND 3000
-        ORDER BY DEPTNO, JOB, SAL DESC;
-        
-    -- 탄탄EX5. 이름, 급여, 등급, 입사일, 근무지(81년에 입사한 직원만 등급 큰순)
-    SELECT ENAME, SAL, GRADE, HIREDATE, LOC
-        FROM EMP E, DEPT D, SALGRADE
-        WHERE E.DEPTNO=D.DEPTNO AND SAL BETWEEN LOSAL AND HISAL
-            AND HIREDATE LIKE '81%'
-        ORDER BY GRADE DESC;
+-- (4) LENGTH(STR) : STR의 글자수
+   -- LENGTHB(STR) : STR의 바이트 수
+SELECT LENGTH('ABCD') FROM DUAL; -- 글자수
+SELECT LENGTHB('ABCD') FROM DUAL; -- 저장될 바이트 수
+SELECT LENGTH('오라클'), LENGTHB('오라클') FROM DUAL;
+-- (5) LPAD(STR, 자리수, 채울문자):STR을 자리수만큼 확보하고 왼쪽 빈자리에 채울문자로 출력
+    -- LPAD(STR, 자리수) : STR을 자리수만큼 확보하고 왼쪽 빈자리에 ' '로 출력
+    -- RPAD(STR, 자리수, 채울문자):STR을 자리수만큼 확보하고 오른쪽 빈자리에 채울문자로 출력
+    -- RPAD(STR, 자리수) : STR을 자리수만큼 확보하고 오른쪽 빈자리에 ' '로 출력
+SELECT LPAD('ORACLE', 10, '#') FROM DUAL;
+SELECT LPAD('ORACLE', 10) FROM DUAL;
+DESC EMP;
+    -- ENAME : 최장 10글자, SAL : 5자리.2자리
+SELECT LPAD(ENAME, 10, '-'), LPAD(SAL,5,'$') FROM EMP; 
+    -- EX. 사번, 이름 (7369 S**** / 1111 W*** / 2222 M***** ) - RPAD, SUBSTR, LENGTH
+    SELECT EMPNO,
+            RPAD(SUBSTR(ENAME, 1, 1), LENGTH(ENAME), '*') ENAME
+        FROM EMP;
+    -- EX. 사번, 이름, 직책(9자리확보), 입사일
+    --    7369 Smith ____****K 80/12/**
+    --    7566 Jones ___*****R 81/02/**
+    SELECT EMPNO,
+            INITCAP(ENAME) ENAME,
+            LPAD(LPAD(SUBSTR(JOB, -1, 1), LENGTH(JOB), '*'), 9) JOB,
+            SUBSTR(TO_CHAR(HIREDATE, 'RR/MM/DD'), 1, 6) || '**'
+        FROM EMP;
+    SELECT EMPNO,
+            INITCAP(ENAME) ENAME,
+            LPAD(LPAD(SUBSTR(JOB, -1, 1), LENGTH(JOB), '*'), 9) JOB,
+            TO_CHAR(HIREDATE, 'RR/MM/') || '**'
+        FROM EMP;
+-- (6) INSTR(STR, 찾을문자) : STR에서 찾을문자가 첫번째로 나오는 위치(처음1, 없으면 0)
+-- INSTR(STR, 찾을문자, 시작위치) : STR의 시작위치부터 찾을 문자가 나오는 위치
+SELECT INSTR('ABCABCABC', 'B'), INSTR('ABCABCABC', 'B', 3) FROM DUAL;
+    -- EX. 9월에 입사한 사원의 모든 필드 (날짜 RR/MM/DD)
+    SELECT * FROM EMP WHERE INSTR(HIREDATE, '09', 4)=4;
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 4, 2) = '09';
+    SELECT * FROM EMP WHERE HIREDATE LIKE '__/09/__';
+    -- EX. 9일에 입사한 사원의 모든 필드
+    SELECT * FROM EMP WHERE INSTR(HIREDATE, '09', 7) = 7;
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 7, 2) = '09';
+    SELECT * FROM EMP WHERE HIREDATE LIKE '%/09';
+    -- EX. 9일 아닌 날에 입사한 사원의 모든 필드
+    SELECT * FROM EMP WHERE INSTR(HIREDATE, '09', 7) = 0;
+    SELECT * FROM EMP WHERE SUBSTR(HIREDATE, 7, 2) != '09';
+    SELECT * FROM EMP WHERE HIREDATE NOT LIKE '%/09';
+-- (7) 여백제거 : TRIM(STR), LTRIM(STR), RTRIM(STR)
+SELECT '  ORACLE   ' "MSG" FROM DUAL;
+SELECT TRIM('  ORACLE   ') "MSG" FROM DUAL;
+SELECT LTRIM('  ORACLE   ') "MSG" FROM DUAL;
+SELECT RTRIM('  ORACLE   ') "MSG" FROM DUAL;
+-- (8) REPLACE(STR, '바꿔야할문자', '바꿀문자') 
+SELECT REPLACE(ENAME, 'A', 'XX') FROM EMP;
+SELECT REPLACE(SAL, '0', 'X') FROM EMP;
+SELECT REPLACE(HIREDATE, 0, 'X') FROM EMP;
 
--- ★ ★ ★ <총 연습문제> ★ ★ ★ Part1
---1. 모든 사원에 대한 이름, 부서번호, 부서명을 출력하는 SELECT 문장을 작성하여라.
-SELECT ENAME, E.DEPTNO, DNAME 
-    FROM EMP E, DEPT D 
-    WHERE E.DEPTNO=D.DEPTNO;
---2. NEW YORK에서 근무하고 있는 사원에 대하여 이름, 업무, 급여, 부서명을 출력
-SELECT ENAME, JOB, SAL, DNAME 
-    FROM EMP E, DEPT D 
-    WHERE E.DEPTNO=D.DEPTNO 
-        AND LOC='NEW YORK';
---3. 보너스를 받는 사원에 대하여 이름,부서명,위치를 출력
-SELECT ENAME, COMM, DNAME, LOC 
-    FROM EMP E, DEPT D
-    WHERE E.DEPTNO=D.DEPTNO 
-        AND COMM > 0;
---4. 이름 중 L자가 있는 사원에 대하여 이름,업무,부서명,위치를 출력
-SELECT ENAME, JOB, DNAME, LOC 
-    FROM EMP E, DEPT D
-    WHERE E.DEPTNO=D.DEPTNO 
-        AND ENAME LIKE '%L%';
---5. 사번, 사원명, 부서코드, 부서명을 검색하라(단, 사원명기준으로 오름차순 정렬)
-SELECT EMPNO, ENAME, D.DEPTNO, DNAME
-  FROM EMP E, DEPT D
-  WHERE E.DEPTNO=D.DEPTNO
-  ORDER BY ENAME;
---6. 사번, 사원명, 급여, 부서명을 검색하라. 
-    --단 급여가 2000이상인 사원에 대하여 급여를 기준으로 내림차순으로 정렬하시오
-SELECT EMPNO, ENAME, SAL, DNAME
-  FROM EMP E, DEPT D
-  WHERE E.DEPTNO=D.DEPTNO 
-    AND SAL>=2000
-  ORDER BY SAL DESC;
---7. 사번, 사원명, 업무, 급여, 부서명을 검색하시오. 단 업무가 MANAGER이며 급여가 2500이상인
--- 사원에 대하여 사번을 기준으로 오름차순으로 정렬하시오.
-SELECT EMPNO, ENAME, JOB, SAL, DNAME
-  FROM EMP E, DEPT D
-  WHERE E.DEPTNO=D.DEPTNO 
-        AND JOB='MANAGER' 
-        AND SAL>=2500
-  ORDER BY EMPNO;
---8. 사번, 사원명, 업무, 급여, 등급을 검색하시오(단, 급여기준 내림차순으로 정렬)
-SELECT EMPNO, ENAME, JOB, SAL, GRADE
-  FROM EMP, SALGRADE
-  WHERE SAL BETWEEN LOSAL AND HISAL
-  ORDER BY SAL DESC;
+-- 3. 날짜관련함수 및 예약어
+-- (1) SYSDATE : 지금
+SELECT SYSDATE FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'RR/MM/DD HH:MI') FROM DUAL;
+-- (2) 날짜 계산 : 오라클 기본 타입(문자, 숫자 , 날짜) 중 숫자, 날짜 타입은 연산가능
+SELECT 
+        TO_CHAR(SYSDATE, 'RR/MM/DD HH:MI'),
+        TO_CHAR(SYSDATE+1, 'RR/MM/DD HH:MI')
+    FROM DUAL;
+    -- 개강시점(24/08/26 09:30)부터 현재(24/09/09 11:48)까지 몇일 지났나? 
+    SELECT TRUNC(SYSDATE-TO_DATE('24/08/26 09:30', 'RR/MM/DD HH24:MI')) FROM DUAL;
+    -- 현재부터 수료까지 몇일 남았나?
+    SELECT TRUNC(TO_DATE('25/03/07 18:00', 'RR/MM/DD HH24:MI')-SYSDATE) FROM DUAL;
+    -- EMP에서 이름, 입사일, 근무일수
+    SELECT ENAME, HIREDATE, TRUNC(SYSDATE-HIREDATE) FROM EMP;
+    -- EMP에서 이름, 입사일, 근무일수, 근무주수, 근무년수
+    SELECT ENAME, HIREDATE,
+        TRUNC(SYSDATE-HIREDATE) DAY,
+        TRUNC( (SYSDATE-HIREDATE) /7) WEEK,
+        TRUNC( (SYSDATE-HIREDATE) / 365 ) YEAR
+        FROM EMP;
+-- (3) MONTHS_BETWEEN(날짜형1, 날짜형2) : 두 날짜형 데이터 간 개월수 (날짜형1이 큰 시점)
+    -- EX. 이름, 입사일, 근무월수
+    SELECT ENAME, HIREDATE, TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE)) MONTH FROM EMP;
+    -- EX. 수료시점까지 남은 개월수
+    SELECT 
+        TRUNC(MONTHS_BETWEEN(TO_DATE('25/03/07 18:00','RR/MM/DD HH24:MI'), SYSDATE), 
+             2) 
+        FROM DUAL;
+-- (4) NEXT_DAY(특정시점, '토') : 특정시점부터 처음 돌아오는 토요일
+SELECT NEXT_DAY(SYSDATE, '토') FROM DUAL;
 
--- ★ 3. SELF-JOIN
-SELECT EMPNO, ENAME, MGR FROM EMP WHERE ENAME='SMITH'; 
-SELECT WORKER.EMPNO, WORKER.ENAME, WORKER.MGR, MANAGER.EMPNO, MANAGER.ENAME
-    FROM EMP WORKER, EMP MANAGER
-    WHERE WORKER.ENAME='SMITH' AND WORKER.MGR=MANAGER.EMPNO;
-    -- EX. 모든 사원의 사번, 이름, 상사사번, 상사이름
-    SELECT W.EMPNO, W.ENAME, W.MGR, M.ENAME
-        FROM EMP W, EMP M
-        WHERE W.MGR=M.EMPNO; -- 13행(KING의 MGR이 NULL이라서 EMPNO에 NULL이 없어)
-    -- EX. "SMITH의 상사는 FORD" 포맷으로 출력
-    SELECT W.ENAME || '의 상사는 ' || M.ENAME "MSG"
-        FROM EMP W, EMP M
-        WHERE W.MGR=M.EMPNO;
-    -- 탄탄 전 준비작업(20부서 : DALLAS)
-    INSERT INTO DEPT VALUES (50, 'IT', 'DALLAS');
-    INSERT INTO EMP VALUES (9999, '홍길동', NULL, NULL, NULL, 3000, NULL, 50);
-    SELECT * FROM DEPT;
+-- (5) ADD_MONTHS(특정시점, 개월수) : 특정시점부터 몇개월 후
+SELECT ADD_MONTHS(SYSDATE, 1) FROM DUAL;
+    -- EX. 이름, 입사일, 수습종료기간(수습기간은 입사일로부터 6개월까지)
+    SELECT ENAME, HIREDATE, ADD_MONTHS(HIREDATE, 6) FROM EMP;
+    -- 입사일을 8월 31일로 하면 6개월 후는 2월28일
+    INSERT INTO EMP VALUES (9999, '홍길동', NULL, NULL, '80/08/31', 900, NULL, 40);
     SELECT * FROM EMP;
-    -- 탄탄EX1. 매니저가 KING인 사원들의 이름과 직급 출력
-    SELECT W.ENAME, W.JOB
-        FROM EMP W, EMP M
-        WHERE W.MGR=M.EMPNO AND M.ENAME='KING';
-    -- 탄탄EX2. SCOTT과 동일한 부서번호인 사원의 이름을 출력(6장에서는 SUBQUERY)
-    -- (1단계)
-    SELECT E1.ENAME, E1.DEPTNO, E2.ENAME, E2.DEPTNO
-        FROM EMP E1, EMP E2
-        WHERE E1.ENAME='SCOTT' AND E1.DEPTNO=E2.DEPTNO AND E2.ENAME!='SCOTT';
-    -- (정답) :
-    SELECT E2.ENAME
-        FROM EMP E1, EMP E2
-        WHERE E1.ENAME='SCOTT' AND E1.DEPTNO=E2.DEPTNO AND E2.ENAME!='SCOTT';
-    -- 탄탄EX3. SCOTT과 동일한 지역에서 근무하는 사원의 이름을 출력(6장에서는 SUBQUERY)
-    --(1단계)
-    SELECT E1.ENAME, D1.LOC, E2.ENAME, D2.LOC
-        FROM EMP E1, DEPT D1, EMP E2, DEPT D2
-        WHERE E1.DEPTNO=D1.DEPTNO AND E1.ENAME='SCOTT'
-            AND E2.DEPTNO=D2.DEPTNO
-            AND D1.LOC=D2.LOC AND E2.ENAME!='SCOTT';
-    -- (정답)
-    SELECT E2.ENAME
-        FROM EMP E1, DEPT D1, EMP E2, DEPT D2
-        WHERE E1.DEPTNO=D1.DEPTNO AND E1.ENAME='SCOTT'
-            AND E2.DEPTNO=D2.DEPTNO
-            AND D1.LOC=D2.LOC AND E2.ENAME!='SCOTT';
-    -- DML(데이터 조작어 : INSERT, DELETE, UPDATE, SELECT)구문 실행 취소 : ROLLBACK
-    ROLLBACK;
-    SELECT * FROM EMP;
-    SELECT * FROM DEPT;
-    
--- ★ 4. OUTER JOIN : JOIN시 조건에 만족되지 않은 행까지 출력(정보가 부족한 쪽에 +기호)
--- (1) SELF JOIN에서의 OUTER JOIN 
-SELECT W.ENAME, W.MGR, M.EMPNO, M.ENAME
-    FROM EMP W, EMP M
-    WHERE W.MGR=M.EMPNO(+);
-    -- SMITH의 상사는 FORD다(상사가 없는 직원은 KING의 상사는 없다라고 출력)
-    SELECT W.ENAME || '의 상사는 ' || NVL(M.ENAME, '없') || '다' "MESSAGE"
+    ROLLBACK; -- DML언어(데이터입력, 수정, 삭제) 취소
+-- (6) LAST_DAY(특정시점) : 특정시점의 말일(28, 29, 30, 31)
+SELECT LAST_DAY(SYSDATE) FROM DUAL;
+    -- EX. 이름, 입사일, 첫월급날(말일)
+    SELECT ENAME, HIREDATE, LAST_DAY(HIREDATE) FROM EMP;
+-- (7) ROUND(날짜, XX) : 날짜 반올림(XX:'YEAR', 'MONTH', 'DAY', 생략)
+    -- TRUNC(날짜, XX) : 날짜 버림
+SELECT ROUND(34.56), ROUND(34.56, 1) FROM DUAL;
+SELECT TO_CHAR(ROUND(SYSDATE), 'MM/DD HH24:MI') FROM DUAL; -- 가까운 0시0분
+SELECT ROUND(SYSDATE, 'DAY') FROM DUAL; -- 가까운 일요일
+SELECT ROUND(SYSDATE, 'MONTH') FROM DUAL; -- 가까운 1일
+SELECT ROUND(SYSDATE, 'YEAR') FROM DUAL; -- 가까운 1월 1일
+
+SELECT TO_CHAR(TRUNC(SYSDATE), 'MM/DD HH24:MI') FROM DUAL; -- 오늘 0시0분
+SELECT TRUNC(SYSDATE, 'DAY') FROM DUAL; -- 지난 일요일
+SELECT TRUNC(SYSDATE, 'MONTH') FROM DUAL; -- 이번달 1일
+SELECT TRUNC(SYSDATE, 'YEAR') FROM DUAL; -- 올해 1월 1일
+    -- EX. 이름, 입사일, 첫월급날(16일)
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE, 'MONTH')+15 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(15일) : ROUND기준 15/16을 14/15로 
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE+1, 'MONTH')+14 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(12일) : ROUND기준 15/16을 11/12로
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE+4, 'MONTH')+11 월급날 FROM EMP;
+    -- EX. 이름, 입사일, 첫월급날(25일) : ROUND기준 15/16을 24/25로
+    SELECT ENAME, HIREDATE, ROUND(HIREDATE-9, 'MONTH')+24 월급날 FROM EMP;
+
+-- 4. 형변환함수 (TO_CHAR:문자로 변환시키는 함수, TO_DATE:날짜형으로 변환시키는 함수, TO_NUMBER:숫자로변환시키는 함수)
+-- (1) TO_CHAR(날짜형, '출력형식') 
+    -- YYYY 년도4자리 / RR 년도2자리 / MM 월 / DD 일 / DY 목 / DAY 목요일
+    -- HH24 / HH12 / HH (12시간) / MI 분 / SS 초 / AM 오전/오후
+    -- 출력형식에 문자를 포함할 경우 ""
+SELECT ENAME, TO_CHAR(HIREDATE, 'YYYY-MM-DD DAY HH24:MI:SS') FROM EMP;
+SELECT ENAME, TO_CHAR(HIREDATE, 'RR"년"MM"월"DD"일" DY"요일" AM HH"시"MI"분"SS"초"')
+    FROM EMP;
+-- (2) TO_CHAR(숫자, '출력형식')
+    -- 0 : 자릿수. 출력형식의 자릿수가 많으면 0으로 채움
+    -- 9 : 자릿수. 출력형식의 자릿수가 많아도 숫자만큼 출력
+    -- , : 세자리마다 ,
+    -- . : 소수점
+    -- $ : 통화단위 $
+    -- L : 지역통화단위로 출력
+SELECT TO_CHAR(SAL, 'L99,999') FROM EMP;
+SELECT TO_CHAR(SAL, '$00,000.9') FROM EMP;
+SELECT TO_CHAR(1234.56, '9,999.9') FROM DUAL; -- 소수점 자리가 부족할 경우 반올림
+-- (3) TO_DATE(문자, '패턴')
+    -- EX. 81/5/1 ~ 83/5/1 사이에 입한 사원의 모든 필드
+    SELECT * FROM EMP 
+        WHERE TO_CHAR(HIREDATE, 'RR/MM/DD') BETWEEN '81/05/01' AND '83/05/01';
+    SELECT * FROM EMP
+        WHERE HIREDATE BETWEEN TO_DATE('81/05/01', 'RR/MM/DD') AND
+                            TO_DATE('83/05/01','RR/MM/DD');
+                        
+    ALTER SESSION SET NLS_DATE_FORMAT = 'RR-MM-DD';
+-- (4) TO_NUMBER(문자, '패턴')
+SELECT TO_NUMBER('3,456', '9,999') FROM DUAL;
+
+-- 5. NVL(널일수도 있는 데이터, 널이면대신할값) - 매개변수 2개의 타입 일치
+    -- EX. 사원이름, 직속상사이름(직속상사가 없으면 CEO로 출력)
+    SELECT W.ENAME, NVL(M.ENAME, 'CEO')
         FROM EMP W, EMP M
         WHERE W.MGR=M.EMPNO(+);
-    -- 말단사원
-    SELECT M.EMPNO, M.ENAME
-        FROM EMP W, EMP M
-        WHERE W.MGR(+)=M.EMPNO AND W.ENAME IS NULL;
+    -- EX. 사원이름, 직속상사의 사번(직속상사가 없으면 CEO로 출력)
+    SELECT ENAME, NVL(TO_CHAR(MGR), 'CEO') FROM EMP;
 
--- (2) EQUI JOIN에서의 OUTER JOIN 
-SELECT * FROM EMP E, DEPT D 
-    WHERE E.DEPTNO(+)=D.DEPTNO; -- 40번 부서 출력
+-- 6. ETC
+-- (1) EXTRACT : 날짜형 데이터에서 년도, 월, 일만 추출하고자 할 때
+SELECT HIREDATE, EXTRACT(YEAR FROM HIREDATE) FROM EMP; -- 년도만 추출(숫자로 추출)
+SELECT HIREDATE, TO_CHAR(HIREDATE, 'YYYY') FROM EMP; -- 년도만 추출(문자로 추출)
+SELECT HIREDATE, EXTRACT(MONTH FROM HIREDATE) FROM EMP; -- 월만 추출(숫자로 추출)
+SELECT HIREDATE, TO_CHAR(HIREDATE, 'MM') FROM EMP; -- 월만 문자로 추출
+SELECT HIREDATE, EXTRACT(DAY FROM HIREDATE) FROM EMP; -- 일만 추출(숫자로 추출)
+SELECT HIREDATE, TO_CHAR(HIREDATE, 'DD') FROM EMP; -- 일만 문자로 추출
+-- (2) 계층별 출력
+SELECT * FROM EMP; -- 계층없이 출력
+SELECT LEVEL, EMP.* FROM EMP
+    START WITH MGR IS NULL
+    CONNECT BY PRIOR EMPNO=MGR
+    ORDER BY LEVEL;
+SELECT LEVEL, LPAD('└', LEVEL*2)||ENAME FROM EMP
+    START WITH MGR IS NULL
+    CONNECT BY PRIOR EMPNO=MGR;
 
--- ★ ★ ★ <총 연습문제> ★ ★ ★ part2
---1. 이름, 직속상사명
-SELECT W.ENAME, M.ENAME MANAGER
-    FROM EMP W, EMP M 
-    WHERE W.MGR=M.EMPNO;
---2. 이름, 급여, 업무, 직속상사명
-SELECT W.ENAME, W.SAL, W.JOB, M.ENAME MANAGER
-    FROM EMP W, EMP M
-    WHERE W.MGR=M.EMPNO;
---3. 이름, 급여, 업무, 직속상사명 . (상사가 없는 직원까지 전체 직원 다 출력.
-    --상사가 없을 시 '없음'으로 출력)
-SELECT W.ENAME, W.SAL, W.JOB, NVL(M.ENAME,'없음') MANAGER
-    FROM EMP W, EMP M
-    WHERE W.MGR=M.EMPNO(+);
---4. 이름, 급여, 부서명, 직속상사명
-SELECT W.ENAME, W.SAL, DNAME, M.ENAME MANAGER
-  FROM EMP W, EMP M, DEPT D
-  WHERE W.DEPTNO=D.DEPTNO AND W.MGR=M.EMPNO;
---5. 상사가 없는 직원과 상사가 있는 직원 모두에 대해 이름, 급여, 부서코드, 부서명, 근무지, 직속상사명을 출력하시오(단, 직속상사가 없을 경우 직속상사명에는 ‘없음’으로 대신 출력하시오)
-SELECT W.ENAME, W.SAL, W.DEPTNO, DNAME, LOC, M.ENAME MANAGER
-  FROM EMP W, EMP M, DEPT D
-  WHERE W.DEPTNO=D.DEPTNO AND W.MGR=M.EMPNO(+);
---6. 이름, 급여, 등급, 부서명, 직속상사명. 급여가 2000이상인 사람
-SELECT W.ENAME, W.SAL, GRADE, DNAME, M.ENAME MANAGER
-    FROM EMP W, SALGRADE, DEPT D, EMP M
-    WHERE W.SAL BETWEEN LOSAL AND HISAL AND W.DEPTNO=D.DEPTNO AND W.MGR=M.EMPNO
-        AND W.SAL >= 2000;  
---7. 이름, 급여, 등급, 부서명, 직속상사명, (직속상사가 없는 직원까지 전체직원 부서명 순 정렬)
-SELECT W.ENAME, W.SAL, GRADE, DNAME, M.ENAME MANAGER
-  FROM EMP W, EMP M, DEPT D, SALGRADE
-  WHERE W.MGR=M.EMPNO(+) AND W.DEPTNO=D.DEPTNO 
-    AND W.SAL BETWEEN LOSAL AND HISAL
-  ORDER BY DNAME;
---8. 이름, 급여, 등급, 부서명, 연봉, 직속상사명. 연봉=(급여+comm)*12으로 계산
-SELECT W.ENAME, W.SAL, GRADE, DNAME, (W.SAL+NVL(W.COMM, 0))*12 ANNUALSAL, M.ENAME MANAGER
-    FROM EMP W, EMP M, SALGRADE, DEPT D
-    WHERE W.MGR=M.EMPNO AND W.SAL BETWEEN LOSAL AND HISAL AND W.DEPTNO=D.DEPTNO;
---9. 8번을 부서명 순 부서가 같으면 급여가 큰 순 정렬
-SELECT W.ENAME, W.SAL, GRADE, DNAME, (W.SAL+NVL(W.COMM, 0))*12 ANNUALSAL, M.ENAME MANAGER
-    FROM EMP W, EMP M, SALGRADE, DEPT D
-    WHERE W.MGR=M.EMPNO AND W.SAL BETWEEN LOSAL AND HISAL AND W.DEPTNO=D.DEPTNO
-    ORDER BY DNAME, SAL DESC;
+-- <총 연습문제>
+-- 1. 현재 날짜를 출력하고 TITLE에 “Current Date”로 출력하는 SELECT 문장을 기술하시오.
+SELECT SYSDATE "Current Date" FROM DUAL;
+
+-- 2. EMP 테이블에서 현재 급여에 15%가 증가된 급여를 계산하여,
+-- 사원번호,이름,업무,급여,증가된 급여(New Salary),증가액(Increase)를 출력하는 SELECT 문장
+SELECT EMPNO, ENAME, JOB, SAL, SAL*1.15 "New Salary", SAL*0.15 Increase 
+    FROM EMP;
+
+--3. 이름, 입사일, 입사일로부터 6개월 후 돌아오는 월요일 구하여 출력하는 SELECT 문장을 기술하시오.
+SELECT ENAME, HIREDATE, NEXT_DAY(ADD_MONTHS(HIREDATE, 6), '월') MONDAYIN6MONTHS
+    FROM EMP;
     
---10. 사원테이블에서 사원명, 사원의 상사를 검색하시오(상사가 없는 직원까지 전체).
-SELECT W.ENAME, M.ENAME
-    FROM EMP W, EMP M
-    WHERE W.MGR=M.EMPNO(+);
---11. 사원명, 상사명, 상사의 상사명을 검색하시오(self join)
-SELECT W.ENAME, M.ENAME, MM.ENAME
-    FROM EMP W, EMP M, EMP MM
-    WHERE W.MGR=M.EMPNO AND M.MGR=MM.EMPNO;
---12. 위의 결과에서 상위 상사가 없는 모든 직원의 이름도 출력되도록 수정하시오(outer join)
-SELECT W.ENAME, M.ENAME, MM.ENAME
-    FROM EMP W, EMP M, EMP MM
-    WHERE W.MGR=M.EMPNO(+) AND M.MGR=MM.EMPNO(+);    
+--4. 이름, 입사일, 입사일로부터 현재까지의 개월수, 급여, 입사일부터 현재까지의 받은 급여의 총계를 출력
+SELECT ENAME, HIREDATE,
+      TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE)) NUMBER_OF_MONTH, 
+      SAL, 
+      TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE))*SAL*12  SALSUM
+  FROM EMP;
+SELECT ENAME, HIREDATE,
+      TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE)) NUMBER_OF_MONTH, 
+      SAL, 
+      TO_CHAR(TRUNC(MONTHS_BETWEEN(SYSDATE, HIREDATE))*SAL*12, '$99,999,999') SALSUM
+  FROM EMP;
+  
+--5. 모든 사원의 이름과 급여(15자리로 출력 좌측의 빈 곳은 “*”로 대치)를 출력
+SELECT ENAME, LPAD(SAL, 15, '*') SAL FROM EMP;
+
+--6. 모든 사원의 정보를 이름,업무,입사일,입사한 요일을 출력하는 SELECT 문장을 기술하시오.
+SELECT ENAME, JOB, HIREDATE, TO_CHAR(HIREDATE, 'DAY') WEEK FROM EMP;
+SELECT ENAME, JOB, HIREDATE, TO_CHAR(HIREDATE, 'DY"요일"') WEEK FROM EMP;
+
+--7. 이름의 길이가 6자 이상인 사원의 정보를 이름,이름의 글자수,업무를 출력
+SELECT ENAME, LENGTH(ENAME), JOB FROM EMP WHERE LENGTH(ENAME)>= 6;
+
+--8. 모든 사원의 정보를 이름, 업무, 급여, 보너스, 급여+보너스를 출력
+SELECT ENAME, JOB, SAL, COMM, SAL+NVL(COMM, 0) FROM EMP;
+
+-- 9.사원 테이블의 사원명에서 2번째 문자부터 3개의 문자를 추출하시오. 
+SELECT SUBSTR(ENAME, 2, 3) FROM EMP;
+
+--10. 사원 테이블에서 입사일이 12월인 사원의 사번, 사원명, 입사일을 검색하시오. 
+--  시스템에 따라 DATEFORMAT 다를 수 있음을 고려하자
+SELECT EMPNO, ENAME, HIREDATE FROM EMP WHERE EXTRACT(MONTH FROM HIREDATE)=12;
+SELECT EMPNO, ENAME, HIREDATE FROM EMP WHERE TO_CHAR(HIREDATE, 'MM') = '12';
+SELECT EMPNO, ENAME, HIREDATE FROM EMP 
+    WHERE SUBSTR(TO_CHAR(HIREDATE,'RR/MM/DD'), 4,2) = 12;
+SELECT EMPNO, ENAME, HIREDATE FROM EMP 
+    WHERE INSTR(TO_CHAR(HIREDATE,'RR/MM/DD'), '12',4) = 4;
+
+--11. 다음과 같은 결과를 검색할 수 있는 SQL 문장을 작성하시오
+--EMPNO   ENAME	급여
+--7369	    SMITH	*******800
+--7499	    ALLEN	******1600
+--7521	    WARD	******1250
+--……. 
+SELECT EMPNO, ENAME, LPAD(SAL, 10, '*') 급여 FROM EMP;
+
+-- 12. 다음과 같은 결과를 검색할 수 있는 SQL 문장을 작성하시오
+-- EMPNO ENAME 입사일
+-- 7369	  SMITH	  1980-12-17
+-- ….
+SELECT EMPNO, ENAME, TO_CHAR(HIREDATE, 'YYYY-MM-DD') 입사일 FROM EMP;
+
+--13. 사원 테이블에서 부서 번호가 20인 사원의 사번, 이름, 직무, 급여를 출력하시오.
+    --(급여는 앞에 $를 삽입하고3자리마다 ,를 출력한다)
+SELECT EMPNO, ENAME, JOB, TO_CHAR(SAL, '$99,999') FROM EMP WHERE DEPTNO=20;
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'RR/MM/DD';
