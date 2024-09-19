@@ -111,6 +111,25 @@ SELECT '  ORACLE   ' "MSG" FROM DUAL;
 SELECT TRIM('  ORACLE   ') "MSG" FROM DUAL;
 SELECT LTRIM('  ORACLE   ') "MSG" FROM DUAL;
 SELECT RTRIM('  ORACLE   ') "MSG" FROM DUAL;
+-- (8) REPLACE(STR, '바꿔야할문자', '바꿀문자') 
+SELECT REPLACE(ENAME, 'A', 'XX') FROM EMP;
+SELECT REPLACE(SAL, '0', 'X') FROM EMP;
+SELECT REPLACE(HIREDATE, 0, 'X') FROM EMP;
+
+-- 3. 날짜관련함수 및 예약어
+-- (1) SYSDATE : 지금
+SELECT SYSDATE FROM DUAL;
+SELECT TO_CHAR(SYSDATE, 'RR/MM/DD HH:MI') FROM DUAL;
+-- (2) 날짜 계산 : 오라클 기본 타입(문자, 숫자 , 날짜) 중 숫자, 날짜 타입은 연산가능
+SELECT 
+        TO_CHAR(SYSDATE, 'RR/MM/DD HH:MI'),
+        TO_CHAR(SYSDATE+1, 'RR/MM/DD HH:MI')
+    FROM DUAL;
+    -- 개강시점(24/08/26 09:30)부터 현재(24/09/09 11:48)까지 몇일 지났나? 
+    SELECT TRUNC(SYSDATE-TO_DATE('24/08/26 09:30', 'RR/MM/DD HH24:MI')) FROM DUAL;
+    -- 현재부터 수료까지 몇일 남았나?
+    
+    -- EMP에서 이름, 입사일, 근무일수
 
 
 
