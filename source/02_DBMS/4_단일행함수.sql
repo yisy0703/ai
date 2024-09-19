@@ -185,6 +185,39 @@ SELECT TRUNC(SYSDATE, 'YEAR') FROM DUAL; -- 올해 1월 1일
 -- (1) TO_CHAR(날짜형, '출력형식') 
     -- YYYY 년도4자리 / RR 년도2자리 / MM 월 / DD 일 / DY 목 / DAY 목요일
     -- HH24 / HH12 / HH (12시간) / MI 분 / SS 초 / AM 오전/오후
+    -- 출력형식에 문자를 포함할 경우 ""
+SELECT ENAME, TO_CHAR(HIREDATE, 'YYYY-MM-DD DAY HH24:MI:SS') FROM EMP;
+SELECT ENAME, TO_CHAR(HIREDATE, 'RR"년"MM"월"DD"일" DY"요일" AM HH"시"MI"분"SS"초"')
+    FROM EMP;
+-- (2) TO_CHAR(숫자, '출력형식')
+    -- 0 : 자릿수. 출력형식의 자릿수가 많으면 0으로 채움
+    -- 9 : 자릿수. 출력형식의 자릿수가 많아도 숫자만큼 출력
+    -- , : 세자리마다 ,
+    -- . : 소수점
+    -- $ : 통화단위 $
+    -- L : 지역통화단위로 출력
+SELECT TO_CHAR(SAL, 'L99,999') FROM EMP;
+SELECT TO_CHAR(SAL, '$00,000.9') FROM EMP;
+SELECT TO_CHAR(1234.56, '9,999.9') FROM DUAL; -- 소수점 자리가 부족할 경우 반올림
+-- (3) TO_DATE(문자, '패턴')
+    -- EX. 81/5/1 ~ 83/5/1 사이에 입한 사원의 모든 필드
+    SELECT * FROM EMP 
+        WHERE TO_CHAR(HIREDATE, 'RR/MM/DD') BETWEEN '81/05/01' AND '83/05/01';
+    SELECT * FROM EMP
+        WHERE HIREDATE BETWEEN TO_DATE('81/05/01', 'RR/MM/DD') AND
+                            TO_DATE('83/05/01','RR/MM/DD');
+                        
+    ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
+-- (4) TO_NUMBER(문자, '패턴')
+SELECT TO_NUMBER('3,456', '9,999') FROM DUAL;
+
+-- 5. NVL(널일수도 있는 데이터, 널이면대신할값) - 매개변수 2개의 타입 일치
+    -- EX. 사원이름, 직속상사이름(직속상사가 없으면 CEO로 출력)
+    SELECT W.ENAME, NVL(M.ENAME, 'CEO')
+        FROM EMP W, EMP M
+        WHERE W.MGR=M.EMPNO(+);
+    -- EX. 사원이름, 직속상사의 사번(직속상사가 없으면 CEO로 출력)
+    SELECT ENAME, NVL(TO_CHAR(MGR), 'CEO') FROM EMP;
 
 
 
