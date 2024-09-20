@@ -80,6 +80,8 @@ SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP); -- VI. 서브쿼리
     SELECT * FROM EMP
         WHERE (JOB, DEPTNO) = (SELECT JOB, DEPTNO FROM EMP WHERE ENAME='SCOTT');
         
+-- ★ 3. 다중행 서브쿼리
+
 -- ★ 총 연습문제 (1~13번 : 단일행서브쿼리)
 --1. 사원테이블에서 가장 먼저 입사한 사람의 이름, 급여, 입사일
 SELECT ENAME, SAL, HIREDATE
