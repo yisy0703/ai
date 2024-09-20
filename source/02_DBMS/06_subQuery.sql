@@ -49,11 +49,36 @@ SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP); -- VI. 서브쿼리
         (SELECT ENAME FROM EMP
                     WHERE HIREDATE=(SELECT MAX(HIREDATE) FROM EMP)) LASTMAN
     FROM DUAL;
-        
-        
-        
-        
-        
+    -- EX5. SCOTT과 같은 부서에 근무하는 사람들의 급여합 
+    SELECT SUM(SAL) FROM EMP   
+        WHERE DEPTNO=(SELECT DEPTNO FROM EMP WHERE ENAME='SCOTT');
+    -- EX6. DALLAS에 근무하는 사원의 이름과 부서번호(서브쿼리, JOIN)
+    SELECT ENAME, DEPTNO FROM EMP
+        WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE LOC='DALLAS'); -- 서브쿼리 이용
+    SELECT ENAME, E.DEPTNO FROM EMP E, DEPT D
+        WHERE E.DEPTNO=D.DEPTNO AND LOC='DALLAS';-- EQUI JOIN 이용
+    -- EX7. 'KING'이 직속상사인 사원의 이름과 급여(서브쿼리, JOIN)
+    SELECT ENAME, SAL FROM EMP 
+        WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='KING'); -- 서브쿼리 이용
+    SELECT W.ENAME, W.SAL
+        FROM EMP W, EMP M
+        WHERE W.MGR=M.EMPNO AND M.ENAME='KING'; -- SELF JOIN 이용
+    -- EX8. 평균급여 이하로 받는 사원의 이름, 급여를 출력   
+    SELECT AVG(SAL) FROM EMP; -- 서브쿼리
+    SELECT ENAME, SAL FROM EMP 
+        WHERE SAL<=(SELECT AVG(SAL) FROM EMP); -- 메인쿼리
+    -- EX9. 평균급여 이하로 받는 사원의 이름, 급여, 급여평균를 출력     
+    SELECT ENAME, SAL, ROUND((SELECT AVG(SAL) FROM EMP)) AVGSAL
+        FROM EMP 
+        WHERE SAL<=(SELECT AVG(SAL) FROM EMP); -- 메인쿼리    
+    -- EX10. 사원이름, 급여, 평균급여와의 차이
+    SELECT ENAME, SAL, ROUND((SELECT AVG(SAL) FROM EMP)-SAL) "DIFF"
+        FROM EMP;
+    -- 단일행 다중열 서브쿼리
+    -- EX. SCOTT과 JOB도 같고, 부서번호도 같은 직원의 모든 필드 출력
+    SELECT JOB, DEPTNO FROM EMP WHERE ENAME='SCOTT'; -- 서브쿼리
+    SELECT * FROM EMP
+        WHERE (JOB, DEPTNO) = (SELECT JOB, DEPTNO FROM EMP WHERE ENAME='SCOTT');
         
 -- ★ 3. 다중행 서브쿼리
 
