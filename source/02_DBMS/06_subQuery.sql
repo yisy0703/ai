@@ -29,12 +29,32 @@ SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP); -- VI. 서브쿼리
                         WHERE D.DEPTNO=E.DEPTNO AND ENAME='SCOTT')
             AND ENAME <> 'SCOTT';
     ROLLBACK;
-    -- EX2. 최초입사일과 최초입사한 사람의 정보
+    -- EX2. 최초입사일과 최초입사한 사람 이름
     SELECT MIN(HIREDATE) FROM EMP; -- 단일행 서브쿼리
-    SELECT * FROM EMP
+    SELECT HIREDATE, ENAME FROM EMP
         WHERE HIREDATE = (SELECT MIN(HIREDATE) FROM EMP); -- 메인쿼리
-    -- EX3. 최근입사일과 최근입사한 사람의 정보
-    
+    -- EX3. 최근입사일과 최근입사한 사람 이름
+    SELECT HIREDATE, ENAME FROM EMP
+        WHERE HIREDATE = (SELECT MAX(HIREDATE) FROM EMP);
+    -- EX4. 최초입사일, 최초입사자이름, 최근입사일, 최근입사자이름
+    SELECT E1.HIREDATE, E1.ENAME, E2.HIREDATE, E2.ENAME
+        FROM EMP E1, EMP E2
+        WHERE E1.HIREDATE = (SELECT MIN(HIREDATE) FROM EMP) AND
+              E2.HIREDATE = (SELECT MAX(HIREDATE) FROM EMP);
+    SELECT
+        (SELECT MIN(HIREDATE) FROM EMP) FIRSTDAY,
+        (SELECT ENAME FROM EMP 
+                    WHERE HIREDATE=(SELECT MIN(HIREDATE) FROM EMP)) FIRSTMAN,
+        (SELECT MAX(HIREDATE) FROM EMP) LASTDAY,
+        (SELECT ENAME FROM EMP
+                    WHERE HIREDATE=(SELECT MAX(HIREDATE) FROM EMP)) LASTMAN
+    FROM DUAL;
+        
+        
+        
+        
+        
+        
 -- ★ 3. 다중행 서브쿼리
 
 
