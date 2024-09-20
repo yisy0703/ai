@@ -22,10 +22,24 @@ SELECT ROUND(AVG(SAL),1), SUM(SAL), MIN(SAL), MAX(SAL),
     SELECT MIN(HIREDATE) FIRST, MAX(HIREDATE) LAST FROM EMP;
     -- 탄탄EX2. 결과)FIRST                LAST
     --              80/12/17:18,123일째  83/01/12:16,123일째
-    
+    SELECT
+        MIN(HIREDATE)||':'||TRIM(TO_CHAR(TRUNC(SYSDATE-MIN(HIREDATE)), '99,999'))
+                    ||'일째'  "FIRST",
+        MAX(HIREDATE)||':'||TRIM(TO_CHAR(TRUNC(SYSDATE-MAX(HIREDATE)), '99,999'))
+                    ||'일째' "LAST"
+      FROM EMP;
     -- 탄탄EX3. 결과) 80년12월17일최초입사:18,123일째  83년01년12일최근입사:16,123일째
+    SELECT
+        TO_CHAR(MIN(HIREDATE), 'RR"년"MM"월"DD"일최초입사"')
+        ||':'||TRIM(TO_CHAR(TRUNC(SYSDATE-MIN(HIREDATE)), '99,999'))
+                    ||'일째'  "FIRST",
+        TO_CHAR(MAX(HIREDATE), 'RR"년"MM"월"DD"일최근입사"')
+        ||':'||TRIM(TO_CHAR(TRUNC(SYSDATE-MAX(HIREDATE)), '99,999'))
+                    ||'일째' "LAST"
+      FROM EMP;
     -- 탄탄EX4. 10번부서 소속의 사원 중에 COMM을 받는 사원의 수(COUNT함수 사용)
-    
+    SELECT COUNT(*) FROM EMP WHERE DEPTNO=10 AND COMM>0; -- 추천
+    SELECT COUNT(COMM) FROM EMP WHERE DEPTNO=10; -- COMM이 0인 행을 포함
 
 
 
