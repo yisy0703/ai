@@ -112,7 +112,12 @@ SELECT DNAME, COUNT(*), AVG(SAL), MIN(SAL), MAX(SAL), SUM(SAL)
     WHERE E.DEPTNO=D.DEPTNO
     GROUP BY DNAME
     ORDER BY SUM(SAL) DESC;
-    
+
+SELECT DNAME, e.deptno, COUNT(*), AVG(SAL), MIN(SAL), MAX(SAL), SUM(SAL) 
+    FROM EMP E, DEPT D
+    WHERE E.DEPTNO=D.DEPTNO
+    GROUP BY DNAME, e.deptno
+    ORDER BY SUM(SAL) DESC; 
 -- 5. 부서별, 업무별 그룹하여 결과를 부서번호, 업무, 인원수, 급여의 평균, 급여의 합을 출력(부서번호, 업무순으로 오름차순 정렬)
 SELECT DEPTNO, JOB, COUNT(*), AVG(SAL), SUM(SAL)
     FROM EMP
