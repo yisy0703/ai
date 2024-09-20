@@ -72,8 +72,65 @@ SELECT ROUND(AVG(SAL),1), SUM(SAL), MIN(SAL), MAX(SAL),
         GROUP BY DEPTNO        -- GROUP BY 절에 필드 별칭 사용 불가
         HAVING AVG(SAL)>=1800  -- HAVING절에 필드 별칭 사용 불가
         ORDER BY AVGSAL;
+  -- EX. SAL이 5000미만인 사원에 대해 부서이름별 급여평균과 표준편차를 소수점 2자리까지 출력
+        -- (단, 평균급여가 1800이상인 부서에 대해 부서명순으로 정렬)
+    SELECT DNAME, ROUND(AVG(SAL),2) AVG, ROUND(STDDEV(SAL),2) STDDEV
+        FROM EMP E, DEPT D
+        WHERE E.DEPTNO=D.DEPTNO AND SAL<5000
+        GROUP BY DNAME
+        HAVING AVG(SAL)>=1800
+        ORDER BY DNAME;
+    
+-- ★ 4. 결과 집합을 낸 집계값 생성
+SELECT DEPTNO, SUM(SAL) FROM EMP GROUP BY DEPTNO;
+SELECT DEPTNO, SUM(SAL) FROM EMP GROUP BY ROLLUP(DEPTNO);
+SELECT DEPTNO, JOB, SUM(SAL) FROM EMP GROUP BY DEPTNO, JOB ORDER BY DEPTNO;
+SELECT DEPTNO, JOB, SUM(SAL) FROM EMP GROUP BY ROLLUP(DEPTNO, JOB);
 
+-- ★<총 연습문제>
 
+-- 1. 인원수,최대 급여,최소 급여,급여의 합을 출력
 
+-- 2. 업무별 인원수를 구하여 출력
+
+--- 3. 최고 급여와 최소 급여의 차이는 얼마인가 출력
+
+-- 4. 각 부서별로 인원수, 급여 평균, 최저 급여, 최고 급여, 급여의 합을 출력(급여의 합이 많은 순으로)
+
+-- 5. 부서별, 업무별 그룹하여 결과를 부서번호, 업무, 인원수, 급여의 평균, 급여의 합을 출력(부서번호, 업무순으로 오름차순 정렬)
+
+-- 6. 업무별, 부서별 그룹하여 결과를  업무, 부서번호, 인원수, 급여의 평균, 급여의 합을 출력(출력결과는 업무순, 부서번호 순 오름차순 정렬)
+
+--7. 사원수가 5명이상 넘는 부서번호와 사원수를 출력
+
+-- 8. 사원수가 5명이상 넘는 부서명과 사원수를 출력
+
+--9. 업무별 급여의 평균이 3000이상인 업무에 대해서 업무명, 평균 급여, 급여의 합을 출력
+
+--10. 급여 합이 5000을 초과하는 각 업무에 대해서 업무와 급여합을 출력(급여 합계순 내림차순 정렬)
+
+--11. 부서별 급여평균, 부서별 급여합계, 부서별 최소급여를 출력
+
+--12. 위의 11번을 수정하여, 부서별 급여평균 최대치, 부서별 급여합의 최대치, 부서별 최소급여의 최대치를 출력
+
+--13. 사원 테이블에서 아래의 결과를 출력
+--   YEAR	COUNT(*)	MIN(SAL)	MAX(SAL)	AVG(SAL)	SUM(SAL)
+--     80	  1		    800		    800		    800		    800
+--	   81	 10		    950		    5000	    2282.5	  22825
+--	   82	  2		    1300	    3000	   2150		   4300
+--	   83	  1		    1100	    1100	    1100	   1100
+
+-- 14.  아래의 결과를 출력(입사년도별 사원수)
+--  1980     1	
+--  1981     10
+--  1982     2
+--  1983     1
+--  total    14	
+
+--15. 최대급여, 최소급여, 전체급여합, 평균을 출력
+
+--16. 부서별 인원수 출력
+
+--17. 부서별 인원수가 6명이상인 부서번호 출력
 
 
