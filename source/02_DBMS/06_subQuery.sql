@@ -1,0 +1,1 @@
+-- [VI] Sub Query : 메인 query(SQL문) 안에 내포된 QUERY
