@@ -1,3 +1,3 @@
 git add .
-git commit -m "Oracle 그룹함수"
+git commit -m "Oracle subQuery"
 git push -u origin main
