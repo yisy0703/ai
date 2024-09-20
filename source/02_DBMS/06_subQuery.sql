@@ -162,8 +162,20 @@ SELECT EMPNO, ENAME
     ORDER BY SAL DESC;
     
 -- 23. 부서 평균 월급보다 월급이 높은 사원을 사번, 이름, 급여, 부서번호
-
-    
+SELECT EMPNO, ENAME, SAL, E.DEPTNO
+    FROM EMP E, 
+        (SELECT DEPTNO, AVG(SAL) AVGSAL FROM EMP GROUP BY DEPTNO) G
+    WHERE E.DEPTNO=G.DEPTNO
+        AND SAL>AVGSAL; -- EQUI JOIN과 FROM 절의 서브쿼리를 이용
+        
+SELECT EMPNO, ENAME, SAL, DEPTNO
+    FROM EMP E
+    WHERE SAL>(SELECT AVG(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO);
 -- 24. 업무별로 평균 월급보다 적은 월급을 받는 사원을 부서번호, 이름, 급여
+
+
+
+
+
 
 
