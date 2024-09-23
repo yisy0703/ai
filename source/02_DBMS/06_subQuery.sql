@@ -81,11 +81,18 @@ SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP); -- VI. 서브쿼리
         WHERE (JOB, DEPTNO) = (SELECT JOB, DEPTNO FROM EMP WHERE ENAME='SCOTT');
         
 -- ★ 3. 다중행 서브쿼리 : ALL, ANY(=SOME), IN, EXISTS
--- (1) ALL 
+-- (1) ALL : 서브쿼리 결과가 모두 만족하면 참
     -- EX. 30번 부서 직원의 모든 급여들보다 큰 직원의 모든 필드
     SELECT SAL FROM EMP WHERE DEPTNO=30; -- 950,1250,1500,1600,2850 다중행서브쿼리
-    SELECT * FROM EMP WHERE SAL > ();
-    
+    SELECT * FROM EMP WHERE SAL >ALL(SELECT SAL FROM EMP WHERE DEPTNO=30);-- 메인쿼리
+    -- (== 30번 부서 최대 급여보다 큰 직원의 모든 필드 : 단일행서브쿼리)
+    SELECT * FROM EMP WHERE SAL > (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=30);
+-- (2) ANY(=SOME) : 서브쿼리 결과가 하나라도 만족하면 참
+    -- EX. 30번부서 직원 한명의 급여보다 큰 직원의 모든 필드
+    SELECT SAL FROM EMP WHERE DEPTNO=30; --950,1250,1500,1600,2850 다중행서브쿼리
+    SELECT * FROM EMP WHERE SAL > ANY (SELECT SAL FROM EMP WHERE DEPTNO=30);
+    -- (= 30번 부서 최소 급여보다 큰 직원의 모든 필드 : 단일행서브쿼리)
+    SELECT * FROM EMP WHERE SAL > (SELECT MIN(SAL) FROM EMP WHERE DEPTNO=30);
     
     
     
