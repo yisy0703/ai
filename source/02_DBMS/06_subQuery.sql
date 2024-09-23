@@ -350,16 +350,11 @@ SELECT EMPNO, ENAME, SAL, DEPTNO
     FROM EMP E
     WHERE SAL>(SELECT AVG(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO);
     
--- 24. 업무별로 평균 월급보다 적은 월급을 받는 사원을 부서번호, 이름, 급여
-SELECT DEPTNO, ENAME, SAL
-    FROM EMP E, 
-        (SELECT JOB, AVG(SAL) AVGSAL FROM EMP GROUP BY JOB) G
-    WHERE E.JOB=G.JOB
-        AND SAL<AVGSAL; -- EQUI JOIN과 FROM 절의 서브쿼리를 이용
-        
-SELECT DEPTNO, ENAME, SAL
+-- 24. 업무별로 평균 월급보다 적은 월급을 받는 사원을 부서번호, 이름, 급여, job, job평균
+SELECT DEPTNO, ENAME, SAL, JOB, 
+        ROUND((SELECT AVG(SAL) FROM EMP WHERE JOB=E.JOB)) AVGSAL
     FROM EMP E
-    WHERE SAL>(SELECT AVG(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO);
+    WHERE SAL <(SELECT AVG(SAL) FROM EMP WHERE JOB=E.JOB);
     
 -- 25. 적어도 한 명 이상으로부터 보고를 받을 수 있는 사원을 업무, 이름, 사번, 부서번호를 출력(단, 부서번호 순으로 오름차순 정렬)
 SELECT JOB, ENAME, EMPNO, DEPTNO
