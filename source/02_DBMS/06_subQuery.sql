@@ -274,24 +274,66 @@ SELECT EMPNO, ENAME
 
 -- 여기서부터는 다중행서브쿼리와 단일행서브쿼리, 이전은 단일행서브쿼리
 -- 14.  이름에 “T”가 있는 사원이 근무하는 부서에서 근무하는 모든 직원의 사원 번호,이름,급여(단 사번 순 출력)
-
+SELECT EMPNO, ENAME, SAL 
+    FROM emp 
+    WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE UPPER(ENAME) LIKE '%T%')
+    ORDER BY EMPNO;
 -- 15. 부서 위치가 Dallas인 모든 종업원에 대해 이름,업무,급여(INITCAP)
-
--- 16. EMP 테이블에서 King에게 보고하는 모든 사원의 이름과 급여
-
+SELECT ENAME, JOB, SAL 
+    FROM EMP 
+    WHERE DEPTNO = (SELECT DEPTNO FROM DEPT 
+                    WHERE INITCAP(LOC)='Dallas');
+-- 16. EMP 테이블에서 King에게 보고하는 모든 사원의 이름과 급여(INITCAP)
+SELECT ENAME, SAL 
+    FROM EMP 
+    WHERE MGR=(SELECT EMPNO FROM EMP WHERE INITCAP(ENAME)='King');
+    
 -- 17. 부서명이  SALES인 부서에 근무하는 사원의 이름, 업무(UPPER)
-
+SELECT ENAME, JOB
+    FROM EMP
+    WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE UPPER(DNAME)='SALES');
+    
 -- 18. 월급이 부서 30의 최저 월급보다 높은 사원의 모든 필드
-
--- 19.  FORD와 업무도 월급도 같은 사원의 모든 필드
-
--- 20. 이름이 JONES인 직원의 JOB과 같거나 FORD의 SAL 이상을 받는 사원의 정보를 이름, 업무, 부서번호, 급여
+SELECT * 
+    FROM EMP 
+    WHERE SAL>(SELECT MIN(SAL)  FROM EMP WHERE DEPTNO=30); -- 단일행서브쿼리
+SELECT * 
+    FROM EMP 
+    WHERE SAL > ANY (SELECT sal  FROM EMP WHERE DEPTNO=30); -- 다중행서브쿼리
+    
+-- 19.  FORD와 업무도 월급도 같은 사원의 모든 필드(UPPER이용)
+SELECT * 
+    FROM EMP 
+    WHERE (JOB, SAL) = (SELECT JOB, SAL FROM EMP 
+                        WHERE UPPER(ENAME)='FORD') 
+        AND UPPER(ENAME) != 'FORD';
+                        
+-- 20. 이름이 JONES인 직원의 JOB과 같거나 FORD의 SAL 이상을 받는 사원의 정보를 이름, 업무, 부서번호, 급여(UPPER이용)
     -- 단, 업무별 알파벳 순, 월급이 많은 순으로 출력
-
--- 21. SCOTT 또는 WARD와 월급이 같은 사원의 정보를 이름,업무,급여
-
--- 22. CHICAGO에서 근무하는 사원과 같은 업무를 하는 사원들의 이름,업무
-
+SELECT JOB FROM EMP WHERE UPPER(ENAME)='JONES';--단일행 서브쿼리
+SELECT SAL FROM EMP WHERE UPPER(ENAME)='FORD'; --단일행 서브쿼리
+SELECT ENAME, JOB, DEPTNO, SAL 
+    FROM EMP 
+    WHERE JOB = (SELECT JOB FROM EMP WHERE UPPER(ENAME)='JONES')  
+        OR  SAL>=(SELECT SAL FROM EMP WHERE UPPER(ENAME)='FORD')
+    ORDER BY JOB, SAL DESC;
+    
+-- 21. SCOTT 또는 WARD와 월급이 같은 사원의 정보를 이름,업무,급여(UPPER이용)
+SELECT ENAME, JOB, SAL 
+    FROM EMP 
+    WHERE SAL IN (SELECT SAL 
+                    FROM EMP 
+                    WHERE UPPER(ENAME) IN ('SCOTT','WARD')) AND 
+          UPPER(ENAME) NOT IN ('SCOTT','WARD');
+          
+-- 22. CHICAGO에서 근무하는 사원과 같은 업무를 하는 사원들의 이름,업무(UPPER이용)
+SELECT ENAME, JOB 
+    FROM EMP 
+    WHERE JOB IN (SELECT JOB FROM 
+                    EMP E, DEPT D 
+                    WHERE E.DEPTNO=D.DEPTNO 
+                        AND UPPER(LOC)='CHICAGO');
+                    
 -- 23. 부서 평균 월급보다 월급이 높은 사원을 사번, 이름, 급여, 부서번호
 SELECT EMPNO, ENAME, SAL, E.DEPTNO -- , AVGSAL
     FROM EMP E, 
@@ -302,16 +344,29 @@ SELECT EMPNO, ENAME, SAL, E.DEPTNO -- , AVGSAL
 SELECT EMPNO, ENAME, SAL, DEPTNO
     FROM EMP E
     WHERE SAL>(SELECT AVG(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO);
+    
 -- 24. 업무별로 평균 월급보다 적은 월급을 받는 사원을 부서번호, 이름, 급여
-
+SELECT DEPTNO, ENAME, SAL
+    FROM EMP E, 
+        (SELECT JOB, AVG(SAL) AVGSAL FROM EMP GROUP BY JOB) G
+    WHERE E.JOB=G.JOB
+        AND SAL<AVGSAL; -- EQUI JOIN과 FROM 절의 서브쿼리를 이용
+        
+SELECT DEPTNO, ENAME, SAL
+    FROM EMP E
+    WHERE SAL>(SELECT AVG(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO);
+    
 -- 25. 적어도 한 명 이상으로부터 보고를 받을 수 있는 사원을 업무, 이름, 사번, 부서번호를 출력(단, 부서번호 순으로 오름차순 정렬)
-
+SELECT JOB, ENAME, EMPNO, DEPTNO
+    FROM EMP M
+    WHERE EXISTS (SELECT * FROM EMP WHERE MGR=M.EMPNO)
+    ORDER BY DEPTNO; --EXISTS 연산자 이용(서브쿼리)
+SELECT JOB, ENAME, EMPNO, DEPTNO
+    FROM EMP
+    WHERE EMPNO IN (SELECT MGR FROM EMP)-- 서브쿼리 결과 : 7839, NULL, 7782, 7698, 7902, 7566, 7788
+    ORDER BY DEPTNO; -- IN 연산자 이용(서브쿼리)
+    
 -- 26.  말단 사원의 사번, 이름, 업무, 부서번호
-
-
-
-
-
-
-
-
+SELECT JOB, ENAME, EMPNO, DEPTNO
+    FROM EMP E
+    WHERE NOT EXISTS (SELECT * FROM EMP WHERE MGR=E.EMPNO); --EXISTS 연산자 이용(서브쿼리)
