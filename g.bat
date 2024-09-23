@@ -1,3 +1,3 @@
 git add .
-git commit -m "Oracle 다중행서브쿼리"
+git commit -m "DDL,DML,DCL"
 git push -u origin main
