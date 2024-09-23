@@ -128,10 +128,18 @@ SELECT * FROM EMP
                             FROM EMP GROUP BY DEPTNO)
     ORDER BY DEPTNO;
 -- 부서번호별 가장 큰 급여인 사원(DNAME, LOC, 급여등급 포함)
-
+SELECT E.*, DNAME, LOC, GRADE
+    FROM EMP E, DEPT D, SALGRADE
+    WHERE E.DEPTNO=D.DEPTNO 
+        AND SAL BETWEEN LOSAL AND HISAL
+        AND (E.DEPTNO, SAL) IN (SELECT DEPTNO, MAX(SAL) 
+                                FROM EMP 
+                                GROUP BY DEPTNO)
+    ORDER BY E.DEPTNO;
 
 -- 탄탄2. 직급(JOB)이 MANAGER인 사람의 속한 부서의 부서 번호와 부서명과 지역을 출력(IN)
-
+SELECT DEPTNO, DNAME, LOC FROM DEPT
+    WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE JOB='MANAGER');
 -- 탄탄3. 급여가 3000이상인 사람들 중 연봉 등급을 나누어서 해당 등급별 최고 급여를 받는 사람들의 사번, 이름, 직업, 입사일, 급여, 급여등급을 출력
 
 -- 탄탄4. 응용심화 : 입사일 분기별로 가장 높은 급여를 받는 사람들의 분기, 사번, 이름, JOB, 상사사번, 입사일, 급여, 상여를 출력하세요
