@@ -278,11 +278,13 @@ SELECT EMPNO, ENAME, SAL
     FROM emp 
     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE UPPER(ENAME) LIKE '%T%')
     ORDER BY EMPNO;
+    
 -- 15. 부서 위치가 Dallas인 모든 종업원에 대해 이름,업무,급여(INITCAP)
 SELECT ENAME, JOB, SAL 
     FROM EMP 
     WHERE DEPTNO = (SELECT DEPTNO FROM DEPT 
                     WHERE INITCAP(LOC)='Dallas');
+                    
 -- 16. EMP 테이블에서 King에게 보고하는 모든 사원의 이름과 급여(INITCAP)
 SELECT ENAME, SAL 
     FROM EMP 
