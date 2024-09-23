@@ -105,10 +105,43 @@ SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP); -- VI. 서브쿼리
     SELECT DEPTNO FROM EMP WHERE SAL >= 3000; -- 다중행 서브쿼리 
     SELECT * FROM EMP
         WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE SAL >= 3000);-- 메인쿼리
-    
-    
-    
-    
+-- (4) EXISTS : 서브쿼리 결과가 존재하면 참
+    -- EX. 직속부하가 있는 직원들의 사번, 이름, 급여
+    SELECT DISTINCT M.EMPNO, M.ENAME, M.SAL
+        FROM EMP W, EMP M
+        WHERE W.MGR=M.EMPNO; -- SELF JOIN 이용
+    SELECT EMPNO, ENAME, SAL FROM EMP MANAGER
+                --읽어들인 EMP데이터의 EMPNO가 MGR에 존재하냐?
+        WHERE EXISTS (SELECT * FROM EMP WHERE MGR=MANAGER.EMPNO);--서브쿼리 이용
+    -- 직속부하가 없는 직원들의 사번, 이름, 급여
+    SELECT EMPNO, ENAME, SAL FROM EMP MANAGER
+                --읽어들인 EMP데이터의 EMPNO가 MGR에 존재하지 않는지?
+        WHERE NOT EXISTS (SELECT * FROM EMP WHERE MGR=MANAGER.EMPNO);
+    SELECT M.EMPNO, M.ENAME, M.SAL
+        FROM EMP W, EMP M
+        WHERE W.MGR(+)=M.EMPNO AND W.ENAME IS NULL; -- SELF JOIN 이용
+-- 탄탄1. 부서별로 가장 급여를 많이 받는 사원의 모든 정보를 출력(IN 연산자 이용)
+-- 부서번호별 가장 큰 급여인 사원
+SELECT DEPTNO, MAX(SAL) FROM EMP GROUP BY DEPTNO; -- 서브쿼리
+SELECT * FROM EMP 
+    WHERE (DEPTNO, SAL) IN (SELECT DEPTNO, MAX(SAL) 
+                            FROM EMP GROUP BY DEPTNO)
+    ORDER BY DEPTNO;
+-- 부서번호별 가장 큰 급여인 사원(DNAME, LOC, 급여등급 포함)
+
+
+-- 탄탄2. 직급(JOB)이 MANAGER인 사람의 속한 부서의 부서 번호와 부서명과 지역을 출력(IN)
+
+-- 탄탄3. 급여가 3000이상인 사람들 중 연봉 등급을 나누어서 해당 등급별 최고 급여를 받는 사람들의 사번, 이름, 직업, 입사일, 급여, 급여등급을 출력
+
+-- 탄탄4. 응용심화 : 입사일 분기별로 가장 높은 급여를 받는 사람들의 분기, 사번, 이름, JOB, 상사사번, 입사일, 급여, 상여를 출력하세요
+
+-- 탄탄5. 급여가 3000미만인 사람 중에 가장 최근에 입사한 사람의 사원번호와 이름, 급여, 입사일을 출력
+
+-- 탄탄6. SALESMAN 모든 사원들 보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원은 출력하지 않는다.(ALL이용)
+
+-- 탄탄7. SALESMAN 일부 어떤 한 사원보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원도 출력(ANY)
+
     
 -- ★ 총 연습문제 (1~13번 : 단일행서브쿼리)
 --1. 사원테이블에서 가장 먼저 입사한 사람의 이름, 급여, 입사일
