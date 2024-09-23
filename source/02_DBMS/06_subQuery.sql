@@ -93,8 +93,18 @@ SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP); -- VI. 서브쿼리
     SELECT * FROM EMP WHERE SAL > ANY (SELECT SAL FROM EMP WHERE DEPTNO=30);
     -- (= 30번 부서 최소 급여보다 큰 직원의 모든 필드 : 단일행서브쿼리)
     SELECT * FROM EMP WHERE SAL > (SELECT MIN(SAL) FROM EMP WHERE DEPTNO=30);
-    
-    
+-- (3) IN 
+    -- EX. 부서별 입사일이 가장 늦은 사람의 이름, 입사일, 부서번호
+    SELECT DEPTNO, MAX(HIREDATE) FROM EMP GROUP BY DEPTNO; -- 다중행 다중열 서브쿼리
+    SELECT ENAME, HIREDATE, DEPTNO
+        FROM EMP
+        WHERE (DEPTNO, HIREDATE) IN (SELECT DEPTNO, MAX(HIREDATE) 
+                                        FROM EMP 
+                                        GROUP BY DEPTNO); -- 메인쿼리
+    -- 급여가 3000이상 받는 사원이 소속된 부서 직원의 모든 필드
+    SELECT DEPTNO FROM EMP WHERE SAL >= 3000; -- 다중행 서브쿼리 
+    SELECT * FROM EMP
+        WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE SAL >= 3000);-- 메인쿼리
     
     
     
