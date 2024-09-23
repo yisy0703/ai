@@ -157,11 +157,26 @@ SELECT EMPNO, ENAME, JOB, HIREDATE, SAL, GRADE
                                 GROUP BY GRADE)
     ORDER BY GRADE;
 
-
 -- 탄탄4. 응용심화 : 입사일 분기별로 가장 높은 급여를 받는 사람들의 분기, 사번, 이름, JOB, 상사사번, 입사일, 급여, 상여를 출력하세요
+SELECT HIREDATE, CEIL(EXTRACT(MONTH FROM HIREDATE)/3) "QUARTER" FROM EMP; -- 분기
+SELECT HIREDATE, CEIL(TO_CHAR(HIREDATE, 'MM')/3) "QUARTER" FROM EMP; -- 분기
+SELECT HIREDATE, TO_CHAR(HIREDATE, 'Q') "QUARTER" FROM EMP; -- 분기
+SELECT TO_CHAR(HIREDATE, 'Q'), MAX(SAL) 
+    FROM EMP GROUP BY TO_CHAR(HIREDATE, 'Q'); -- 서브쿼리
+SELECT TO_CHAR(HIREDATE, 'Q') "QUARTER", EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM
+    FROM EMP
+    WHERE (TO_CHAR(HIREDATE, 'Q'), SAL) 
+            IN (SELECT TO_CHAR(HIREDATE, 'Q'), MAX(SAL) 
+                    FROM EMP 
+                    GROUP BY TO_CHAR(HIREDATE, 'Q'))
+    ORDER BY QUARTER; -- 메인쿼리
 
 -- 탄탄5. 급여가 3000미만인 사람 중에 가장 최근에 입사한 사람의 사원번호와 이름, 급여, 입사일을 출력
-
+SELECT MAX(HIREDATE) FROM EMP WHERE SAL<3000; -- 서브쿼리
+SELECT EMPNO, ENAME, SAL, HIREDATE
+    FROM EMP
+    WHERE HIREDATE = (SELECT MAX(HIREDATE) FROM EMP WHERE SAL<3000);--메인쿼리
+    
 -- 탄탄6. SALESMAN 모든 사원들 보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원은 출력하지 않는다.(ALL이용)
 
 -- 탄탄7. SALESMAN 일부 어떤 한 사원보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원도 출력(ANY)
