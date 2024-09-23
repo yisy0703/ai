@@ -141,6 +141,22 @@ SELECT E.*, DNAME, LOC, GRADE
 SELECT DEPTNO, DNAME, LOC FROM DEPT
     WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE JOB='MANAGER');
 -- 탄탄3. 급여가 3000이상인 사람들 중 연봉 등급을 나누어서 해당 등급별 최고 급여를 받는 사람들의 사번, 이름, 직업, 입사일, 급여, 급여등급을 출력
+SELECT GRADE, MAX(SAL)
+    FROM EMP, SALGRADE
+    WHERE SAL BETWEEN LOSAL AND HISAL 
+        AND SAL>=3000
+    GROUP BY GRADE; -- 서브쿼리
+    
+SELECT EMPNO, ENAME, JOB, HIREDATE, SAL, GRADE
+    FROM EMP, SALGRADE
+    WHERE SAL BETWEEN LOSAL AND HISAL
+        AND (GRADE, SAL) IN (SELECT GRADE, MAX(SAL)
+                                FROM EMP, SALGRADE
+                                WHERE SAL BETWEEN LOSAL AND HISAL 
+                                    AND SAL>=3000
+                                GROUP BY GRADE)
+    ORDER BY GRADE;
+
 
 -- 탄탄4. 응용심화 : 입사일 분기별로 가장 높은 급여를 받는 사람들의 분기, 사번, 이름, JOB, 상사사번, 입사일, 급여, 상여를 출력하세요
 
