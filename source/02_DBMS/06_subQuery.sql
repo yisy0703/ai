@@ -177,10 +177,19 @@ SELECT EMPNO, ENAME, SAL, HIREDATE
     FROM EMP
     WHERE HIREDATE = (SELECT MAX(HIREDATE) FROM EMP WHERE SAL<3000);--메인쿼리
     
--- 탄탄6. SALESMAN 모든 사원들 보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원은 출력하지 않는다.(ALL이용)
-
+-- 탄탄6. JOB이 SALESMAN 모든 사원들 보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원은 출력하지 않는다.(ALL이용)
+SELECT SAL FROM EMP WHERE JOB='SALESMAN';--다중행 서브쿼리
+SELECT ENAME, SAL, JOB FROM EMP 
+    WHERE SAL > ALL(SELECT SAL FROM EMP WHERE JOB='SALESMAN');
+    -- = JOB이 SALESMAN인 사원들 최대 급여보다 많이 받는 사원 정보
+    SELECT ENAME, SAL, JOB FROM EMP 
+        WHERE SAL > (SELECT MAX(SAL) FROM EMP WHERE JOB='SALESMAN');
 -- 탄탄7. SALESMAN 일부 어떤 한 사원보다 급여를 많이 받는 사원들의 이름과 급여와 직급(담당 업무)를 출력하되 영업 사원도 출력(ANY)
-
+SELECT ENAME, SAL, JOB FROM EMP 
+    WHERE SAL > ANY(SELECT SAL FROM EMP WHERE JOB='SALESMAN');
+-- = 단일행서브쿼리 이용
+SELECT ENAME, SAL, JOB FROM EMP
+    WHERE SAL > (SELECT MIN(SAL) FROM EMP WHERE JOB='SALESMAN');
     
 -- ★ 총 연습문제 (1~13번 : 단일행서브쿼리)
 --1. 사원테이블에서 가장 먼저 입사한 사람의 이름, 급여, 입사일
