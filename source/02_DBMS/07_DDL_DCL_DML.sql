@@ -274,7 +274,7 @@ CREATE TABLE MY_DATA(
 );
 -- 2. 데이터 입력
 INSERT INTO MY_DATA (ID, NAME, USERID, SALARY) 
-    VALUES (1, 'Scott', 'sscott', 10000.00);
+    VALUES (1, 'Scott', 'sscott', TO_NUMBER('10,000.00', '99,999.99'));
 INSERT INTO MY_DATA VALUES (2, 'Ford', 'fford',13000.00);
 INSERT INTO MY_DATA VALUES (3, 'Patel', 'ppatel',33000);
 INSERT INTO MY_DATA VALUES (4,'Report','rreport',23500);
@@ -309,7 +309,7 @@ UPDATE EMP01 SET SAL=SAL*1.1;
 UPDATE EMP01 
     SET SAL=SAL*1.1 
     WHERE SAL>=3000;
--- 4. EMP01테이블에서 ‘DALLAS’에서 근무하는 직원들의 연봉을 1000인상
+-- 4. EMP01테이블에서 ‘DALLAS’에서 근무하는 직원들의 월급을 1000인상
 UPDATE EMP01 
         SET SAL= SAL+1000 
     WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE LOC='DALLAS');
