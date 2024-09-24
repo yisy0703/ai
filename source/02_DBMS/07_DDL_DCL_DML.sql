@@ -375,9 +375,15 @@ INSERT INTO EMP1 (EMPNO, ENAME, JOB, SAL, COMM, DEPTNO)
     VALUES (1002, 'LEE', 'MANAGER', 10, -1, 20); -- CHECK 오류
 INSERT INTO EMP1 (EMPNO, ENAME, JOB, HIREDATE, SAL, DEPTNO)
     VALUES (1003, 'PARK', 'MANAGER', '24/01/01', 1000, 20);
-
-
-
+-- SCOTT 화면 -- 
+-- ★ ★ ★ DCL : 계정생성, 권한부여, 권한박탈, 계정삭제 ★ ★ ★ --
+CREATE USER scott2 IDENTIFIED BY tiger;
+GRANT CREATE SESSION TO scott2; -- 로그인 권한 부여
+GRANT CREATE TABLE TO scott2; -- 테이블 생성 권한 부여
+GRANT ALL ON EMP TO scott2; -- EMP 테이블에 대한 모든 권한 부여
+select * from emp;
+REVOKE ALL ON EMP FROM scott2; -- emp테이블에 대한 모든 권한 박탈
+DROP USER scott2 CASCADE; -- 사용자 계정 삭제
 
 
 
