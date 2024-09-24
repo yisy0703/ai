@@ -1,5 +1,5 @@
 -- [VII] DDL, DCL, DML
--- SQL = DDL(테이블 생성, 테이블 삭제, 테이블 구조 변경, 테이블 모든 데이터 제거) +
+-- SQL = DDL(테이블 생성, 테이블 삭제, 테이블 구조 변경, 테이블 모든 데이터 제거, 테이블명변경) +
 --       DML(SELECT, INSERT, UPDATE, DELETE) +
 --       DCL(사용자계정생성, 사용자에게권한부여, 권한박탈, 사용자계정삭제, 트랜잭션명령어)
 -- ★ ★ ★ DDL ★ ★ ★ --
@@ -93,7 +93,73 @@ ALTER TABLE EMP03 DROP COLUMN SAL;
 ALTER TABLE EMP03 DROP COLUMN ENAME; -- 데이터까지 삭제(취소 불가)
 SELECT * FROM EMP03;
 
+-- 3. 테이블 삭제(DROP TABLE 테이블명)
+DROP TABLE EMP03;
+SELECT * FROM EMP03;
+DROP TABLE DEPT01; 
+-- EMP01테이블에서 DEPT테이블을 참조할 경우 EMP01을 삭제한 후 DEPT01 테이블 삭제 가능
+DROP TABLE EMP01;
+DROP TABLE DEPT01;
 
+-- 4. 테이블 모든 데이터 제거(TRUNCATE TABLE 테이블명)
+SELECT * FROM EMP02;
+TRUNCATE TABLE EMP02; -- ROLLBACK 불가
+SELECT * FROM EMP02;
+
+-- 5. 테이블명 변경(RENAME 원테이블명 TO 바꿀테이블명)
+RENAME EMP02 TO EMP2;
+SELECT * FROM EMP02;
+SELECT * FROM EMP2;
+
+-- 6. 데이터 딕셔너리(DB자원을 효율적으로 관리하기 위한 시스템 테이블:접근불가)
+--    VS.   데이터 딕셔너리뷰(접근가능한 읽기전용 가상의 테이블)
+-- 데이터 딕셔너리 뷰의 종류
+  -- (1) USER_xxx : 현계정이 소유하고 있는 객체(테이블, 제약조건, 뷰, 인덱스)
+        -- USER_TABLES, USER_CONSTRAINTS, USER_VIEWS, USER_INDEXES
+        SELECT * FROM USER_TABLES;
+        SELECT * FROM USER_CONSTRAINTS;
+        SELECT * FROM USER_VIEWS;
+        SELECT * FROM USER_INDEXES;
+  -- (2) ALL_xxx : 현 계정에서 접근 가능한 객체(테이블, 제약조건, 뷰, 인덱스)
+        -- ALL_TABLES, ALL_CONSTRAINTS, ALL_VIEWS, ALL_INDEXES
+        SELECT * FROM ALL_TABLES;
+  -- (3) DBA_XXX : DBA권한에서만 접근 가능한 객체
+        -- DBA_TABLES, DBA_CONSTRAINTS, DBA_VIEWS, DBA_INDEXES
+        SELECT * FROM DBA_TABLES;
+        SELECT * FROM DBA_VIEWS;
+
+-- ★ ★ ★ DML ★ ★ ★ --
+-- 1. INSERT INTO 테이블명 VALUES (값1, 값2, ...); 모든 필드 데이터 입력
+  --  INSERT INTO 테이블명 (필드명1, 필드명2, ..) VALUES (값1, 값2, ..); 언급된 필드외는 NULL로 입력
+SELECT * FROM DEPT01;
+INSERT INTO DEPT01 VALUES (50, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO DEPT01 VALUES (60, 'SALES', NULL); -- 명시적 NULL 데이터 추가
+INSERT INTO DEPT01 (DEPTNO, DNAME, LOC) VALUES (70, 'RESEARCH', '신림');
+INSERT INTO DEPT01 (LOC, DNAME, DEPTNO) VALUES ('신길','IT',80);
+INSERT INTO DEPT01 (DEPTNO, DNAME) VALUES (90, 'OPERATION'); -- 묵시적으로 NULL 추가
+SELECT * FROM DEPT01;
+-- 서브쿼리를 이용한 INSERT
+INSERT INTO DEPT01 SELECT * FROM DEPT WHERE DEPTNO<40;
+SELECT * FROM DEPT01;
+  -- EX. BOOK(ID는 11, 책이름은 스포츠의 의학, 출판사는 한솔출판, 출판일 오늘, 가격은 90,000
+INSERT INTO BOOK 
+    VALUES (11, '스포츠의 의학', '한솔출판', SYSDATE, TO_NUMBER('90,000','99,999'));
+SELECT * FROM BOOK;
+  -- EX. BOOK(ID는 12, 책이름은 스포츠 과학, 출판사는 NULL, 출판일 오늘, 가격은 50,000
+INSERT INTO BOOK (BOOKID, BOOKNAME, RDATE, PRICE)
+    VALUES (12, '스포츠 과학', SYSDATE, 50000);
+SELECT * FROM BOOK;
+ -- 트랜젝션 명령어 : DML명령어들을 DB에 적용(COMMIT) + DML명령어들 취소(ROLLBACK)
+COMMIT;
+INSERT INTO BOOK (BOOKID, BOOKNAME, RDATE, PRICE)
+    VALUES (13, '스포츠 과학', SYSDATE, 50000);
+ROLLBACK;
+
+-- ※ 연습문제 PDF파일의 page1
+DROP TABLE SAM01;
+CREATE TABLE SAM01(
+
+);
 
 
 
