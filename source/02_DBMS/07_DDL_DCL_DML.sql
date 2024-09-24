@@ -253,6 +253,7 @@ DELETE FROM DEPT01; -- 참조 데이터가 있을 경우 에러
     -- 10번 부서 직원 삭제
     DELETE FROM EMP01 WHERE DEPTNO=10;
     -- 서브쿼리를 내포한 DELETE문 예제
+    COMMIT;
 
 
 
