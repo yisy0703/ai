@@ -175,9 +175,24 @@ INSERT INTO SAM01
 SELECT * FROM SAM01;
 COMMIT;
 
-
-
-
+-- 2. UPDATE 테이블명 SET 필드명1=값1 [,필드명2=값2,.. 필드N=값N] [WHERE 조건];
+DROP TABLE EMP01;
+CREATE TABLE EMP01 AS SELECT EMPNO, ENAME, HIREDATE, SAL, DEPTNO FROM EMP;
+    -- EX. 부서번호를 30으로 수정
+    UPDATE EMP01 SET DEPTNO=30;
+    SELECT * FROM EMP01;
+    -- EX. 모든 직원(EMP01)의 급여(SAL)을 10%인상
+    UPDATE EMP01 SET SAL=SAL*1.1;
+    SELECT * FROM EMP01;
+    ROLLBACK;
+    -- EX. 10번 부서 직원의 입사일을 오늘로, 부서번호를 30번으로 수정하시오
+    UPDATE EMP01 
+        SET HIREDATE=SYSDATE, 
+            DEPTNO=30 
+        WHERE DEPTNO=10;
+    SELECT * FROM EMP01;
+    -- EX. SAL이 3000인 사원만 급여를 10% 인상시키시오
+    -- EX. DALLAS에 근무하는 직원의 급여를 1000$ 인상시키시오
 
 
 
