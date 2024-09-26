@@ -1,3 +1,3 @@
 git add .
-git commit -m "Sequence"
+git commit -m "shopping mall"
 git push -u origin main
