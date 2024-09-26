@@ -1,3 +1,3 @@
 git add .
-git commit -m "index,∆Æ∑£¿Ëº«"
+git commit -m "Oracle ∫‰"
 git push -u origin main
