@@ -46,6 +46,8 @@ INSERT INTO FRIEND (NO, NAME, TEL, ADDRESS)
             '홍길동', NULL, '서울시 관악구'); 
 SELECT * FROM FRIEND;
 
+-- QUIZ
+
 
 
 
