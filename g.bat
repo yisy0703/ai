@@ -1,3 +1,3 @@
 git add .
-git commit -m "DDL,DML"
+git commit -m "Sequence"
 git push -u origin main
