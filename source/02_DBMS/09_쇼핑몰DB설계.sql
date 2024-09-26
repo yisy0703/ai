@@ -9,6 +9,7 @@ DROP TABLE PRODUCT;
 -- Entity(table)간 관계
     -- 식별관계 : 부모테이블의 주키가 자식 테이블의 주키
     -- 비식별관계 : 부모테이블의 주키가 자식테이블의 일반속성
+    
 CREATE TABLE MEMBER(
     mID VARCHAR2(20) PRIMARY KEY,
     mNAME VARCHAR2(50) NOT NULL,
