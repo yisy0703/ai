@@ -1,3 +1,3 @@
 git add .
-git commit -m "shopping mall"
+git commit -m "View"
 git push -u origin main
