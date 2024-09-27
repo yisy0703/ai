@@ -122,9 +122,23 @@ SELECT ENAME, SAL
     FROM (SELECT ROWNUM RN, ENAME, SAL  FROM (SELECT * FROM EMP ORDER BY SAL))
     WHERE RN BETWEEN 6 AND 10; 
 
--- EX. 이름 알파벳순으로 6번째~10번째 사원을 출력(순서, 이름, 사번, JOB, MGR, HIREDATE)
+    -- EX. 이름 알파벳순으로 6번째~10번째 사원을 출력(순서, 이름, 사번, JOB, MGR, HIREDATE)
+    SELECT *
+        FROM (SELECT ROWNUM RN, ENAME, EMPNO, JOB, MGR, HIREDATE
+                FROM (SELECT * FROM EMP ORDER BY ENAME))
+        WHERE RN BETWEEN 6 AND 10;
+    -- EX. 입사순으로 11번째~15번째인 사원의 모든 필드 출력(순서는 출력 안 함)
+    SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO 
+        FROM (SELECT ROWNUM RN, A.*
+                FROM (SELECT * FROM EMP ORDER BY HIREDATE) A)
+        WHERE RN BETWEEN 11 AND 15;
 
--- EX. 입사순으로 11번째~15번째인 사원의 모든 필드 출력(순서는 출력 안 함)
+
+
+
+
+
+
 
 
 
