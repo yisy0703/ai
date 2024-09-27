@@ -60,6 +60,42 @@ CREATE OR REPLACE VIEW EMPv0 (NO, NAME, YEAR_SAL) -- 별칭들만 따로
 SELECT * FROM EMPv0;
 INSERT INTO EMPv0 VALUES (1111, 'LEE', 1200); -- 복합뷰는 INSERT 불가
 
+    -- EX1. 사번, 이름, 10의 자리에서 반올림 급여를 뷰로 생성(EMPv0) 1250->1300
+    CREATE OR REPLACE VIEW EMPv0
+        AS SELECT EMPNO, ENAME, ROUND(SAL, -2) SAL FROM EMP;
+    INSERT INTO EMPv0 VALUES (1111, '홍', 1300); -- 복합뷰는 INSERT 불가
+    -- EX2. 중복이 제거된 JOB, DEPTNO를 뷰로 생성(EMPv1)
+    CREATE OR REPLACE VIEW EMPv1 
+        AS SELECT DISTINCT JOB, DEPTNO FROM EMP;
+    -- EX3. 부서번호, 최소급여, 최대급여, 부서평균(소수점1자리에서 반올림)을 포함한 뷰로 생성(EMPv0)
+    CREATE OR REPLACE VIEW EMPv0 (DEPTNO, MINSAL, MAXSAL, AVGSAL)
+        AS SELECT DEPTNO, MIN(SAL), MAX(SAL), ROUND(AVG(SAL), 1) FROM EMP GROUP BY DEPTNO;
+    SELECT * FROM EMPv0;
+    -- EX3. 부서명, 최소급여, 최대급여, 부서평균(소수점1자리에서 반올림)을 포함한 뷰로 생성(EMPv0)
+    CREATE OR REPLACE VIEW EMPv0 (DNAME, MINSAL, MAXSAL, AVGSAL)
+        AS SELECT DNAME, MIN(SAL), MAX(SAL), ROUND(AVG(SAL), 1) 
+            FROM EMP E, DEPT D
+            WHERE E.DEPTNO=D.DEPTNO
+            GROUP BY DNAME;
+    SELECT * FROM EMPv0;
+
+-- (2) INLINE-VIEW : FROM절의 서브쿼리를 INLINE-VIEW라 하며, FROM절에 오는 서브쿼리는 VIEW 작용
+    -- EX. 급여가 2000을 초과하는 사원의 평균 급여
+    SELECT AVG(SAL) FROM EMP WHERE SAL>2000;
+    SELECT AVG(SAL) FROM (SELECT SAL FROM EMP WHERE SAL>2000) E;
+-- SELECT 필드1, 필드2,..
+--  FROM (서브쿼리) 별칭, 테이블N,...
+--  WHERE 조건
+    -- EX. 부서평균의 월급보다 높은 월급을 받는 사원의 사번, 이름, 급여, 부서번호, 해당부서의 평균급여(반올림)
+    SELECT EMPNO, ENAME, SAL, E.DEPTNO, ROUND(AVGSAL,1)
+        FROM EMP E,
+            (SELECT DEPTNO, AVG(SAL) AVGSAL FROM EMP GROUP BY DEPTNO) G
+        WHERE E.DEPTNO=G.DEPTNO AND SAL>AVGSAL;
+        
+-- 3. TOP-N 구문(TOP 1~10등, 11~20등...)
+
+
+
 
 
 
