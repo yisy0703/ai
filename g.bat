@@ -1,3 +1,3 @@
 git add .
-git commit -m "MySQL½Ç½À"
+git commit -m "jdbc"
 git push -u origin main
