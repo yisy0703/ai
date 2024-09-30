@@ -162,24 +162,21 @@ select w.pno, w.pname, m.pname manager
     where w.manager=m.pno;
 
 -- 8. 사번, 이름, 상사이름(상사가 없는 사람도 출력하되 상사가 없는 경우 ★CEO★로 출력)
-select w.pno, w.pname, m.pname "manager"
+select w.pno, w.pname, ifnull(m.pname, '★CEO★') manager
 	from personal w left outer join personal m
     on w.manager=m.pno;
-select w.pno, w.pname, ifnull(m.pname, '★CEO★') "manager"
+select w.pno, w.pname, if(m.pname is null, '★CEO★', m.pname) manager
 	from personal w left outer join personal m
     on w.manager=m.pno;
-select w.pno, w.pname, if(m.pname is null, '★CEO★', m.pname) "manager"
-	from personal w left outer join personal m
-    on w.manager=m.pno;  
-
+    
 -- 8-1. 사번, 이름, 상사사번(상사가 없으면 ceo로 출력)
-select pno, pname, if(manager is null,'ceo', manager) manager 
-	from personal;  
-select pno, pname, ifnull(manager,'ceo') manager 
-	from personal;
+select pno, pname, ifnull(manager, 'ceo') from personal;
 
 -- 8-2. 사번, 이름, 상사이름, 부서명
-
+select w.pno, w.pname, ifnull(m.pname, '★CEO★') manager, dname
+	from division d, personal w left outer join personal m
+    on w.manager=m.pno
+    where d.dno=w.dno;
     
 -- 9. 이름이 s로 시작하는 사원 이름
 select pname from personal where pname like 's%';
