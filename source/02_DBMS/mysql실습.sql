@@ -34,9 +34,46 @@ drop table if exists emp;
 
 -- major : mCode(학과번호,인위적pk), mName(학과이름), mOffice(학과사무실)
 -- student : sNo(학번,pk), sName(이름), mCode(학과번호, fk)
+create table major(
+	mCode int primary key auto_increment, -- 자동 증가되는 pk (int형)
+    mName varchar(10), 
+    mOffice varchar(30)
+);
+create table student(
+	sNo numeric(4) primary key,
+    sName varchar(10),
+    mCode int references major(mCode)
+);
+insert into major (mName, mOffice) values ('컴공','201호'); -- ctrl+D복사
+insert into major (mName, mOffice) values ('빅데이터','202호'); -- ctrl+D복사
+insert into major (mName, mOffice) values ('웹디','203호'); -- ctrl+D복사
+select * from major;
+insert into student values (1001, '홍길동', 1);
+insert into student values (1002, '신길동', 2);
+insert into student values (1011, '박길동', 4);
+select * from student;
+drop table if exists student;
+drop table if exists major;
 
-
-
+create table major(
+	mCode int primary key auto_increment, -- 자동 증가되는 pk (int형)
+    mName varchar(10), 
+    mOffice varchar(30)
+);
+create table student(
+	sNo numeric(4) primary key,
+    sName varchar(10),
+    mCode int,
+    foreign key(mCode) references major(mCode) -- 외래키 제약조건은 꼭 아래에
+);
+insert into major (mName, mOffice) values ('컴공','201호'); -- ctrl+D복사
+insert into major (mName, mOffice) values ('빅데이터','202호'); -- ctrl+D복사
+insert into major (mName, mOffice) values ('웹디','203호'); -- ctrl+D복사
+select * from major;
+insert into student values (1001, '홍길동', 1);
+insert into student values (1002, '신길동', 2);
+insert into student values (1011, '박길동', 4);
+select * from student;
 
 
 
