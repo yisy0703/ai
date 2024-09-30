@@ -162,22 +162,28 @@ select w.pno, w.pname, m.pname manager
     where w.manager=m.pno;
 
 -- 8. 사번, 이름, 상사이름(상사가 없는 사람도 출력하되 상사가 없는 경우 ★CEO★로 출력)
-select w.pno, w.pname, ifnull(m.pname, '★CEO★') manager
+select w.pno, w.pname, m.pname "manager"
 	from personal w left outer join personal m
     on w.manager=m.pno;
-select w.pno, w.pname, if(m.pname is null, '★CEO★', m.pname) manager
+select w.pno, w.pname, ifnull(m.pname, '★CEO★') "manager"
 	from personal w left outer join personal m
     on w.manager=m.pno;
-    
+select w.pno, w.pname, if(m.pname is null, '★CEO★', m.pname) "manager"
+	from personal w left outer join personal m
+    on w.manager=m.pno;  
+
 -- 8-1. 사번, 이름, 상사사번(상사가 없으면 ceo로 출력)
-select pno, pname, ifnull(manager, 'ceo') from personal;
+select pno, pname, if(manager is null,'ceo', manager) manager 
+	from personal;  
+select pno, pname, ifnull(manager,'ceo') manager 
+	from personal;
 
 -- 8-2. 사번, 이름, 상사이름, 부서명
 select w.pno, w.pname, ifnull(m.pname, '★CEO★') manager, dname
 	from division d, personal w left outer join personal m
     on w.manager=m.pno
     where d.dno=w.dno;
-    
+
 -- 9. 이름이 s로 시작하는 사원 이름
 select pname from personal where pname like 's%';
 select pname from personal where substr(pname, 1, 1)='s';
@@ -264,6 +270,47 @@ select pname, pay, dname, dnoavg
 		(select dno, avg(pay) dnoavg from personal group by dno) a
 	where p.dno=d.dno and p.dno=a.dno;
 
+-- Oracle에서의 단일행 함수와 다른 부분
+	-- ex. pname는 job다
+select concat(pname, '는 ', job, '다') "message" from personal;
+select round(35.78, 1); -- from 절 없이도 실행 가능
+
+-- 시스템으로부터 현재시점, 현재날짜, 현재시간
+select sysdate(), now(); -- 현재 날짜와 시간
+select curdate(), curtime(); -- 현재 날짜와 현재 시간alter
+
+-- date_format(날짜/시간, 포맷) => 날짜/시간형을 문자형으로 변환
+-- date_format(문자, 포맷) => 문자를 날짜/시간형으로 변환
+	-- 포맷 : %Y(년도4자리), %y(년도 2자리)
+    --       %m(01,02,..), %c(1,2,..)
+    --       %d(01,02,..), %e(1, 2,..)
+    --       %W monday, %a Mon
+    --       %H(24시) %h(12시), %p(오전, 오후), %i(분) %s(초)
+select date_format(now(), '%y년%m월%e일 %p %h시 %i분 %s초') now;
+select year(now()), weekday(now()) "요일";
+select case weekday(startdate)
+		when '0' then '월요일'
+        when '1' then '화요일'
+        when '2' then '수요일'
+        when '3' then '목요일'
+        when '4' then '금요일'
+        when '5' then '토요일'
+        when '6' then '일요일' end  dayofweek from personal;
+
+-- format(숫자, 소숫점자리수) -- 소수점자리수까지 출력하고 세자리마다 ,
+select format(pay, 0) from personal;-- 세자리 마다 ,
+select format(pay, 2) from personal;-- 세자리 마다 ,
+
+-- ★ ★ ★ TOP-N 구문(rownum이 없고, limit이용)
+select pname, pay from personal order by pay desc limit 0, 5; -- 0번째부터 5개(1~5등)
+-- limit n == limit 0, n(1~n등까지)
+-- limit n1, n2 (n1번째부터 n2개, 첫번째는 0번째)
+-- pay순으로 1page (1~3등)
+select pname, pay from personal order by pay desc limit 0, 3;
+-- 2page (4~6등)
+select pname, pay from personal order by pay desc limit 3, 3;
+-- 3page (7~9등)
+select pname, pay from personal order by pay desc limit 6, 3;
 
 
 
