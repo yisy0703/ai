@@ -31,7 +31,7 @@ COMMIT;
 SELECT * FROM DEPT;
             
 -- ★ ★ ★ com.lec.ex5delete  ★ ★ ★
-
+DELETE FROM DEPT WHERE DEPTNO=99;
 
 
 
