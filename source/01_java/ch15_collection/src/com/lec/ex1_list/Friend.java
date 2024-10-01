@@ -1,5 +1,6 @@
 package com.lec.ex1_list;
-// new Friend("홍길동","010-7897-7897")
+// Friend f = new Friend("홍길동","010-7897-7897");
+// sysout(f)
 public class Friend {
 	private String name;
 	private String tel;
