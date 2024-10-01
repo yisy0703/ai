@@ -33,7 +33,20 @@ public class Ex2_selectWhere {
 				System.out.println("원하는 부서이름 : " + rs.getString("dname"));
 				System.out.println("원하는 부서위치 : " + rs.getString("loc"));
 				// query2전송해서 사원정보 출력하기
-				
+				rs.close();
+				rs = stmt.executeQuery(query2);
+				if(rs.next()) { // 사원이 존재할 경우
+					System.out.println("사번\t이름\t급여\t상사명");
+					do {
+						int    empno = rs.getInt("empno");
+						String ename = rs.getString("ename");
+						int    sal   = rs.getInt("sal");
+						String manager=rs.getString("manager");
+						System.out.println(empno +"\t" + ename + "\t" + sal + "\t" +manager);						
+					}while(rs.next()) ;
+				}else { // 사원이 없는 경우
+					System.out.println(deptno + "번 부서 사원은 없습니다");
+				}
 			}else {// 부서번호가 없는 경우
 				System.out.println(deptno + "는 유효한 부서번호가 아닙니다");
 			}
