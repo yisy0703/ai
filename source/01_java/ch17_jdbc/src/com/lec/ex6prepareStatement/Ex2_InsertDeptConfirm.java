@@ -36,9 +36,19 @@ public class Ex2_InsertDeptConfirm {
 				pstmt.setString(2, scanner.next());
 				System.out.print("부서위치는 ?");
 				pstmt.setString(3, scanner.next());
+				int result = pstmt.executeUpdate();
+				System.out.println(result>0 ? "입력성공":"입력실패");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs   !=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 }

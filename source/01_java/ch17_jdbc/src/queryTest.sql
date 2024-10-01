@@ -33,8 +33,13 @@ SELECT * FROM DEPT;
 -- ★ ★ ★ com.lec.ex5delete  ★ ★ ★
 DELETE FROM DEPT WHERE DEPTNO=99;
 
-
-
+-- ★ ★ ★ com.lec.ex6prepareStatement ★ ★ ★
+SELECT * FROM DEPT WHERE DNAME=UPPER('sales');
+SELECT EMPNO, ENAME, SAL 
+  FROM EMP E, DEPT D
+  WHERE E.DEPTNO=D.DEPTNO 
+    AND DNAME = UPPER('sales')
+  ORDER BY SAL;
 
 
 
