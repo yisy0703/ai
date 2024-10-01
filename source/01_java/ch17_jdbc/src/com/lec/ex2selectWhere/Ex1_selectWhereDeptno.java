@@ -20,6 +20,7 @@ public class Ex1_selectWhereDeptno {
 		sc.close();
 		String sql = "SELECT * FROM DEPT WHERE DEPTNO=" + deptno;
 		try {
+			// Class.forName(driver); 1.드라이버 로드(jdk17에서 생략가능)
 			conn = DriverManager.getConnection(url, "scott", "tiger"); // 2. DB연결
 			stmt = conn.createStatement(); // 3. SQL문 전송 객체
 			rs   = stmt.executeQuery(sql); // 4+5. SQL전송 + 결과받기
