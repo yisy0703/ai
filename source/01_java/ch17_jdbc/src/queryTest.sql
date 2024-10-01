@@ -12,8 +12,12 @@ SELECT * FROM DEPT WHERE DEPTNO=11;
 SELECT W.EMPNO, W.ENAME, W.SAL, M.ENAME MANAGER
   FROM EMP W, EMP M
   WHERE W.DEPTNO=10 and W.MGR=M.EMPNO;
+-- EX3. 부서이름으로 부서정보 출력
+SELECT * FROM DEPT WHERE DNAME=UPPER('sales');
 
-
+-- ★ ★ ★ com.lec.ex3insert  ★ ★ ★
+INSERT INTO DEPT 
+  VALUES (60, UPPER('cs'), UPPER('pusan'));
 
 
 
