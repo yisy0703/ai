@@ -10,8 +10,7 @@ public class Ex1_InsertDept {
 		Scanner scanner = new Scanner(System.in);
 		Connection conn = null;
 		//Statement  stmt = null;
-		PreparedStatement pstmt = null;
-		
+		PreparedStatement pstmt = null;		
 		System.out.print("입력할 부서번호는 >");
 		int deptno = scanner.nextInt();
 		System.out.print("입력할 부서명은 >");
