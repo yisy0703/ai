@@ -31,7 +31,11 @@ public class Ex2_InsertDeptConfirm {
 				rs.close();
 				pstmt.close();
 				pstmt = conn.prepareStatement(insertSql);
-				
+				pstmt.setInt(1, deptno);
+				System.out.print("부서명은 ?");
+				pstmt.setString(2, scanner.next());
+				System.out.print("부서위치는 ?");
+				pstmt.setString(3, scanner.next());
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
