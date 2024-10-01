@@ -16,15 +16,21 @@ SELECT W.EMPNO, W.ENAME, W.SAL, M.ENAME MANAGER
 SELECT * FROM DEPT WHERE DNAME=UPPER('sales');
 
 -- ★ ★ ★ com.lec.ex3insert  ★ ★ ★
+SELECT COUNT(*) CNT FROM DEPT WHERE DEPTNO=70;
 INSERT INTO DEPT 
   VALUES (60, UPPER('cs'), UPPER('pusan'));
+rollback;
 
-
-
-
-
-
-
+-- ★ ★ ★ com.lec.ex4update  ★ ★ ★
+SELECT * FROM DEPT WHERE DEPTNO=80;
+UPDATE DEPT
+  SET DNAME=UPPER('marketing'),
+      LOC = UPPER('seoul')
+  WHERE DEPTNO=80;
+COMMIT;
+SELECT * FROM DEPT;
+            
+-- ★ ★ ★ com.lec.ex5delete  ★ ★ ★
 
 
 
