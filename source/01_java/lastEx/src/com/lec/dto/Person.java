@@ -8,15 +8,6 @@ public class Person {
 	private int eng;
 	private int mat;
 	private int sum;
-	// 입력용 : 이름, 직업명, 국, 영, 수
-	public Person(String pname, String jname, int kor, int eng, int mat) {
-		this.pname = pname;
-		this.jname = jname;
-		this.kor = kor;
-		this.eng = eng;
-		this.mat = mat;
-	}
-	// 출력용 : rank, pname, jname, kor, eng, mat, sum
 	public Person(int rank, String pname, String jname, int kor, int eng, int mat, int sum) {
 		super();
 		this.rank = rank;
