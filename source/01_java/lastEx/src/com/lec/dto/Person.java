@@ -1,5 +1,4 @@
 package com.lec.dto;
-
 public class Person {
 	private int rank;
 	private String pname;
@@ -9,7 +8,6 @@ public class Person {
 	private int mat;
 	private int sum;
 	public Person(int rank, String pname, String jname, int kor, int eng, int mat, int sum) {
-		super();
 		this.rank = rank;
 		this.pname = pname;
 		this.jname = jname;
