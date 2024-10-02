@@ -1,5 +1,14 @@
 package com.lec.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.lec.dto.Dept;
+
 public class DeptRepository {
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -17,8 +26,45 @@ public class DeptRepository {
 		}
 	}
 	// (1) 부서 정보들 가져오는 함수 : getDeptList
-	
-	// (2) deptno로 부서정보 가져오는 함수 : getDept(10)
+	public ArrayList<Dept> getDeptList(){
+		ArrayList<Dept> dtos = new ArrayList<Dept>();
+		// SQL수행한 결과를 dtos에 추가하기
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM DEPT";
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			rs    = pstmt.executeQuery();
+			while(rs.next()) {
+				int   deptno = rs.getInt("deptno");
+				String dname = rs.getString("dname");
+				String loc   = rs.getString("loc");
+				dtos.add(new Dept(deptno, dname, loc));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return dtos;
+	}
+	// (2) deptno로 부서정보 가져오는 함수 : getDept(99)
+	public Dept getDept(int deptno) {
+		Dept dto = null;
+		// query 수행 결과를 dto에
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM DEPT WHERE DEPTNO=?";
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}		
+		return dto;
+	}
 	
 	// (3) dname으로 부서정보 가져오는 함수 : getDept("sales")
 	
