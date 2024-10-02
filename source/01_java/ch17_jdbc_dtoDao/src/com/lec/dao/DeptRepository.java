@@ -45,13 +45,20 @@ public class DeptRepository {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs   !=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 		}
 		return dtos;
 	}
 	// (2) deptno로 부서정보 가져오는 함수 : getDept(99)
 	public Dept getDept(int deptno) {
 		Dept dto = null;
-		// query 수행 결과를 dto에
 		Connection        conn  = null;
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
@@ -59,7 +66,13 @@ public class DeptRepository {
 		try {
 			conn = DriverManager.getConnection(url, "scott", "tiger");
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, deptno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String dname = rs.getString("dname");
+				String loc   = rs.getString("loc");
+				dto = new Dept(deptno, dname, loc);
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}		
