@@ -24,7 +24,7 @@ public class Emp {
 	}
 	@Override
 	public String toString() {
-		if (job.length()<6) {
+		if (job.length()<8) {
 			return empno + "\t" + ename + "\t" + job + "\t\t" + 
 					(mgr==null? " - ":mgr) + "\t" + hiredate +
 					"\t" + sal + "\t" + comm + "\t" + deptno;
