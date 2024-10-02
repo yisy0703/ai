@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import com.lec.dao.PersonRepository;
 import com.lec.dto.Person;
-
 public class PersonMng {
 	public static void main(String[] args) {
 		PersonRepository repository = PersonRepository.getInstance();
