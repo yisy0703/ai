@@ -52,8 +52,8 @@ public class DeptRepository {
 				if(conn !=null) conn.close();
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
-			}
-		}
+			}//close
+		}//try-catch-finally
 		return dtos;
 	}
 	// (2) deptno로 부서정보 가져오는 함수 : getDept(99)
@@ -75,12 +75,48 @@ public class DeptRepository {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}		
+		} finally {
+			try {
+				if(rs   !=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}//close()
+		}//try-catch-finally
 		return dto;
 	}
-	
 	// (3) dname으로 부서정보 가져오는 함수 : getDept("sales")
-	
+	public Dept getDept(String dname) {
+		Dept dto = null;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		String sql = "SELECT * FROM DEPT WHERE UPPER(DNAME) = UPPER(?)";
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dname);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int deptno = rs.getInt("deptno");
+				dname = rs.getString("dname");
+				String loc = rs.getString("loc");
+				dto = new Dept(deptno, dname, loc);
+			}
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs   !=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}//close()
+		}//try-catch-finally
+		return dto;
+	}
 	// (4) insertDept
 	
 	// (5) updateDept
