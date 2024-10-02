@@ -117,11 +117,89 @@ public class DeptRepository {
 		}//try-catch-finally
 		return dto;
 	}
-	// (4) insertDept
-	
+	// (4) insertDetp(10, "it", "seoul")
+	public int insertDept(int deptno, String dname, String loc) {
+		int result = FAIL;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO DEPT VALUES (?, UPPER(?), UPPER(?))";
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+			pstmt.setString(2, dname);
+			pstmt.setString(3, loc);
+			result = pstmt.executeUpdate();
+			System.out.println(result==SUCCESS ? "입력성공":"입력실패");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage() + deptno + dname + loc);
+		} finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}//close()
+		}//try-catch-finally
+		return result;
+	}
 	// (5) updateDept
-	
-	// (6) deleteDept
+	public int updateDept(int deptno, String dname, String loc) {
+		int result = FAIL;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE DEPT "
+				+ "  SET DNAME=UPPER(?),"
+				+ "      LOC = UPPER(?)"
+				+ "  WHERE DEPTNO=?";
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dname);
+			pstmt.setString(2, loc);
+			pstmt.setInt(3, deptno);
+			result = pstmt.executeUpdate();
+			System.out.println(result==SUCCESS ? "수정성공":"부서번호가 유효하지 않아 수정 실패");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage() + deptno + dname + loc);
+		} finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}//close()
+		}//try-catch-finally
+		return result;
+	}
+	// (6) deleteDept(99)
+	public int deleteDept(int deptno) {
+		int result = FAIL;
+		Connection        conn  = null;
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM DEPT WHERE DEPTNO=?";
+		try {
+			conn = DriverManager.getConnection(url, "scott", "tiger");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+			result = pstmt.executeUpdate();
+			if(result==SUCCESS) {
+				System.out.println(deptno+"번 부서 삭제하였습니다");
+			}else {
+				System.out.println(deptno+"번 부서번호는 유효하지 않아 삭제 불가합니다");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}//close()
+		}//try-catch-finally
+		return result;
+	}
 }
 
 
