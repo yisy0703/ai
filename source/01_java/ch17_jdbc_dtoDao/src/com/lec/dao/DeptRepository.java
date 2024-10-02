@@ -1,5 +1,5 @@
 package com.lec.dao;
-
+// ctrl + shift + o : 필요한 import 추가나 삭제
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
