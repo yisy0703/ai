@@ -25,6 +25,5 @@ public class PersonMng {
 			}
 		}while(fn.equals("1") || fn.equals("2") || fn.equals("3"));
 		System.out.println("BYE");
-		scanner.close();
 	}
 }
