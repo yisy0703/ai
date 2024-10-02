@@ -1,7 +1,6 @@
 -- DAO에 쓸 QUERY
 -- 1번기능과 2번 기능에서 입력가능한 직업명들(jnameList)
 SELECT JNAME FROM JOB;
-SELECT * FROM PERSON;
 -- 1번(insertPerson) : PNAME, JNAME, KOR, ENG, MAT를 입력받아 PERSON 테이블 INSERT
 INSERT INTO PERSON (PNO, PNAME, JNO, KOR, ENG, MAT)
   VALUES (PERSON_PNO_SQ.NEXTVAL, '홍길동',
