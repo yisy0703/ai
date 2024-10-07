@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    * { /*전제선택자 = 페이지의 모든 태그(전체 페이지의 디자인을 초기화 용도)*/
+        margin:0; /*밖여백 (위,오른쪽,아래,왼쪽) */
+        padding:0; /*안여백 (위,오른쪽,아래,왼쪽)*/
+        color:saddlebrown;
+    }
+    header, nav, section, footer{
+      width:500px; /*가로사이즈(width를 지정하지 않으면 부모의 width를 다 씀)*/
+      margin:2px auto; /* 좌우 여백 나눔 */
+      border:1px solid gray;
+    }
+    nav ul{ /* 수평으로 하고픈 태그의 부모단 */
+      overflow:hidden;
+    }
+      nav ul li { /* block 타입의 태그를 수평으로 */
+        float: left;
+        list-style: none;
+        padding: 10px 27.5px; /*안여백*/
+        /*border:1px solid blue;*/
+      }
+    section{ /*더이상 수평으로 안 할 영역 */
+      clear:both; /* float속성을 clear. overflow:hidden;을 했으면 생략하기도 */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OO 주식회사</h1>
+  </header>
+  <nav>
+    <ul>
+      <li>회사소개</li>
+      <li>서비스소개</li>
+      <li>고객센터</li>
+      <li>공지사항</li>
+    </ul>
+  </nav>
+  <section>
+    <p>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
+  </section>
+  <footer>
+    <p>서울시 땡땡구 뭐뭐로 12, 201호(아무동, XX빌딩)</p>
+  </footer>
+</body>
+</html>
