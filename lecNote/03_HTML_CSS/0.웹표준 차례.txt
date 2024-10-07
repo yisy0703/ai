@@ -1,6 +1,6 @@
 1. 개론 - 웹과 HTML, CSS, JavaScript의 차이, 프로그램 설치
-2. HTML-I
-3. HTML-II
+2. HTML-I - 글자, 목록, 표, 이미지
+3. HTML-II - 입력(form), 공간분할
 4. CSS 선택자들
 5. CSS 속성들 
 6. 웹페이지 실전예제 - 쇼핑몰
