@@ -4,13 +4,46 @@
   <meta charset="utf-8" />
   <title></title>
   <link href="quiz.css" rel="stylesheet" type="text/css" />
+  <script>
+    function chk() {
+      if (frm.pw.value != frm.pwchk.value) {
+        alert("비밀번호를 확인하세요");
+        frm.pw.value = "";
+        frm.pwchk.value = "";
+        frm.pw.focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
 </head>
 <body>
   <div id="header">
     <h2>회원가입</h2>
   </div>
   <div id="join_form">
-    
+    <form name="frm" onsubmit="return chk()">
+      <fieldset>
+        <legend>필수입력</legend>
+        <table>
+          
+        </table>
+      </fieldset>
+      <fieldset>
+        <legend>추가 입력사항</legend>
+        <table>
+        </table>
+      </fieldset>
+      <p>
+        <input type="submit" value="가입">
+      </p>
+    </form>
   </div>
+  <footer>
+    <p>
+      서울시 땡땡구 뭐뭐로 132 아무빌딩 201호<br />
+      Copyright ⓒ XX All rights reserved
+    </p>
+  </footer>
 </body>
 </html>

@@ -3,3 +3,7 @@ b {color:red;}
 td, p, h2{
     text-align:center;
 }
+header, #join_form, footer{
+    width:500px;
+    margin:0 auto;
+}
