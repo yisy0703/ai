@@ -6,11 +6,7 @@
   <link href="quiz.css" rel="stylesheet" type="text/css" />
   <script>
     function chk() {
-      if (frm.name.value.length < 2) {
-        alert("이름은 2글자 이상입니다");
-        frm.name.focus();
-        return false;
-      }else if (frm.pw.value != frm.pwchk.value) {
+      if (frm.pw.value != frm.pwchk.value) {
         alert("비밀번호를 확인하세요");
         frm.pw.value = "";
         frm.pwchk.value = "";
@@ -37,7 +33,7 @@
                      autofocus="autofocus"
                      placeholder="이름은 2글자 이상"
                      pattern="[a-zA-Z가-힣]{2,}"
-                     title="이름은 2글자이상입니다"
+                     title="이름은 2글자 이상입니다"
                      required="required">
             </td>
           </tr>
