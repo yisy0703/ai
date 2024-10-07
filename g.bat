@@ -1,3 +1,3 @@
 git add .
-git commit -m "웹표준HTML"
+git commit -m "웹표준 CSS"
 git push -u origin main
