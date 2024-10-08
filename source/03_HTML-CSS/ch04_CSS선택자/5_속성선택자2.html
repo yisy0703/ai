@@ -7,10 +7,36 @@
     #wrap{
       width:350px; margin:0 auto;
     }
+    #header{
+      color:orange; /*글자색*/
+      text-align:center;
+    }
     #section{
       border-top: 1px solid gray;
       border-bottom: 1px solid gray;
     }
+    #section h4[title^='남자']{
+      background:url('ch04/man.png') no-repeat;
+      padding: 0 0 0 30px; 
+    }
+    #section h4[title^='여자']{
+      background:url('ch04/woman.png') no-repeat;
+      padding-left: 30px;
+    }
+    p{text-align:center;/*글씨와 img 가운데 정렬*/}
+    #section a{
+      text-decoration:none; /* a 태그 기본 속성인 밑줄 없앰 */
+      color:darkblue;
+    }
+    #section a[href$='.docx'], #section a[href$='.doc']{
+      background:url('ch04/word.png') right no-repeat;
+      padding: 0 30px 0 0;
+    }
+    #section a[href$='.xlsx'], #section a[href$='.xls']{
+      background:url('ch04/excel.png') right no-repeat;
+      padding-right:30px;
+    }
+    #footer{color:gray; font-size:10px;}
   </style>
 </head>
 <body>
