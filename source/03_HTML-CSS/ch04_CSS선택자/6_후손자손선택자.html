@@ -3,6 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <title></title>
+  <style>
+    #wrap{
+      width:600px; margin:0 auto;
+      border: 1px solid #cccccc;
+    }
+    #wrap > #header{ /* #wrap 바로 밑의 #header : 자손선택자 */
+      overflow:hidden;
+    }
+    #wrap .logo{ /* #wrap 밑의 .logo : 후손선택자 */
+      float:left;
+      margin:10px 30px 10px 150px; /*상우하좌*/
+    }
+    #wrap .title{
+      float:left;
+      margin:20px 150px 10px 30px;
+    }
+    div p{ /*후손 선택자*/
+      font-size:28px;
+    }
+    div > p { /*자손 선택자*/
+      color:red;
+    }
+  </style>
 </head>
 <body>
   <div id="wrap">
