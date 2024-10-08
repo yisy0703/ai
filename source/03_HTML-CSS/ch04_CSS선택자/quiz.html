@@ -3,6 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <title></title>
+  <style>
+    /* * * * * 전체 레이아웃 잡기 * * * * */
+    #header, #content, #footer{
+      width:1000px; margin:0 auto;
+      overflow:hidden;
+    }
+    .left, .right{
+      float:left;
+      width:150px; height:150px;
+      background-color: lightgray;
+      border:1px solid gray;
+    }
+    .center{
+      float:left;
+      width:693px; height:150px;
+      background-color: lightgray;
+      border:1px solid gray;
+    }
+    #content > div { height: 300px; }
+  </style>
 </head>
 <body>
   <div id="header">
