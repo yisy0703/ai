@@ -3,3 +3,31 @@
     border:1px solid gray;
     padding:10px;
 }
+#wrap #content h2 {
+    /*font-size: 1.7em;
+    font-weight:bold;*/
+    line-height: 80px;
+    text-align: center;
+    text-decoration: underline;
+}
+#wrap #content p:nth-child(2) {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#wrap #content p:nth-child(3) {
+    padding: 0 10px;
+}
+#wrap #content p:nth-child(4){
+    text-align:right;
+}
+#wrap #footer p{
+    height:100px; line-height:100px;
+    font-size:1.5em;
+    text-align:center;
+    border-top: 1px solid gray;
+    margin:0; padding:0;
+}
+#wrap a{text-decoration:none; color:blue;}
+#wrap a:after{
+    content : ' - ' attr(href);
+}
