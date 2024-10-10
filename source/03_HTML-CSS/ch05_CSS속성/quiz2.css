@@ -49,3 +49,25 @@ div{
 #nav ul li:last-child {
   border-radius: 0 20px 20px 0;
 }
+/* * * * * * * section * * * * * * */
+#section {
+  /*width:778px; 전체 800px에서 margin과 padding, border 뺀 것*/
+  overflow:hidden;
+}
+#section #content {
+  width: 578px; /* 578 + 10(좌우margin) + 10(좌우padding) + 2(좌우border)=600px 필요 */
+  height: 200px;
+  float: left;
+}
+#section #banner {
+  width: 156px; /* 778-600 = 178에서 22(좌우margin, padding, border)빼면 156px 필요*/
+  height: 200px;
+  float: left;
+}
+/* * * * * * * footer * * * * * * */
+#footer {
+  height: 100px;
+  line-height: 100px;
+  background-color: yellow;
+}
+/* * * * * * * background image * * * * * * */
