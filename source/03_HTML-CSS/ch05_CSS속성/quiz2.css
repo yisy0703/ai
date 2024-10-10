@@ -1,0 +1,18 @@
+﻿/***** 페이지 초기화 *****/
+*{margin:0; padding:0;}
+a{
+  text-decoration:none; color:purple;
+  font-weight:bold; 
+  display:block;
+}
+li{list-style:none;}
+div{
+    border:1px solid lightgray;
+    margin:5px; padding:5px;
+    text-align:center;
+}
+/***** 페이지 전체를 가운데로 *****/
+#contain{
+    width:800px; margin:0 auto;
+}
+/***** #header *****/
