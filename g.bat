@@ -1,3 +1,3 @@
 git add .
-git commit -m "웹표준 CSS"
+git commit -m "CSS속성"
 git push -u origin main
