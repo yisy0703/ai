@@ -1,1 +1,7 @@
 ﻿/* header.css */
+/* * * * * 페이지 초기화 * * * * */
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../font/Roboto-Regular.ttf');/*css파일기준으로*/
+}
+*{margin:0; padding:0; font-family:Roboto-Regular, Consolas; }
