@@ -14,6 +14,7 @@ div{
 /***** 페이지 전체를 가운데로 *****/
 #contain{
     width:800px; margin:0 auto;
+    position:relative; /*background_image때문*/
 }
 /* * * * * * * #header * * * * * * */
 #header {
@@ -35,7 +36,6 @@ div{
   overflow: hidden;
 }
 #nav ul li {
-  list-style: none;
   float: left;
   width: 140px;
   height: 50px; /* 서브메뉴시 제거할 예정 */
@@ -71,3 +71,8 @@ div{
   background-color: yellow;
 }
 /* * * * * * * background image * * * * * * */
+#background_image{
+  position:absolute;
+  left:0;
+  right:0;
+}
