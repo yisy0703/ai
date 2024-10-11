@@ -22,9 +22,6 @@ div{
   background-color: yellow;
 }
 /* * * * * * * #nav * * * * * * */
-#nav {
-  height: 100px; /*높이를 지정하지 않으면 서브메뉴 들어갈 때 넓어짐*/
-}
 #nav p {
   height: 40px;
   line-height: 40px;
@@ -37,7 +34,7 @@ div{
 #nav ul li {
   float: left;
   width: 140px;
-  height: 50px; /* 서브메뉴시 제거할 예정 */
+  /*height: 50px; *//* 서브메뉴시 제거할 예정 */
   line-height: 50px;
   background-color: pink;
   margin: 2px;
@@ -84,4 +81,14 @@ div{
   background-size:110%;
   z-index:-9999;
   opacity:0.3;
+}
+/* * * * * * 서브메뉴 * * * * * */
+#nav {
+  height: 100px; /*높이를 지정하지 않으면 서브메뉴 들어갈 때 넓어짐*/
+  position:relative; /*z-index값을 적용시키려고*/
+  z-index:9999;
+}
+.submenu {display:none;}
+#nav ul li:hover .submenu {
+  display: block;
 }
