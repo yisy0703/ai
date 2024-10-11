@@ -4,7 +4,7 @@
   font-family: 'Roboto-Regular';
   src: url('../font/Roboto-Regular.ttf');/*css파일기준으로*/
 }
-*{margin:0; padding:0; font-family:Roboto-Regular, Consolas; }
+*{margin:0; padding:0;  font-family: Roboto-Regular, Consolas;}
 a{text-decoration:none; color:black; display:block;}
 li{list-style:none;}
 
@@ -50,4 +50,21 @@ header .hitmenu ul li:first-child{
 }
 header .hitmenu ul li:last-child{
   border-radius: 10px 0 0 10px;
+}
+/* * * * * header .lnb * * * * */
+header .lnb {
+  /*width:100%;*/
+  border-top: 1px dashed #333333;
+  border-bottom: 1px dashed #333333;
+}
+header .lnb ul{
+  width:1000px; margin:0 auto;
+  height:30px;  line-height:30px;
+  overflow:hidden;
+}
+header .lnb ul li{
+  float:left;
+  width:11.5%; margin:0 0.5%; text-align:center;
+  /*width:120px; margin:0 2.5px; text-align:center;*/
+  /*border:1px solid gray; box-sizing:border-box;확인용*/
 }
