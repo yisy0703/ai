@@ -3,7 +3,7 @@ footer{
   width:1000px; margin:5px auto; height:150px;
   overflow:hidden;
 }
-footer div:nth-child(1),footer div:nth-child(2),footer div:nth-child(3){
+footer div.office{
   float:left;
   width:33.3%;
   height:100px;
