@@ -45,6 +45,30 @@
       position:absolute;
       right:0; top:0;
     }
+    /* * * * * #lnb * * * * */
+    #lnb ul{
+      overflow:hidden;
+      margin:7px 0; /*위 아래만 밖여백*/
+    }
+    #lnb ul li{
+      float:left;
+      width:16.66%;
+      text-align:center; height:30px; line-height:30px;
+      border-right:1px solid #ea8f00;
+      box-sizing:border-box;
+    }
+    #lnb ul li:last-child{border:0;}
+    /* * * * * #section1 * * * * */
+    section #section1 .row1, 
+    section #section1 .row2, 
+    section #section1 .row3{
+      overflow:hidden;
+    }
+    section #section1 .row1 > div,
+    section #section1 .row2 > div,
+    section #section1 .row3 > div{
+      float:left; width:50%; height:120px;
+    }
   </style>
 </head>
 <body>
@@ -100,19 +124,20 @@
                alt="2행2열" />
         </a>
       </div>
-      <div class="row3">
-        <div>
-          <a href="https://v.daum.net/v/20241014080510944">
-            <img src="https://img4.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202410/14/hani/20241014080512591bajo.jpg"
-                 alt="3행1열" />
-          </a>
-        </div>
-        <div>
-          <a href="https://v.daum.net/v/20241014050053347">
-            <img src="https://img4.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202410/14/joongang/20241014075021306nrmd.jpg"
-                 alt="3행2열" />
-          </a>
-        </div>
+
+    </div>
+    <div class="row3">
+      <div>
+        <a href="https://v.daum.net/v/20241014080510944">
+          <img src="https://img4.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202410/14/hani/20241014080512591bajo.jpg"
+               alt="3행1열" />
+        </a>
+      </div>
+      <div>
+        <a href="https://v.daum.net/v/20241014050053347">
+          <img src="https://img4.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202410/14/joongang/20241014075021306nrmd.jpg"
+               alt="3행2열" />
+        </a>
       </div>
     </div><!--#section1-->
     <div id="section2">
