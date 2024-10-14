@@ -76,7 +76,7 @@
     }
     /* * * * * #section2 * * * * */
     section #section2 {margin: 7px;}
-    section #section2 ul li {
+    section #section2 ul li a{
       padding:8px; 
       border:1px solid lightgray;
       box-sizing:border-box;
@@ -90,6 +90,15 @@
       box-sizing:border-box;
       margin:7px;
       padding : 7px;
+      position:relative; /*p.img태그를 position 잡을 예정 */
+      height:120px;
+    }
+    section #section3 ul li p.img{
+      position:absolute;
+      left: 10px; top:10px;
+    }
+    section #section3 ul li p.txt{
+      padding-left:120px;
     }
   </style>
 </head>
