@@ -6,7 +6,38 @@
         user-scalable=yes, maximum-scale=2.0, minimum-scale=0.7" />
   <title></title>
   <style>
-    header{background-color:#ea8f00;}
+    /* * * * * 페이지 초기화 * * * * */
+    *{ margin:0; padding:0; }
+    li{list-style:none;}
+    a{text-decoration:none; display:block;}
+    /* * * * * header * * * * */
+    header{
+      height:100px;
+      background-color:#ea8f00;
+    }
+    /* * * * * header의 #logo_wrap * * * * */
+    header #logo_wrap{
+      height:50px; line-height:50px; text-align:center; 
+      position:relative; /* 자식태그가 부모태그 안에 두기 위한 용도*/
+    }
+    header #logo_wrap img.menu{
+      position:absolute; top:0; left:10px;
+    }
+    header #logo_wrap img.myinfo{
+      position:absolute; top:0; right:10px;
+    }
+    header #logo_wrap a {color:white; font-size:1.5em; font-weight:bold;}
+    /* * * * * header의 #search * * * * */
+    header #search input[type='text']{
+      width:100%-50px; height:50px;
+      border:3px solid #ea8f00;
+      box-sizing:border-box;
+    }
+    header #search input[type='submit']{
+      background:url('ch07/search.png') no-repeat;
+      width:50px; height:50px;
+      border:0; outline:0;
+    }
   </style>
 </head>
 <body>
@@ -18,8 +49,7 @@
     </div>
     <div id="search">
       <form action="#">
-        <input type="text" name="query_word" />
-        <input type="submit" value=""/>
+        <input type="text" name="query_word" /><input type="submit" value=""/>
       </form>
     </div>
   </header>
@@ -102,8 +132,28 @@
         </li>
       </ul>
     </div><!--#section2-->
-    <div id="section3"></div><!--#section3-->
+    <div id="section3">
+      <ul>
+        <li>
+          <p class="img"><img src="ch07/100img.png" /></p>
+          <p class="txt">
+            <span>첫번째 span 내용은 말줄임을 할 예정입니다. block타입으로 전환할 예정입니다</span>
+            <span>두번째 span 내용은 말줄임 안 할 예정입니다. 한줄 이상의 내용은 다음줄로.</span>
+          </p>
+        </li>
+        <li>
+          <p class="img"><img src="ch07/100img.png" /></p>
+          <p class="txt">
+            <span>첫번째 span 내용은 말줄임을 할 예정입니다. block타입으로 전환할 예정입니다</span>
+            <span>두번째 span 내용은 말줄임 안 할 예정입니다. 한줄 이상의 내용은 다음줄로.</span>
+          </p>
+        </li>
+      </ul>
+    </div><!--#section3-->
   </section>
-  <footer></footer>
+  <footer>
+    <p><img src="ch07/logo.png" alt="회사로고" /></p>
+    <p>서울시 땡땡구 뭐뭐로 12, 2F(아무동, xx빌딩)</p>
+  </footer>
 </body>
 </html>
