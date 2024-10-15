@@ -7,11 +7,21 @@
     // 국어, 영어점수 입력받아 국, 영, 평균을 출력(prompt, Number나 parseInt함수 이용)
     let kor, eng;
     do{
-      국어점수입력
-    }while(유효하지 않은 점수를 입력할 조건);
+      korStr = prompt("범위에 맞는 국어점수는(0~100)?");
+      kor = Number(korStr);
+    }while(!korStr || !korStr.trim() || isNaN(kor) || kor<0 || kor>100);
+
+    do{
+      eng = parseInt(prompt("범위에 맞는 영어점수는(0~100)?"));
+    }while(isNaN(eng) || eng<0 || eng>100);
+    document.write('국어:' + kor + '<br>');
+    document.write('영어:' + eng + '<br>');
+    document.body.innerHTML += '평균 :' + ((kor+eng)/2) + '<br>';
   </script>
 </head>
 <body>
   
 </body>
 </html>
+
+
