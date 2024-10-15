@@ -17,8 +17,17 @@
     for(var data of arr){
       document.write(data + '<br>');
     }
-    // 4. forEach함수1 (array)
-    // 5. forEach함수2 (array)
+    document.write('<h3>4. forEach함수1 (array)</h3>');
+    // 배열명 : arr
+    // data : 273, 32, '홍길동'
+    // idx : 0,1,2
+    arr.forEach(function(data, idx){ 
+      document.write(idx + '번째 :' +data + '<br>');
+    });
+    document.write('<h3>5. forEach함수2 (array)</h3>');
+    arr.forEach(function(data){
+      document.write(data + '<br>');
+    });
   </script>
 </head>
 <body>
