@@ -1,3 +1,3 @@
 git add .
-git commit -m "JavaScript 기본문법"
+git commit -m "JavaScript 제어문"
 git push -u origin main
