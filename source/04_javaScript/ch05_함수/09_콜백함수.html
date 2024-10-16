@@ -10,10 +10,11 @@
         callback(); 
       }
     }
-    var funVar = function(){
-      document.write(new Date() + '<br>');
-    };
-    callTenTimes(funVar);
+    // var funVar = function(){
+    //   document.write(new Date() + '<br>');
+    // };
+    // callTenTimes(funVar);
+    callTenTimes( ()=> document.write(new Date() + '<br>'));
   </script>
 </head>
 <body>
