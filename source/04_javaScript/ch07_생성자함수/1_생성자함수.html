@@ -4,29 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
   <script>
-    let students = [makeStudent("홍길동", 96, 92, 99, 87),
-        makeStudent("홍길동", 96, 92, 99, 87),
-        makeStudent("홍길동", 96, 92, 99, 87),
-    ];
-    students.push(makeStudent("홍길동", 96, 92, 99, 87));
-    students.push(makeStudent("홍길동", 96, 92, 99, 87));
-    students.forEach(data => document.write(data + '<hr>'));
-
-    // 객체를 생성하는 함수
-    function makeStudent(name, kor, mat, eng, sci){
-      let result = {};
-      result.name = name;
-      result.kor = kor;
-      result.mat = mat;
-      result.eng = eng;
-      result.sci = sci;
-      result.getSum = function(){
+    /* class Student{
+          private String name;
+          private int kor;
+          private int eng;
+          ....
+          public Student(String name, int kor, int eng...){
+            this.name = name;
+            this.kor  = kor;
+            ...
+          }
+        }
+    */
+    function Student(name, kor, mat, eng, sci){
+      this.name = name;
+      this.kor = kor;
+      this.mat = mat;
+      this.eng = eng;
+      this.sci = sci;
+      this.getSum = function(){
         return this.kor + this.mat + this.eng + this.sci;
       };
-      result.getAvg = function(){
+      this.getAvg = function(){
         return this.getSum()/4;
       };
-      result.toString = function(){
+      this.toString = function(){
         var output = '';
         for(let key in this){
           if(key!='getSum' && key!='getAvg' && key!='toString'){
@@ -39,8 +41,7 @@
         }//for
         return output;
       };//toString
-      return result;
-    } // makeStudent 함수
+    } // 생성자함수(Student)
   </script>
 </head>
 <body>
