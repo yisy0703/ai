@@ -12,4 +12,4 @@ console.log('name:', person['name'], ', age:' + person['age']);
 /***************************************************** */
 const arr = ['홍길동', 22]; // arr={0:'홍길동', 1:22}
 arr[0] = '신길동';
-console.log(arr[0], arr[0])
+console.log(arr[0], arr[1])
