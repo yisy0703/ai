@@ -23,8 +23,27 @@
       this.eng = eng;
       this.sci = sci;
     } // 생성자함수(Student)
-    
-    
+    // Student 공통역역(prototype)에 getSum, getAvg, toString
+    Student.prototype.getSum = function(){
+      return this.kor + this.eng + this.mat + this.sci;
+    };
+    Student.prototype.getAvg = function(){
+        return this.getSum()/4;
+    };
+    Student.prototype.toString = function(){
+        var output = '';
+        for(let key in this){
+          if(key!='getSum' && key!='getAvg' && key!='toString'){
+            output += key + ':' + this[key] + ' ';
+          }else if(key=='getSum'){
+            output += key.substring(3) + ':' + this[key]() + ' ';
+          }else if(key == 'getAvg'){
+            output += key.substring(3) + ':' + this[key]() + '\n';
+          }//if
+        }//for
+        return output;
+      };//toString
+
     let students = [new Student("함길동", 90,95,94,96),
                     new Student("함길동", 90,95,94,96),
                     new Student("함길동", 90,95,94,96),
