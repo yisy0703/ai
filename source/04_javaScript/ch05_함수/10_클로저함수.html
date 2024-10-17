@@ -11,11 +11,11 @@
       //   alert(msg);
       // };
       // return fun;
-      return i=>alert(i + msg);
+      return () =>alert(msg);
     }
     // var variable = test('홍길동')
     // variable();
-    test('홍길동')(1);
+    test('홍길동')();
   </script>
 </head>
 <body>
