@@ -6,8 +6,8 @@ const replaceAll = (str, oldStr, newStr)=>{
   // return result;
   return str.split(oldStr).join(newStr);
 };
-console.log(replaceAll('테스트<br>합니다<br>진짜로', '<br>', 'x'));
-console.log(replaceAll('테스트합니다 진짜로 테스트', ' ', ''));
+// console.log(replaceAll('테스트<br>합니다<br>진짜로', '<br>', 'x'));
+// console.log(replaceAll('테스트합니다 진짜로 테스트', ' ', ''));
 // var str = '안녕00방가00하이';
 // console.log('원본', str);
 // var splitStr = str.split('00');

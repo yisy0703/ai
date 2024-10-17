@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+  <script src="4_replaceAll.js"></script>
   <script>
     let students = [
       {'name':'윤하린', 'kor':96, 'mat':98, 'eng':92, 'sci':98},
@@ -39,6 +40,27 @@
       out += students[idx]; // out = out + students[idx].toString()
     }
     alert(out);
+    document.write(replaceAll(out, '\n', '<br>'));
+    document.write('<hr>');
+    // 2. for-in문
+    for(var idx in students){
+      document.write(idx + '번째 : ' + students[idx] + '<br>');
+    }
+    // 3. for-of문
+    document.write('<hr>');
+    for(var student of students){
+      document.write(student + '<br>');
+    }
+    // 4. forEach
+    document.write('<hr>');
+    students.forEach((data, idx)=>{
+      document.write(idx + '번째' + data +'<br>');
+    });
+    // 5. forEach
+    document.write('<hr>');
+    students.forEach(data=>{
+      document.write(data +'<br>');
+    });
   </script>
 </head>
 <body>
