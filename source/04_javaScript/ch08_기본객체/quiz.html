@@ -25,7 +25,7 @@ outline: 1px solid #385d81;
     var patternEng = /[a-zA-Z]/; // 알파벳문자패턴
     var patternKor = /[가-힣ㄱ-ㅎㅏ-ㅣ]/; //한글문자패턴
     var patternSpc = /[~`!@#$%^&*()_\-+=\|\\\[\]{}'";;?\/<>,\.]/; //특수문자패턴
-    //let patternName = /^[a-zA-Z가-힣]{2,}$/; // 이름패턴(match함수 이용)
+    let patternName = /^[a-zA-Z가-힣]{2,}$/; // 이름패턴(match함수 이용)
     var patternMail = /^[a-zA-Z0-9\.]+@[a-zA-Z0-9]+(\.[a-z]+){1,2}$/;
     const chk = () => {
       let name = frm.name.value.trim();
@@ -36,7 +36,8 @@ outline: 1px solid #385d81;
         alert('2글자 이상의 이름은 필수입력사항입니다');
         frm.name.focus();
         return false;
-      }else if(patternSpc.test(name) || patternNum.test(name)){
+      //}else if(!name.match(patternName)){
+      }else if( patternSpc.test(name) || patternNum.test(name)){
         alert('이름을 확인하세요. 이름에는 특수문자나 숫자의 사용이 불가합니다');
         frm.name.focus()
         return false;
