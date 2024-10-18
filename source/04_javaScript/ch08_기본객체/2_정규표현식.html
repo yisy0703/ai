@@ -33,14 +33,46 @@
         (\d{2}0[1-9][0-3][0-9]-?[1-4]\d{6})|(\d{2}1[0-2][0-3][0-9]-?[1-4]\d{6})
   -->
   <script>
-    var str = 'abcd@ef가';
+    var str = 'abcd@ef';
     // 패턴
     var patternNum = /[0-9]/; //숫자 패턴
     var patternEng = /[a-zA-Z]/; // 알파벳문자패턴
     var patternKor = /[가-힣ㄱ-ㅎㅏ-ㅣ]/; //한글문자패턴
-    var patternSpc = /[~`!@#$%^&*()_\-+=\|\\\[\]{}'";;?\/<>,\.]/; // 특수문자패턴
-    //
-    //
+    var patternSpc = /[~`!@#$%^&*()_\-+=\|\\\[\]{}'";;?\/<ㅠ>,\.]/; // 특수문자패턴
+    // 정규표현식패턴.test(str) : str에 패턴이 포함되어 있는지 (true/false)
+    document.write('str에 숫자 포함 : ' + patternNum.test(str) + '<br>');
+    document.write('str에 알파벳포함:' + patternEng.test(str) +'<br>');
+    document.write('str에 한글포함:' + patternKor.test(str) +'<br>');
+    document.write('str에 특수문자포함:' + patternSpc.test(str) +'<br>');
+
+    // str.match(정규표현식패턴) : str이 정규표현식패턴과 맞는지 (정규표현식과맞는text/null)
+    var patternMail = /^[a-zA-Z0-9\.]+@[a-zA-Z0-9]+(\.[a-z]+){1,2}$/;
+    var email1 = "hong@hong.com";
+    var email2 = "hong@hong.com@abc";
+    document.write('email1:' + email1.match(patternMail) + '<br>');
+    document.write('email2:' + email2.match(patternMail) + '<br>');
+    // match함수를 이용하여 유효성 검사
+    if(email1.match(patternMail)){
+      document.write('email1은 메일형식입니다<br>');
+    }else{
+      document.write('email1은 메일형식이 아닙니다<br>');
+    }
+    if(email2.match(patternMail)){
+      document.write('email2은 메일형식입니다<br>');
+    }else{
+      document.write('email2은 메일형식이 아닙니다<br>');
+    }
+    // test함수를 이용하여 유효성 검사
+    if(patternMail.test(email1)){
+      document.write('email1은 메일형식입니다<br>');
+    }else{
+      document.write('email1은 메일형식이 아닙니다<br>');
+    }
+    if(patternMail.test(email2)){
+      document.write('email2은 메일형식입니다<br>');
+    }else{
+      document.write('email2은 메일형식이 아닙니다<br>');
+    }
   </script>
 </head>
 <body>
