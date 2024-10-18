@@ -24,10 +24,47 @@ outline: 1px solid #385d81;
     var patternNum = /[0-9]/; //숫자 패턴
     var patternEng = /[a-zA-Z]/; // 알파벳문자패턴
     var patternKor = /[가-힣ㄱ-ㅎㅏ-ㅣ]/; //한글문자패턴
-    var patternSpc = /[~`!@#$%^&*()_\-+=\|\\\[\]{}'";;?\/<ㅠ>,\.]/; // 특수문자패턴
+    var patternSpc = /[~`!@#$%^&*()_\-+=\|\\\[\]{}'";;?\/<>,\.]/; //특수문자패턴
+    //let patternName = /^[a-zA-Z가-힣]{2,}$/; // 이름패턴(match함수 이용)
     var patternMail = /^[a-zA-Z0-9\.]+@[a-zA-Z0-9]+(\.[a-z]+){1,2}$/;
     const chk = () => {
-
+      let name = frm.name.value.trim();
+      let mail = frm.mail.value.trim();
+      let pw   = frm.pw.value.trim();
+      let pwchk= frm.pwchk.value.trim();
+      if(name.length<2){
+        alert('2글자 이상의 이름은 필수입력사항입니다');
+        frm.name.focus();
+        return false;
+      }else if(patternSpc.test(name) || patternNum.test(name)){
+        alert('이름을 확인하세요. 이름에는 특수문자나 숫자의 사용이 불가합니다');
+        frm.name.focus()
+        return false;
+      // }else if(mail && !mail.match(patternMail)){
+      //   alert('메일 형식을 확인하세요');
+      //   frm.mail.focus();
+      //   return false;
+      }else if(mail && !patternMail.test(mail)){
+        alert('메일 형식을 확인하세요');
+        frm.mail.focus();
+        return false;
+      }else if(!pw){
+        alert('비밀번호를 입력하세요');
+        frm.pw.focus();
+        return false;
+      }else if (pw != pwchk) {
+        alert('비밀번호가 일치하지 않습니다');
+        frm.pw.focus();
+        return false;
+      }else if (!patternNum.test(pw) ||
+        !patternEng.test(pw) ||
+        !patternSpc.test(pw) ||
+        pw.length < 4) {
+          alert('비밀번호에 숫자, 알파벳, 특수문자를 모두 포함한 4글자 이상입니다');
+          frm.pw.focus();
+          return false;
+      }
+      return true;
     };
   </script>
 </head>
