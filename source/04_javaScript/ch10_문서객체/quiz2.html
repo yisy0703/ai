@@ -6,27 +6,20 @@
     table {width:280px; height: 100px; margin: 10px auto;} h3{text-align:center;}
   </style>
   <script>
-    var color = ['red','orange','yellow','green','blue','navy','violet', 'white'];
-    window.onload = ()=>{
-
-    };
-    const backgroundChange = ()=>{
-
-    };
+    var url = ['http://www.naver.com',
+                'http://www.daum.net',
+                'http://www.google.com',
+                'http://www.youtube.com'];
+    const go = urlIdx => location.href = url[urlIdx];
   </script>
 </head>
 <body>
-  <h3>quiz1. 마우스를 올리면 바탕화면도 해당 색으로</h3>  
-  <table>
-    <tr onmouseout="backgroundChange(7)">
-      <td onmouseover="backgroundChange(0)"></td>
-      <td onmouseover="backgroundChange(1)"></td>
-      <td onmouseover="backgroundChange(2)"></td>
-      <td onmouseover="backgroundChange(3)"></td>
-      <td onmouseover="backgroundChange(4)"></td>
-      <td onmouseover="backgroundChange(5)"></td>
-      <td onmouseover="backgroundChange(6)"></td>
-    </tr>
-  </table>
+  <h3>quiz2. 메뉴</h3>  
+  <p>
+    <button onclick="go(0)">네이버</button>
+    <button onclick="go(1)">다음</button>
+    <button onclick="go(2)">구글</button>
+    <button onclick="go(3)">유투브</button>
+  </p>
 </body>
 </html>

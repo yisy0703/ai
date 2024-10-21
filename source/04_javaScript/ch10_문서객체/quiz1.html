@@ -7,7 +7,19 @@
   </style>
   <script>
     var color = ['red','orange','yellow','green','blue','navy','violet', 'white'];
-    
+    window.onload = ()=>{
+      var tds = document.querySelectorAll('td');
+      for(var idx in tds){
+        //tds[idx].style = 'background-color:'+color[idx];
+        tds[idx].style.backgroundColor = color[idx];
+      }
+    };
+    //const backgroundChange = (colorIdx) => document.body.style.backgroundColor = color[colorIdx];
+    function backgroundChange(colorIdx){
+      document.body.style.backgroundColor = color[colorIdx];
+      //document.body.style = 'background-color:'+color[colorIdx];
+      //document.bgColor = color[colorIdx];
+    }
   </script>
 </head>
 <body>
