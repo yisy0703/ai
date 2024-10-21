@@ -10,11 +10,11 @@
     window.onload = ()=>{
       var tds = document.querySelectorAll('td');
       for(var idx in tds){
-        //tds[idx].style = 'background-color:'+color[idx];
-        tds[idx].style.backgroundColor = color[idx];
+        tds[idx].style = 'background-color:'+color[idx];
+        //tds[idx].style.backgroundColor = color[idx];
       }
     };
-    //const backgroundChange = (colorIdx) => document.body.style.backgroundColor = color[colorIdx];
+    //const backgroundChange = colorIdx => document.body.style.backgroundColor = color[colorIdx];
     function backgroundChange(colorIdx){
       document.body.style.backgroundColor = color[colorIdx];
       //document.body.style = 'background-color:'+color[colorIdx];

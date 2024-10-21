@@ -10,13 +10,13 @@
     window.onload = ()=>{
       var tds = document.querySelectorAll('td');
       for(var idx in tds){
-        //tds[idx].style = 'background-color:'+color[idx];
-        tds[idx].style.backgroundColor = color[idx];
+        tds[idx].style = 'background-color:'+color[idx];
+        //tds[idx].style.backgroundColor = color[idx];
       }
     };
     const showMessage = (colorIdx)=>{
-      document.body.style.backgroundColor = 'black';
-      //document.body.style = 'background-color:black';
+      //document.body.style.backgroundColor = 'black';
+      document.body.style = 'background-color:black';
       var h3 = document.createElement('h3');
       var textNode = document.createTextNode('야호 거의 끝났다');
       h3.append(textNode);
