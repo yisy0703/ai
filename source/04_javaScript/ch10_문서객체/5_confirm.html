@@ -6,7 +6,17 @@
     p{text-align: center;}
   </style>
   <script>
-    
+    var openerId; // join페이지에서의 id를 입력받는 input 태그
+    var confirmId; // confrim페이지의 id를 입력받는 input 태그
+    window.onload = function(){
+      openerId = opener.document.getElementById('id');
+      id       = document.querySelector('input[name="id"]');
+      id.value = openerId.value;
+    };
+    function confirmOk(){
+      openerId.value = id.value;
+      close();
+    }
   </script>
 </head>
 <body>
