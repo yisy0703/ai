@@ -1,3 +1,3 @@
 git add .
-git commit -m "JavaScript문서객체모델"
+git commit -m "JavaScript이벤트"
 git push -u origin main
