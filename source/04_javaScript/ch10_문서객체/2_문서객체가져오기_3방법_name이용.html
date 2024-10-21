@@ -14,8 +14,13 @@
       }else if(!pw.value.trim()){
         alert('비밀번호를 입력하세요');
         pw.focus();
+      }else if(!gender[0].checked && !gender[1].checked){
+        alert('성별을 선택하세요')
+      }else if(gender[0].checked){
+        alert('남자 ' + id.value + '님의 비번은 ' + pw.value);
+      }else if(gender[1].checked){
+        alert('여자 ' + id.value + '님의 비번은 ' + pw.value);
       }
-      alert(gender[0].ckecked +',' + gender[1].ckecked);
       return false;
     };
   </script>
