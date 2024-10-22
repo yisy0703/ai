@@ -8,7 +8,7 @@
       var h1 = document.querySelectorAll('h1.header');
       // h1 = document.getElementsByClassName('header');
       // h1 = document.getElementsByTagName('h1');
-      for(var idx in h1){
+      for(let idx in h1){
         h1[idx].onclick = function(){
           // this : 클릭이벤트가 발생된 컴포넌트 객체. this 사용시 화살표 함수 불가
           this.innerHTML += '★';
