@@ -11,6 +11,7 @@
 	<h4>JSP파일은 html안에 java가 들어있는 파일</h4>
 	<h5>cf. 서블릿파일은 java안에 html에 들어있는 파일</h5>
 	<%
+		// 스크립트릿내에서는 자바 코드
 		int total = 0;
 		for(int cnt=1 ; cnt<=100 ; cnt++){
 			total += cnt;

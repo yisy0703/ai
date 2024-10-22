@@ -1,0 +1,11 @@
+<jsp 동작원리>
+브라우저에서 http://localhost:8090/ch02_semiJSP/ex1_hello.jsp
+
+-소스폴더
+D:/ai/source/05_jsp/ch02_semiJSP/webapp/ex1_hello.jsp
+
+-실행폴더
+D:/ai/IDE/apache-tomcat-10.1.31/wtpwebapps/ch02_semiJSP/ex1_hello.jsp
+
+-jsp파일을 서블릿(자바) 파일로 바꾸는 작업(컴파일 가능한 java)
+D:/ai/IDE/apache-tomcat-10.1.31/work/Catalina/localhost/ch02_semiJSP/org/apache/jsp/
