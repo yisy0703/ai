@@ -1,3 +1,3 @@
 git add .
-git commit -m "JavaScript이벤트"
+git commit -m "jsp 맛보기"
 git push -u origin main
