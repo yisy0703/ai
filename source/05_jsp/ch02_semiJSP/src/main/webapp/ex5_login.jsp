@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="ex5_loginPro.jsp" method="get">
+	<form action="ex5_loginPro.jsp" method="post">
 		<table>
 			<tr>
 				<th>이름</th><td><input type="text" name="name"></td>
