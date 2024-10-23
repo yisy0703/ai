@@ -22,10 +22,6 @@ public class Join extends HttpServlet {
 		String gender 	= request.getParameter("gender");
 		String email   	= request.getParameter("email");
 		String[] mailSend = request.getParameterValues("mailSend");
-		// 이 서블릿부터 실행하면 안되고 join.html부터 실행하세요
-		if(pw==null) {
-			response.sendRedirect("quiz/join.html");
-		}
 		// 브라우저 창에 출력하기
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
