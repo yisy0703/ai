@@ -20,14 +20,14 @@ public class Ex3_LifeCycle extends HttpServlet {
 		// 서블릿 객체가 소멸될 때 실행
 		System.out.println("Ex3_LifeCycle 서블릿 객체가 소멸될 때 실행");
 	}
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// service를 오버라이드하면 doGet()함수와 doPost()함수가 실행되지 않고 sevice()실행
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<h1>service() 함수 실행</h1>");
-		out.close();
-		System.out.println("Ex3_LifeCycle service() 실행");
-	}
+//	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		// service를 오버라이드하면 doGet()함수와 doPost()함수가 실행되지 않고 sevice()실행
+//		response.setContentType("text/html; charset=UTF-8");
+//		PrintWriter out = response.getWriter();
+//		out.println("<h1>service() 함수 실행</h1>");
+//		out.close();
+//		System.out.println("Ex3_LifeCycle service() 실행");
+//	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// get방식으로 요청시 실행
 		response.setContentType("text/html; charset=UTF-8");
