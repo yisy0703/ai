@@ -25,9 +25,19 @@ public class Ex2Params extends HttpServlet {
 		String[] rest = request.getParameterValues("rest");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter(); // 스트림 생성
-		out.println("<h2>선택한 메뉴는 " + Arrays.toString(menu) + "입니다</h2>");
+		if(menu!=null) {
+			out.println("<h2>선택한 메뉴는 ");
+			for(String m : menu) {
+				out.println(m + " ");
+			}
+			out.println("입니다</h2>");
+		}else {
+			out.println("<h2>선택한 메뉴가 없습니다</h2>");
+		}
+		//out.println("<h2>선택한 메뉴는 " + Arrays.toString(menu) + "입니다</h2>");
 		out.println("<h2>선택한 식당은 " + Arrays.toString(rest) + "입니다</h2>");
-		out.println("<h2>성별은 " + gender +"입니다<h2>");
+		String genderOut = gender==null? "-": gender.equals("m")? "남자":"여자";
+		out.println("<h2>성별은 " + genderOut +"입니다<h2>");
 		out.close();
 	}
 }
