@@ -42,27 +42,20 @@ public class Join extends HttpServlet {
 		for(int i=0 ; i<pw.length() ; i++) {
 			out.print("*");
 		}
-		out.println("<h2>생년월일 : "+(birth.equals("")? "-":birth)+"</h2>");
-		
 		out.println("</h2>");
+		out.println("<h2>생년월일 : "+(birth.equals("")? "-":birth)+"</h2>");
 		out.println("<h2>취미 : ");
-		if(hobby!=null) {
-			for(int i=0 ; i<hobby.length ; i++)
-				if(i==hobby.length-1)
-					out.print(hobby[i]);
-				else
-					out.print(hobby[i]+", ");
-		}else {
-			out.print("없음");
-		}
+		for(int i=0 ; i<hobby.length ; i++)
+			if(i==hobby.length-1)
+				out.print(hobby[i]);
+			else
+				out.print(hobby[i]+", ");
 		out.println("</h2>");
 		out.println("<h2>성별 : "+gender+"</h2>");
 		out.println("<h2>이메일 : "+(email.equals("") ? "-":email)+"</h2>");
 		out.println("<h2>메일수신동의 : ");
-		if(mailSend!=null) {
-			out.print(Arrays.toString(mailSend));
-		}else {
-			out.print("모두 거부");
+		for(String send : mailSend) {
+			out.print(send + " ");
 		}
 		out.println("</h2>");
 		out.println("</div>");
