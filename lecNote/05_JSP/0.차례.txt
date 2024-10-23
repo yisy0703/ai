@@ -5,7 +5,6 @@
 5. JSP 웹프로그래밍
 6 웹프로그래밍에서의 데이터베이스 연동
 7. 효율적인 DB 관리(DTO, DAO, 커넥션풀)
-     회원인증 프로그래밍 예제
 8. EL(Expresstion Language)
 9. 포워딩(Forwarding)
 9. JSTL(JSP stanard Tag Library)
