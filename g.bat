@@ -1,3 +1,3 @@
 git add .
-git commit -m "jsp ÅÂ±×¹×°´Ã¼"
+git commit -m "jsp¼­ºí¸´"
 git push -u origin main

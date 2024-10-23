@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ex2</display-name>
+    <servlet-name>ex2</servlet-name>
+    <servlet-class>com.lec.ex.Ex2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ex2</servlet-name>
+    <url-pattern>/ex2</url-pattern>
+  </servlet-mapping>
 </web-app>
