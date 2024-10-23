@@ -1,3 +1,3 @@
 git add .
-git commit -m "요청객체,응답객체"
+git commit -m "jsp프로그래밍"
 git push -u origin main
