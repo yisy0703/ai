@@ -16,9 +16,7 @@
 	<fieldset>
 		<legend>입력</legend>
 		<form action="">
-			<p>이름 <input type="text" name="name" value="<%
-																						if(name!=null) out.print(name.trim());
-																						%>"></p>
+			<p>이름 <input type="text" name="name" value="<%=name==null? "" : name.trim()%>"></p>
 			<p>숫자 <input type="number" name="num" min="1" value="<%=numStr%>"></p>
 			<input type="submit" value="누적">
 		</form>
