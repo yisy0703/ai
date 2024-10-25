@@ -1,7 +1,6 @@
 package com.lec.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,10 +14,6 @@ import javax.sql.DataSource;
 import com.lec.dto.Dept;
 
 public class DeptRepository {
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url    = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
-	private String uid    = "scott";
-	private String upw    = "tiger";	
 	private static DeptRepository INSTANCE;
 	public static DeptRepository getInstance() {
 		if(INSTANCE == null) {
@@ -28,11 +23,14 @@ public class DeptRepository {
 	}	
 	private DeptRepository() {}
 	private Connection getConnection() throws SQLException {
-		Connection conn = null;
+		Connection conn=null;
 		try {
 			Context ctx = new InitialContext();
+			System.out.println(1);
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Oracle11g");
+			System.out.println(2);
 			conn = ds.getConnection();
+			System.out.println(3);
 		} catch (NamingException e) {
 			System.out.println(e.getMessage());
 		}
