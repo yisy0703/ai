@@ -37,13 +37,26 @@ public class DeptRepository {
 		String query = "SELECT DEPTNO, DNAME FROM DEPT";
 		try {
 			conn = DriverManager.getConnection(url, uid, upw);// (2)
-			
-			
+			pstmt = conn.prepareStatement(query); // (3)
+			rs    = pstmt.executeQuery();// (4)+(5)
+			while(rs.next()) {//(6)
+				int deptno   = rs.getInt("deptno");
+				String dname = rs.getString("dname");
+				dtos.add(new Dept(deptno, dname));
+			}
+//			while(rs.next()) {
+//				Dept dept = new Dept();
+//				dept.setDeptno(rs.getInt("deptno"));
+//				dept.setDname(rs.getString("dname"));
+//				dtos.add(dept);
+//			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		} finally {
+		} finally { // (7)
 			try {
-				
+				if(rs   !=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn !=null) conn.close();
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
