@@ -11,7 +11,7 @@ SELECT E.*, DNAME
 -- QUIZ : 사원명(일부 알파벳)으로 직원검색 ( '    s '로 입력시 'S'가 들어간 직원 출력) UPPER, TRIM함수 적용
 SELECT E.*, DNAME
   FROM EMP E, DEPT D
-  WHERE E.DEPTNO=D.DEPTNO AND ENAME LIKE '%'||TRIM(UPPER(' s'))||'%'; -- '%s%'
+  WHERE E.DEPTNO=D.DEPTNO AND ENAME LIKE '%'||TRIM(UPPER(' c '))||'%'; -- '%s%'
 
 
 
