@@ -12,6 +12,15 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="<%=conPath %>/css/ex.css" rel="stylesheet" type="text/css">
+	<script>
+		window.onload = ()=>{
+			document.querySelector('input[name="schName"]').onkeyup = function(){
+				if(this.value.trim()){
+					document.querySelector('form').submit();
+				}
+			};
+		};
+	</script>
 </head>
 <%
 	String schName = request.getParameter("schName");
