@@ -14,6 +14,7 @@ public class DeptRepositoryTest {
 		}
 	}
 }
+// https://okky.kr/questions/130150 에러메세지
 
 
 
