@@ -1,6 +1,7 @@
 package com.lec.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,11 +27,8 @@ public class DeptRepository {
 		Connection conn=null;
 		try {
 			Context ctx = new InitialContext();
-			System.out.println(1);
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Oracle11g");
-			System.out.println(2);
 			conn = ds.getConnection();
-			System.out.println(3);
 		} catch (NamingException e) {
 			System.out.println(e.getMessage());
 		}
@@ -46,6 +44,7 @@ public class DeptRepository {
 		String query = "SELECT DEPTNO, DNAME FROM DEPT";
 		try {
 			conn = getConnection();// (2)
+			//conn = DriverManager.getConnection("url경로","scott","tiger");
 			pstmt = conn.prepareStatement(query); // (3)
 			rs    = pstmt.executeQuery();// (4)+(5)
 			while(rs.next()) {//(6)
