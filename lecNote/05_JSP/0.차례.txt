@@ -7,6 +7,6 @@
 7. 효율적인 DB 관리(DTO, DAO, 커넥션풀)
 8. EL(Expresstion Language)
 9. 포워딩(Forwarding)
-9. JSTL(JSP stanard Tag Library)
-10. FrontController 와 Command 구조(MVC이해를 위한 단계)
-11. MVC 패턴이용한 게시판 만들기
+10. JSTL(JSP stanard Tag Library)
+11. FrontController 와 Command 구조(MVC이해를 위한 단계)
+12. MVC 패턴이용한 게시판 만들기
