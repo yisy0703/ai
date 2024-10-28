@@ -1,3 +1,3 @@
 git add .
-git commit -m "포워딩"
+git commit -m "el표기법"
 git push -u origin main
