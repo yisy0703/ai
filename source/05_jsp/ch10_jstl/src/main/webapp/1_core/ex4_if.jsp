@@ -11,6 +11,31 @@
 	<link href="<%=conPath %>/css/ex.css" rel="stylesheet">
 </head>
 <body>
-	
+	<%
+		int visitNum = Integer.parseInt(request.getParameter("visitNum"));
+		if(visitNum == 1){
+			out.print("첫 방문 감사합니다");
+		}else if(visitNum>1 && visitNum <=5){
+			out.print("많이 많이 방문해 주세요");
+		}else if(visitNum > 5) {
+			out.print("많이 방문해 주셔서 감사합니다");
+		}
+	%>
+	<!-- 입력된 방문 횟수(param.visitNum)에 따라 메세지를 달리 출력 -->
+	<c:set var="visitNum" value="${param.visitNum }"/>
+	<c:if test="${param.visitNum eq 1 }"></c:if>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
