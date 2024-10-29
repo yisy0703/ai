@@ -25,6 +25,11 @@
 	<c:forEach var="name" items="${names }">
 		<p>${name }</p>
 	</c:forEach>
+	<c:set var="idx" value="0"/> <!-- idx변수에 0으로 초기화하여 선언 -->
+	<c:forEach var="name" items="${names }">
+		<p>${idx}번째 ${name }</p>
+		<c:set var="idx" value="${idx+1 }"/> <!-- idx변수를 재선언 : idx += 1 -->
+	</c:forEach>
 </body>
 </html>
 
