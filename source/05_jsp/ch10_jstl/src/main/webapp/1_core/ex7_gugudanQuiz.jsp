@@ -13,7 +13,7 @@
 <body>
 	<!-- 1. ex6_gugudanResult.jsp 에서 정답/오답 출력 -->
 	<!-- 2. ex7_gugudanQuiz.jsp 한 파일에서 에서 정답/오답까지 출력 -->
-	<form action="ex6_gugudanResult.jsp">
+	<form action="">
 		<p>
 			<input type="text" name="n1" readonly="readonly" size="1"
 						value="<%=(int)(Math.random()*9+1)%>">
@@ -27,6 +27,17 @@
 			<input type="submit" value="확인">
 		</p>
 	</form>
+	<c:set var="n1" value="${param.n1 }"/>
+	<c:set var="n2" value="${param.n2 }"/>
+	<c:set var="result" value="${param.result }"/>
+	<c:if test="${not empty result }">
+		<c:if test="${n1*n2 eq result }">
+			<h2>${n1 } * ${n2 } = ${result }은(는) 정답</h2>
+		</c:if>
+		<c:if test="${n1*n2 != result }">
+			<h2>${n1 } * ${n2 } = ${result }은(는) 오답</h2>
+		</c:if>
+	</c:if>
 </body>
 </html>
 
