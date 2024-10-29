@@ -1,5 +1,6 @@
 package com.lec.dao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -70,6 +71,40 @@ public class EmpDao {
 	public ArrayList<Emp> getEmpList(String schName, String schJob){
 		ArrayList<Emp> dtos = new ArrayList<Emp>();
 		// 검색결과 dtos에 add
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet  rs   = null;
+		String sql = "SELECT * FROM EMP"
+				+ "  WHERE ENAME LIKE '%'||UPPER(TRIM(?))||'%' "
+				+ "    AND JOB LIKE '%'||TRIM(UPPER(?)) ||'%'";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, schName);
+			pstmt.setString(2, schJob);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int empno    = rs.getInt("empno");
+				String ename = rs.getString("ename");
+				String job   = rs.getString("job");
+				String mgr   = rs.getString("mgr"); 
+				Timestamp hiredate = rs.getTimestamp("hiredate");
+				int sal      = rs.getInt("sal");
+				int comm     = rs.getInt("comm");
+				int deptno   = rs.getInt("deptno");
+				dtos.add(new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		return dtos;
 	}
 }

@@ -9,8 +9,31 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link href="${conPath }/css/ex.css" rel="stylesheet">
+	<script>
+		window.onload = ()=>{
+			document.querySelector('input[name="schName"]').onkeyup = function(){
+				if(this.value.trim())
+					document.querySelector('form').submit();
+			};
+			document.querySelector('input[name="schJob"]').onkeyup = function(){
+				if(this.value.trim())
+					document.querySelector('form').submit();
+			};
+		};
+	</script>
 </head>
 <body>
+	<form action="">
+		<p>
+			이름 
+			<input type="text" name="schName" 
+							value="${param.schName.toUpperCase().trim() }">
+			직책 
+			<input type="text" name="schJob" 
+							value="${param.schJob.toUpperCase().trim() }">
+			<input type="submit" value="검색">
+		</p>
+	</form>
 	<table>
 		<tr>
 			<th>사번</th><th>이름</th><th>직책</th><th>상사사번</th>
