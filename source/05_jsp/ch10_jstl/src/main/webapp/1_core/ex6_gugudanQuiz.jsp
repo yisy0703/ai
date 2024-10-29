@@ -11,6 +11,8 @@
 	<link href="<%=conPath %>/css/ex.css" rel="stylesheet">
 </head>
 <body>
+	<!-- 1. ex6_gugudanResult.jsp 에서 정답/오답 출력 -->
+	<!-- 2. ex6_gugudanQuiz.jsp 한 파일에서 에서 정답/오답 출력 -->
 	<form action="ex6_gugudanResult.jsp">
 		<p>
 			<input type="text" name="n1" readonly="readonly" size="1"
