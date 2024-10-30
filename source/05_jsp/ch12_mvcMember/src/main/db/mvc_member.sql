@@ -12,13 +12,13 @@ CREATE TABLE MEMBER (
 -- 더미 데이터
 INSERT INTO MEMBER (ID, PW, NAME, BIRTH)
   VALUES ('aaa','111','홍길동', '99/12/12');
-INSERT INTO MEMBER (ID, PW, NAME, BIRTH, RDATE)
-  VALUES ('bbb','111','신길동', '01/12/12', '24/01/01');
+  INSERT INTO MEMBER (ID, PW, NAME, BIRTH)
+  VALUES ('ccc','111','홍길동', TO_DATE('2001-12-12', 'YYYY-MM-DD'));
 SELECT * FROM MEMBER;
 -- DAO에 들어갈 QUERY
 -- public int insertMember(Member newMember)
 INSERT INTO MEMBER (ID, PW, NAME, BIRTH)
-  VALUES ('ccc','111','홍길동', TO_DATE('2001-12-12', 'YYYY-MM-DD'));
+  VALUES ('bbb','111','신길동', '01/12/12');
 -- public Member getMember(String id)
 -- SELECT * FROM MEMBER WHERE ID='aaa';
 -- public int getCountMember(String id)
