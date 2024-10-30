@@ -9,6 +9,5 @@
 <body>
 	<h1><a href="memberList.do">회원리스트</a></h1>
 	<h1><a href="memberJoinView.do">회원가입</a></h1>
-	<input type="date" name="test">
 </body>
 </html>
