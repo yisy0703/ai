@@ -1,3 +1,3 @@
 git add .
-git commit -m "jstl 태그라이브러리"
+git commit -m "MVC패턴"
 git push -u origin main
