@@ -16,9 +16,24 @@ INSERT INTO MEMBER (ID, PW, NAME, BIRTH, RDATE)
   VALUES ('bbb','111','신길동', '01/12/12', '24/01/01');
 SELECT * FROM MEMBER;
 -- DAO에 들어갈 QUERY
+-- public int insertMember(Member newMember)
 INSERT INTO MEMBER (ID, PW, NAME, BIRTH)
   VALUES ('ccc','111','홍길동', TO_DATE('2001-12-12', 'YYYY-MM-DD'));
-
+-- public Member getMember(String id)
+-- SELECT * FROM MEMBER WHERE ID='aaa';
+-- public int getCountMember(String id)
+SELECT count(*) FROM MEMBER WHERE ID='aaa';
+-- public ArrayList<Member> getMemberList();
 SELECT * FROM MEMBER ORDER BY NAME;
 COMMIT;
+
+
+
+
+
+
+
+
+
+
 
