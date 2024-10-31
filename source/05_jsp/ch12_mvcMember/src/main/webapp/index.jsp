@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1><a href="memberList.do">회원리스트</a></h1>
-	<h1><a href="memberJoinView.do">회원가입</a></h1>
+	<h1><a href="memberJoin.do">회원가입</a></h1>
 </body>
 </html>

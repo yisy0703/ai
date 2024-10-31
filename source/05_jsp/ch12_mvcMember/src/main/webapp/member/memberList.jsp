@@ -55,7 +55,7 @@
 		</c:forEach>
 	</table>
 	<p>
-		<button onclick="location.href='${conPath}/memberJoinView.do'">회원가입</button>
+		<button onclick="location.href='${conPath}/memberJoin.do'">회원가입</button>
 		<button onclick="location.href='${conPath}/'">프로젝트 실행</button>
 	</p>
 </body>

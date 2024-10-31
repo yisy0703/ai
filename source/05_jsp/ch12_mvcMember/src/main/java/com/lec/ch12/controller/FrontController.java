@@ -39,7 +39,11 @@ public class FrontController extends HttpServlet {
 		String command = uri.substring(conPath.length()); // "/memberList.do"
 		Service service = null;
 		String viewPage = null;
-		if(command.equals("/memberJoin.do")) {
+		if(command.equals("/memberList.do")) {
+			service = new MemberListService();
+			service.execute(request, response);
+			viewPage = "member/memberList.jsp";
+		}else if(command.equals("/memberJoin.do")) {
 			service = new MemberJoinService();
 			service.execute(request, response);	
 			viewPage = "memberList.do";
