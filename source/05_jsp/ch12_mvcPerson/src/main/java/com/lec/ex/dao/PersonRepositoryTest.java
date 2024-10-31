@@ -30,15 +30,29 @@ public class PersonRepositoryTest extends HttpServlet{
 		Person newPerson = new Person(0, "이길둥", null, "인천", null, "memo", null);
 		int result = dao.insertPerson(newPerson);
 		if(result == PersonRepository.SUCCESS) {
-			System.out.println(newPerson.getName() + " 추가 성공");
+			System.out.println("5. 추가 : " + newPerson.getName() + " 추가 성공");
 		}
 		person.setName("이름싹");
 		person.setAddress("이사간 곳");
 		result = dao.updatePerson(person);
 		if(result == PersonRepository.SUCCESS) {
 			System.out.println(newPerson.getName() + " 수정 성공");
-			System.out.println("id가 1인 person 수정한 후 :" + dao.getPerson(1));
+			System.out.println("6. id가 1인 person 수정한 후 :" + dao.getPerson(1));
 		}
-		
+		System.out.println("7. 삭제");
+		int id = 1;
+		if(dao.getPerson(id)!=null) {
+			result = dao.deletePerson(id);
+			System.out.println(id + "번 삭제성공");
+		}else {
+			System.out.println(id + "번 Person은 존재 안 함");
+		}
 	}
 }
+
+
+
+
+
+
+
