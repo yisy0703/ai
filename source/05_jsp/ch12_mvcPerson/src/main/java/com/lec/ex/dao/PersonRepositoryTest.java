@@ -32,7 +32,6 @@ public class PersonRepositoryTest extends HttpServlet{
 		if(result == PersonRepository.SUCCESS) {
 			System.out.println(newPerson.getName() + " 추가 성공");
 		}
-		newPerson = new Person(0, "김수한", null, "무안", null, "memo", null);
 		person.setName("바꿨다");
 		person.setAddress("이사간데");
 		result = dao.updatePerson(person);
