@@ -11,6 +11,12 @@
 	<link href="${conPath }/css/ex.css" rel="stylesheet">
 </head>
 <body>
+	<c:if test="${not empty insertMsg }">
+		<script>alert("${insertMsg}");</script>
+	</c:if>
+	<c:if test="${not empty deleteMsg }">
+		<script>alert('${param.id}번 '+'${deleteMsg}')</script>
+	</c:if>
 	<table>
 		<tr>
 			<th colspan="4">
