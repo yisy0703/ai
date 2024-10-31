@@ -1,7 +1,6 @@
 package com.lec.ex.dto;
 import java.sql.Date;
 import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 @Data
