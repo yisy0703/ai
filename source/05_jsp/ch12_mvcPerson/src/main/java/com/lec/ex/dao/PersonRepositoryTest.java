@@ -27,7 +27,7 @@ public class PersonRepositoryTest extends HttpServlet{
 		System.out.println("4. 한명 출력 ");
 		Person person = dao.getPerson(1); // id가 1인 person 정보
 		System.out.println("id가 1인 사람 : " + person);
-		Person newPerson = new Person(0, "김수한", null, "무안", null, "memo", null);
+		Person newPerson = new Person(0, "이길둥", null, "인천", null, "memo", null);
 		int result = dao.insertPerson(newPerson);
 		if(result == PersonRepository.SUCCESS) {
 			System.out.println(newPerson.getName() + " 추가 성공");
