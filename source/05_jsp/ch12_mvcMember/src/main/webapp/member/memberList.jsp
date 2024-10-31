@@ -11,6 +11,17 @@
 	<link href="${conPath }/css/ex.css" rel="stylesheet">
 </head>
 <body>
+	<!-- 가입후 리스트 페이지로 올 경우 가입 메세지(insertMsg, memberExistentMsg, insertResult) 출력 -->
+	<c:if test="${not empty insertMsg }">
+		<script>alert('${insertMsg}');</script>
+	</c:if>
+	<c:if test="${not empty  memberExistentMsg}">
+		<script>
+			alert('${memberExistentMsg}');
+			//history.back();
+			history.go(-1);
+		</script>
+	</c:if>
 	<table>
 		<tr><th>순번</th><th>ID</th><th>PW</th><th>이름</th><th>생일</th><th>가입</th></tr>
 		<%-- <c:if test="${memberList.size() eq 0 }"> --%>

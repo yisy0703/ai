@@ -30,6 +30,8 @@ public class FrontController extends HttpServlet {
 			viewPage = "member/memberJoin.jsp";
 		}else if(command.equals("/memberJoin.do")) {
 			service = new MemberJoinService();
+			service.execute(request, response);	
+			viewPage = "memberList.do";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

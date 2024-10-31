@@ -29,10 +29,10 @@ public class MemberJoinService implements Service {
 				request.setAttribute("insertMsg", "가입성공");
 			}else {
 				request.setAttribute("insertMsg", "가입실패");
-			}
+			}//if - 가입 성공 여부
 		}else {
-			
-		}
+			request.setAttribute("memberExistentMsg", "중복된 ID는 가입불가합니다");
+		} // if - ID중복 여부
 	}
 }
 
