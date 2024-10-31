@@ -26,7 +26,9 @@ COMMIT;
 -- 1. LIST (PAGING없이) : public ArrayList<Person> getPersonList()
 SELECT * FROM PERSON;
 -- 1. LIST (PAGING추가) : public ArrayList<Person> getPersonList(int startRow, int endRow) : 2등~3등
-
+SELECT * 
+  FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM PERSON ORDER BY ID DESC) A)
+  WHERE RN BETWEEN 2 AND 3;
 -- 2. getCount (PAGING처리시 필요한 전체 갯수) : public int getCount()
 
 -- 3. 추가 : public int insertPerson(Person person)
