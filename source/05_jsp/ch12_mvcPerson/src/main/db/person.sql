@@ -19,11 +19,13 @@ INSERT INTO PERSON (ID, NAME, TEL, ADDRESS, BIRTH, MEMO)
   VALUES (PERSON_ID_SEQ.NEXTVAL, '홍길동', '010-9999-9999', '서울', NULL, '테스트');
 INSERT INTO PERSON (ID, NAME, TEL, ADDRESS, BIRTH, MEMO)
   VALUES (PERSON_ID_SEQ.NEXTVAL, '신길동', '010-8888-8888', '서울', NULL, NULL);
+INSERT INTO PERSON (ID, NAME, TEL, ADDRESS, BIRTH, MEMO)
+  VALUES (PERSON_ID_SEQ.NEXTVAL, '박길숙', '010-7777-7777', '부산', NULL, NULL);
 COMMIT;
 -- DAO들어갈 QUERY
 -- 1. LIST (PAGING없이) : public ArrayList<Person> getPersonList()
 SELECT * FROM PERSON;
--- 1. LIST (PAGING추가) : public ArrayList<Person> getPersonList(int startRow, int endRow) : 몇등~몇등
+-- 1. LIST (PAGING추가) : public ArrayList<Person> getPersonList(int startRow, int endRow) : 2등~3등
 
 -- 2. getCount (PAGING처리시 필요한 전체 갯수) : public int getCount()
 
@@ -31,9 +33,9 @@ SELECT * FROM PERSON;
 
 -- 4. 한명출력 : public Person getPerson(int id)
 
+-- 5. 수정 : public int updatePerson(Person person)
 
-
-
+-- 6. 삭제 : public int deletePerson(int id)
 
 
 
