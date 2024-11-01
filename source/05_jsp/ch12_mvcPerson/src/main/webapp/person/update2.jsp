@@ -12,6 +12,7 @@
 </head>
 <body>
 	<form action="${conPath }/update2.do" method="post">
+		<input type="hidden" name="pageNum" value="${param.pageNum }">
 		<input type="hidden" name="id" value="${person.id }">
 		<table>
 			<caption>${person.id }. ${person.name }님 수정2</caption>

@@ -48,7 +48,7 @@
 				[ <b>${i }</b> ]
 			</c:if>
 			<c:if test="${pageNum != i }">
-				[ <a href="${conPath }/list.do?pageNum=${i}">${i }</a> ]
+				<a href="${conPath }/list.do?pageNum=${i}">[ ${i } ]</a>
 			</c:if>
 		</c:forEach>
 		<c:if test="${endPage < pageCnt }">

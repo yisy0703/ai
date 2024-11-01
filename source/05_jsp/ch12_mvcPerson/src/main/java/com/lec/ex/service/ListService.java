@@ -9,7 +9,7 @@ public class ListService implements Service {
 		// pageCnt, startPage, endPage 계산후 view단으로 넘길 데이터 request에 setAttribute
 		// list.do이나 list.do?pageNum=7
 		String pageNum = request.getParameter("pageNum");
-		if(pageNum==null) {
+		if(pageNum==null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		int currentPage = Integer.parseInt(pageNum); // 숫자형 현재 페이지번호
