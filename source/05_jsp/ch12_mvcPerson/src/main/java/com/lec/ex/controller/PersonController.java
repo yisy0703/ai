@@ -12,6 +12,7 @@ import com.lec.ex.service.InfoService;
 import com.lec.ex.service.InsertService;
 import com.lec.ex.service.ListService;
 import com.lec.ex.service.Service;
+import com.lec.ex.service.UpdateService;
 public class PersonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +35,10 @@ public class PersonController extends HttpServlet {
 			service = new DeleteService();
 			service.execute(request, response);
 			viewPage = "list.do";
+		}else if(command.equals("/update.do")) {
+			service = new InfoService();
+			service.execute(request, response);
+			viewPage = "person/update.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
@@ -52,6 +57,8 @@ public class PersonController extends HttpServlet {
 			service = new InsertService();
 			service.execute(request, response);
 			viewPage = "list.do";
+		}else if(command.equals("/update.do")) {
+			service = new UpdateService();
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
