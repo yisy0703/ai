@@ -34,6 +34,7 @@
 		<tr>
 			<td colspan="2">
 				<button onclick="location='${conPath}/update.do?id=${param.id }'">수정</button>
+				<button onclick="location='${conPath}/update2.do?id=${param.id }'">수정2</button>
 				<button onclick="location='${conPath}/delete.do?id=${person.id }'">삭제</button>
 				<button onclick="location='${conPath}/list.do'">목록</button>
 				<button onclick="location='${conPath}/insert.do'">추가</button>

@@ -39,6 +39,13 @@
 			</tr>
 		</c:forEach>
 	</table>
+	BLOCKSIZE : ${BLOCKSIZE }<br>
+	startPage : ${startPage }<br>
+	<div class="paging">
+		<c:if test="${startPage > BLOCKSIZE }">
+			[ <a href="${conPath }/list.do?pageNum=${startPage-1}">이전</a> ]
+		</c:if>
+	</div>
 </body>
 </html>
 

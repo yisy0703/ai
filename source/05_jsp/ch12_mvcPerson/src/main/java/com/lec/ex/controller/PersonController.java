@@ -13,6 +13,7 @@ import com.lec.ex.service.InsertService;
 import com.lec.ex.service.ListService;
 import com.lec.ex.service.Service;
 import com.lec.ex.service.UpdateService;
+import com.lec.ex.service.UpdateService2;
 public class PersonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +39,11 @@ public class PersonController extends HttpServlet {
 		}else if(command.equals("/update.do")) {
 			service = new InfoService();
 			service.execute(request, response);
-			viewPage = "person/update.jsp";
+			viewPage = "person/update.jsp"; // person내용이 input의 value값
+		}else if(command.equals("/update2.do")) {
+			service = new InfoService();
+			service.execute(request, response);
+			viewPage = "person/update2.jsp"; // person내용이 input의 placeholder값
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
@@ -59,6 +64,16 @@ public class PersonController extends HttpServlet {
 			viewPage = "list.do";
 		}else if(command.equals("/update.do")) {
 			service = new UpdateService();
+			service.execute(request, response);
+			viewPage = "info.do";
+		}else if(command.equals("/info.do")) {
+			service = new InfoService();
+			service.execute(request, response);
+			viewPage = "person/info.jsp";
+		}else if(command.equals("/update2.do")) {
+			service = new UpdateService2();
+			service.execute(request, response);
+			viewPage = "info.do";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);

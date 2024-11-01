@@ -24,6 +24,7 @@ public class UpdateService implements Service {
 		PersonRepository dao = PersonRepository.getInstance();
 		Person person = new Person(id, name, tel, address, birth, memo, null); // 수정할 내용
 		int updateResult = dao.updatePerson(person); // DB 수정
+		System.out.println(updateResult==PersonRepository.SUCCESS? "수정성공":"수정실패");
 	}
 
 }
