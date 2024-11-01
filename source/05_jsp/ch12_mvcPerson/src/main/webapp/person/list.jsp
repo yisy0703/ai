@@ -41,9 +41,22 @@
 	</table>
 	BLOCKSIZE : ${BLOCKSIZE }<br>
 	startPage : ${startPage }<br>
+	endPage : ${endPage }<br>
+	pageNum : ${pageNum }<br>
 	<div class="paging">
 		<c:if test="${startPage > BLOCKSIZE }">
 			[ <a href="${conPath }/list.do?pageNum=${startPage-1}">이전</a> ]
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<c:if test="${pageNum eq i }">
+				[ <b>${i }</b> ]
+			</c:if>
+			<c:if test="${pageNum != i }">
+				[ <a href="${conPath }/list.do?pageNum=${i}">${i }</a> ]
+			</c:if>
+		</c:forEach>
+		<c:if test="${endPage < pageCnt }">
+			[ <a href="${conPath }/list.do?pageNum=${endPage+1}">다음</a> ]
 		</c:if>
 	</div>
 </body>
