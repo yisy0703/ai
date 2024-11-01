@@ -1,0 +1,8 @@
+jQuery함수들
+1) 이벤트 함수 : click
+2) html ; 태그 안에 태그
+3) text ; 태그안에 text
+4) css ; 태그 css 적용
+5) hide ; 숨기기
+6) show ; 보이기
+7) toggle
