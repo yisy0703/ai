@@ -1,3 +1,3 @@
 git add .
-git commit -m "MVC패턴"
+git commit -m "jQuery문법"
 git push -u origin main
