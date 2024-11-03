@@ -11,21 +11,20 @@
 	<!-- $('#id')의 keyup 이벤트에 $.ajax()구현 -->
 	<!-- $('#pw, #pwChk)의 keyup 이벤트에 두 비밀번호 체크 -->
 	<!-- $('form')의 submit 이벤트에 유효성 검사(#idConfirmResult, #pwChkResult) -->
-	<!-- 생일 입력란 datePicker 부분 -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <script>
   	$(function(){
-  		$('input[name="mid"]').keyup(function(){
-  			var mid = $(this).val();
-  			if(mid.length<2){
+  		$('input[name="id"]').keyup(function(){
+  			var id = $(this).val();
+  			if(id.length<2){
   				$('#idConfirmResult').text('아이디는 2글자 이상');
   			}else{
   				$.ajax({
   					url : '${conPath}/1_get_post_ajax/midConfirm.jsp',
   					type : 'get',
-  					data : 'mid='+mid,
+  					data : 'id='+id,
   					dataType : 'html',
   					success : function(data){
   						$('#idConfirmResult').html(data);
@@ -72,9 +71,7 @@
     	showMonthAfterYear: true,
     	yearSuffix: '년',
     	showOtherMonths: true, // 현재 달이 아닌 달의 날짜도 회색으로 표시
-    	//minDate: '-100y',	 // 현재날짜로부터 100년이전까지 년을 표시한다.
-    	minDate: new Date(1950, 1 - 1, 1), // 1950년 1월1일을 최소 날짜로 세팅
-    	yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 
+    	yearRange: 'c-100:c', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 
     });
   } );
   </script>
@@ -87,7 +84,7 @@
 				<tr>
 					<th><label for="id">아이디</label></th>
 					<td>
-						<input type="text" name="mid" id="id" class="id" required="required">
+						<input type="text" name="id" id="id" class="id" required="required" autocomplete="off">
 						<div id="idConfirmResult"> &nbsp; &nbsp; &nbsp; </div>
 					</td>
 				</tr>
@@ -104,7 +101,7 @@
 				</tr>
 				<tr>
 					<th><label for="name">이름</label></th>
-					<td><input type="text" name="name" id="name" class="name"></td>
+					<td><input type="text" name="name" id="name" class="name" required="required"></td>
 				</tr>
 				<tr>
 					<th>생년월일</th>
