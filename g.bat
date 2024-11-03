@@ -1,3 +1,3 @@
 git add .
-git commit -m "python 자료형연산자"
+git commit -m "ajax비동기JavaScript전송"
 git push -u origin main
