@@ -1,3 +1,3 @@
 git add .
-git commit -m "jQuery문법"
+git commit -m "python 환경설정"
 git push -u origin main
