@@ -26,14 +26,3 @@ SELECT count(*) FROM MEMBER WHERE ID='aaa';
 -- public ArrayList<Member> getMemberList();
 SELECT * FROM MEMBER ORDER BY NAME;
 COMMIT;
-
-
-
-
-
-
-
-
-
-
-
