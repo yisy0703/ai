@@ -20,7 +20,7 @@ GPU를 사용하려면, Anaconda3-2023.03-1-Windows-x86_64.exe
 
 5. 아나콘다 설치 후, Anaconda prompt를 관리자권한으로 실행하여 패키지 설치
 - 윈도우 10에서 GPU 사용 : pip install tensorflow==2.10
-- 윈도우 11에서 GPU 사용 : pip intall tensorflow 또는 pip install tensorflow-gpu
+
 
 6. 확인
 import tensorflow as tf
