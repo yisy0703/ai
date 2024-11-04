@@ -23,7 +23,7 @@ GPU를 사용하려면, Anaconda3-2023.03-1-Windows-x86_64.exe
 - 윈도우 11에서 GPU 사용 : pip intall tensorflow 또는 pip install tensorflow-gpu
 
 6. 확인
-import tensorlfow as tf
+import tensorflow as tf
 print(tf.__version__)
 tf.config.list_physical_devices('GPU')
 
