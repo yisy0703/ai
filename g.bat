@@ -1,3 +1,3 @@
 git add .
-git commit -m "python 함수"
+git commit -m "python 람다식"
 git push -u origin main
