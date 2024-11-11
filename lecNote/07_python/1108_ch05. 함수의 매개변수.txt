@@ -10,3 +10,20 @@
 
 * 함수 정의시 매개변수의 순서 :
 	순서인수 > 튜플인수 > 키워드인수 > 딕셔너리인수
+
+= 람다식 =
+def add(a, b):
+	return a+b
+add = lambda a, b : a+b
+def diff(a, b):
+	if a>=b:
+		return a-b
+	else:
+		return b-a
+diff = lambda a, b : a-b if a>=b else b-a
+= 파이썬 내장함수 : import 없이 사용할 수 있는 파이썬 함수들
+
+
+
+
+
