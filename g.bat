@@ -1,3 +1,3 @@
 git add .
-git commit -m "python 데이터베이스"
+git commit -m "python 파일io"
 git push -u origin main
