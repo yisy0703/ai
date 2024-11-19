@@ -1,3 +1,3 @@
 git add .
-git commit -m "python 파일io"
+git commit -m "python DB연결"
 git push -u origin main
