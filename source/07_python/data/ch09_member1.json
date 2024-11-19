@@ -1,20 +1,20 @@
 [
  {
-  "name": "\ud64d\uae38\ub3d9",
+  "name": "홍길동",
   "age": 20,
   "email": "h@h.com",
-  "address": "\uc11c\uc6b8"
+  "address": "서울"
  },
  {
-  "name": "\uae40\uae38\ub3d9",
+  "name": "김길동",
   "age": 30,
   "email": "k@h.com",
-  "address": "\ubd80\uc0b0"
+  "address": "부산"
  },
  {
-  "name": "\uc2e0\uae38\ub3d9",
+  "name": "신길동",
   "age": 40,
   "email": "s@h.com",
-  "address": "\uc548\uc591"
+  "address": "안양"
  }
 ]
