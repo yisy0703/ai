@@ -1,3 +1,3 @@
 git add .
-git commit -m "python DB연결"
+git commit -m "python sqlite연동"
 git push -u origin main
