@@ -1,3 +1,3 @@
 git add .
-git commit -m "python sqlite연동"
+git commit -m "python 넘파이배열"
 git push -u origin main
