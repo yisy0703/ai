@@ -32,11 +32,11 @@ Numpy패키지의 함수와 속성
 	concatenate( tup, axis) : 축방향으로 합침
 	column_stack( tup ) : 열단위로 바꿔 합침
 	row_stack( tup ) : 행단위로 합침 == vstack()
-
-
-
-
-
-
-
-
+	stack( tup, axis) axis로 쌓기
+	r_[], c_[]
+- 배열 분리하기 함수
+	vsplit(ary, 갯수나 인덱스벡터) : 첫번째축기준으로 분리
+	hsplit(ary, 갯수나 인덱스벡터) : 두번째축 기준으로 분리
+	dsplit(ary, 갯수나 인덱스벡터) :depth기준으로 분리. 3차원이상
+	split(ary, 갯수나인덱스벡터, axis) axis기준으로 분리
+	array_split(ary, 갯수나인덱스벡터, axis) : 나눠떨어지지 않는 정수도 가능
