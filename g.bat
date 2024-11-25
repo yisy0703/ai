@@ -1,3 +1,3 @@
 git add .
-git commit -m "python 넘파이배열"
+git commit -m "Pandas 데이터프레임"
 git push -u origin main
