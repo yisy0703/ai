@@ -1,3 +1,3 @@
 git add .
-git commit -m "Pandas 요소추가"
+git commit -m "Pandas 그룹화"
 git push -u origin main
