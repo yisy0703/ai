@@ -1,3 +1,3 @@
 git add .
-git commit -m "Python 판다스"
+git commit -m "Python 시리즈"
 git push -u origin main
