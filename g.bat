@@ -1,3 +1,3 @@
 git add .
-git commit -m "파이썬 Pandas"
+git commit -m "Python 판다스"
 git push -u origin main
