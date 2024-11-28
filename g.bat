@@ -1,3 +1,3 @@
 git add .
-git commit -m "Python 시리즈"
+git commit -m "Python 시각화"
 git push -u origin main
