@@ -11,7 +11,8 @@ sns.set(style, context, palette, rc)
 ③ 쌍관계 그래프 : pairplot
 ④ 밀도그래프
    histplot, displot
-
+⑤ 회귀그래프
+    regplot => lmplot(서브플롯)
 
 
 
