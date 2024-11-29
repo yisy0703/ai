@@ -1,1 +1,7 @@
 ★★★ seaborn ★★★
+- 미적속성설정
+sns.set(style, context, palette, rc)
+- 그래프 함수
+① 관계형그래프
+   scatterplot, lineplot
+②
