@@ -8,3 +8,16 @@ sns.set(style, context, palette, rc)
    stripplot, swarmplot, barplot, barhplot
    countplot, pointplot, boxplot, violinplot
    boxenplot => catplot(서브플롯)
+③ 쌍관계 그래프 : pairplot
+④ 밀도그래프
+   histplot, displot
+
+
+
+
+
+
+
+
+
+
