@@ -1,3 +1,3 @@
 git add .
-git commit -m "Python사례연구"
+git commit -m "Python웹크롤링"
 git push -u origin main
