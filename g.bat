@@ -1,3 +1,3 @@
 git add .
-git commit -m "Python동적웹크롤링"
+git commit -m "딥러닝머신러닝입문"
 git push -u origin main
