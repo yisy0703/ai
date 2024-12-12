@@ -1,3 +1,3 @@
 git add .
-git commit -m "µö·¯´×¸Ó½Å·¯´×ÀÔ¹®"
+git commit -m "tensorflowµö·¯´×ÀÔ¹®"
 git push -u origin main
