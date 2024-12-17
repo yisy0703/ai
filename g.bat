@@ -1,3 +1,3 @@
 git add .
-git commit -m "DNN 예제"
+git commit -m "군집화"
 git push -u origin main
