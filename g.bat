@@ -1,3 +1,3 @@
 git add .
-git commit -m "XOR 딥러닝"
+git commit -m "피마인디언 당뇨병예측"
 git push -u origin main
