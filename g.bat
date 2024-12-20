@@ -1,3 +1,3 @@
 git add .
-git commit -m "이미지 분류를 위한 CNN"
+git commit -m "다양한 DNN구현방법"
 git push -u origin main
