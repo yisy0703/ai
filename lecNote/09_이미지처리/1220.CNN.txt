@@ -1,4 +1,6 @@
 CNN (Convoluional Neural Network : 이미지를 분류하는 딥러닝 구현)
-	- 컨볼루션 : feature map 추출
+	- 컨볼루션 : n개의 feature map 추출(특징추출) 
+                feature map size = 원사이즈-커널(필터)사이즈+1
 	- pooling (max pooling, mean pooling)
+	   pooling size 내에 최대값을 이용해서 데이터를 줄이는 단계
 	- DNN
