@@ -1,3 +1,3 @@
 git add .
-git commit -m "성능이 좋은 모델 자동 저장 콜백"
+git commit -m "이미지 분류를 위한 CNN"
 git push -u origin main
