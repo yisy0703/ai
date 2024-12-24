@@ -1,3 +1,3 @@
 git add .
-git commit -m "CNN 알고리즘들"
+git commit -m "녹내장데이터_전이학습"
 git push -u origin main
