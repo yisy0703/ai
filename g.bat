@@ -1,3 +1,3 @@
 git add .
-git commit -m "yolo라이브러리"
+git commit -m "녹내장데이터_전이학습"
 git push -u origin main
