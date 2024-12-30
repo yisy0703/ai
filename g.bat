@@ -1,3 +1,3 @@
 git add .
-git commit -m "한글 형태소분석(konlpy)"
+git commit -m "워드클라우드"
 git push -u origin main
