@@ -1,3 +1,3 @@
 git add .
-git commit -m "여행정보 자연어처리Quiz"
+git commit -m "단어간 유사성 도출"
 git push -u origin main
