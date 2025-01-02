@@ -1,3 +1,3 @@
 git add .
-git commit -m "스마트 번역기"
+git commit -m "LSTM영화평분류분석"
 git push -u origin main
