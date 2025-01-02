@@ -1,3 +1,3 @@
 git add .
-git commit -m "RNN순환신경망"
+git commit -m "LSTM 영화평 분류분석"
 git push -u origin main
