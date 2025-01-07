@@ -1,3 +1,3 @@
 git add .
-git commit -m "파이썬GUI"
+git commit -m "플라스크"
 git push -u origin main
