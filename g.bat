@@ -1,3 +1,3 @@
 git add .
-git commit -m "플라스크"
+git commit -m "flask redering"
 git push -u origin main
