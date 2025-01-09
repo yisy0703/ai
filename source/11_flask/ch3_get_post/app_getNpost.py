@@ -29,7 +29,7 @@ def welcome():
                            value=value)
 
 if __name__=='__main__':
-    app.run(port=8090, debug=True)
+    app.run(debug=True)
 
 
 
