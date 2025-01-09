@@ -1,3 +1,3 @@
 git add .
-git commit -m "flask post방식"
+git commit -m "Jinja2 템플릿"
 git push -u origin main
