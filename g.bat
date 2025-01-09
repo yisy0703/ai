@@ -1,3 +1,3 @@
 git add .
-git commit -m "파이썬 자료형연산자"
+git commit -m "Jinja2 템플릿"
 git push -u origin main
