@@ -45,7 +45,7 @@ def welcome():
 
 if __name__=='__main__':
     app.run(debug=True, port=8090)
-# app.py 파일일 경우 터미널에서 flask run --reload입력시 app.py파일 자동 실행
+# app_get.py 파일일 경우 터미널에서 flask run --reload입력시 app.py파일 자동 실행
     # py파일이 변경될 때마다 서버 자동 재시작
     # templates나 static 파일이 변경될 때 서버 자동 재시작이 안 되기도 함
 
