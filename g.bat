@@ -1,3 +1,3 @@
 git add .
-git commit -m "Jinja2 템플릿"
+git commit -m "플라스크 lecNote"
 git push -u origin main
