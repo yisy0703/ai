@@ -18,8 +18,15 @@ def upload_file():
     '''
     파라미터로 전달받은 파일을 upload 폴더에 저장하고 완료 페이지로 가기
     '''
+    f = request.files['file']
+    # 파일명에 서버에 영향을 미칠 문자가 포함된 경우 _로 교체
+    safe_filename = secure_filename(f.filename)
+    f.save(UPLOAD_FOLDER + safe_filename) # 파일 저장
     return render_template("check.html")
   return render_template("upload.html")
+
+if __name__=='__main__':
+  app.run(debug=True) # 서버 실행
 
 
 
