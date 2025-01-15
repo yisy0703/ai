@@ -11,6 +11,44 @@
   <title>Title</title>
 </head>
 <body>
-  {{ emps }}
+  {#{ emps }#}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">사번</th>
+        <th scope="col">이름</th>
+        <th scope="col">입사일</th>
+        <th scope="col">급여</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if emps %}
+        {% for emp in emps %}
+          <tr onclick="location.href='/detail_json/{{ emp[1] }}'">
+            <td>{{loop.index}}</td>
+            <td>{{ emp[0] }}</td>
+            <td>{{ emp[1] }}</td>
+            <td>{{ emp[4].strftime('%Y-%m-%d') }}</td>
+            <td>{{ emp[5] | int }}</td>
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr><th colspan="5">등록된 사원이 없습니다</th></tr>
+      {% endif %}
+    </tbody>
+  </table>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -17,6 +17,29 @@ def get_emps():
   cursor.close()
   return render_template("emps.html", emps=emps)
 
+@app.route('/detail_json/<ename>')
+def json_response(ename):
+  cursor = conn.cursor()
+  sql = "SELECT * FROM EMP WHERE ENAME=UPPER(:ename)"
+  cursor.execute(sql, {'ename':ename})
+  emps = cursor.fetchall()
+  keys = [desc[0] for desc in cursor.description]
+  cursor.close()
+  result = {}
+  if emps:
+    for key, data in zip(keys, emps[0]):
+      result[key] = data
+    print(result)
+    return jsonify(result)
+  else:
+    # return jsonify({'result':'해당 이름의 사원을 못 찾았음'})
+    response = Response(json.dumps({'result':'못찾음'}, ensure_ascii=False),
+                        mimetype='application/json')
+    return response
+
+if __name__=='__main__':
+  app.run(debug=True)
+
 
 
 
