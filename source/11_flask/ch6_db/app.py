@@ -9,3 +9,24 @@ dsn = cx_Oracle.makedsn('localhost', 1521, 'xe')
 conn = cx_Oracle.connect(user='scott',password='tiger', dsn=dsn)
 
 @app.route('/')
+def get_emps():
+  cursor = conn.cursor()
+  sql = "SELECT * FROM EMP"
+  cursor.execute(sql)
+  emps = cursor.fetchall()
+  cursor.close()
+  return render_template("emps.html", emps=emps)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
