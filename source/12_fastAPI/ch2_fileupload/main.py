@@ -71,7 +71,10 @@ async def upload(requset:Request, file:UploadFile=File()):
     return RedirectResponse(url='/',
                             status_code=307)
 
-
+@app.get('/del/{filename}')
+async def delete(filename:str):
+  os.remove(UPLOAD_FOLDER+filename)
+  return RedirectResponse('/')
 
 
 
