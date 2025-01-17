@@ -15,6 +15,20 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def html1(request:Request):
   return templates.TemplateResponse("ex3-1.html", {'request':request})
 
+@app.get('/html2')
+async def html2(request:Request):
+  return templates.TemplateResponse("ex3-2.html",
+                                    {'request':request,
+                                     'name':'홍길동'})
+
+# @app.get('/html3')
+# async def html3(name:str, id:str, pw:int):
+#   return {'name':name, 'id':id, 'pw':pw}
+
+# pip install python-multipart
+@app.post('/html3')
+async def html3(name:str=Form(), id:str=Form(), pw:int=Form()):
+  return {'name':name, 'id':id, 'pw':pw}
 
 
 
