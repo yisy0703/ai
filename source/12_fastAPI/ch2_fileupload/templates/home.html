@@ -6,12 +6,10 @@
       <div class="text-center container-fluid py-5">
         <h1 class="display-5 fw-bold">파일 업로드!</h1>
         <hr style="width:100%; color:red;">
-        <img src="{{ url_for('static', filename='img/upload.png')}}"
+        <img src="{{ url_for('static', path='img/upload.png')}}"
              width="100">
-        <form action="/" method="post" enctype="multipart/form-data">
-<!--          <input type="file" name="file">-->
-          {{ form.csrf_token() }}
-          {{ form.files() }}
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file">
           <input type="submit" class="btn btn-primary btn-lg">
         </form>
       </div>
@@ -33,14 +31,17 @@
                 <td onclick="location.href='/download/{{ info['name'] }}'">
                   {{ info['name'] }}
                 </td>
-                <td><a href="/del/{{ info['name'] }}">삭제</a></td>
+                <td>
+                  <a href="/del/{{ info['name'] }}">삭제</a>
+<!--                  <span>삭제</span>-->
+                </td>
                 <td>{{ info['create'].strftime('%Y-%m-%d %H:%M') }}</td>
                 <td>{{ info['modify'].strftime('%Y-%m-%d %H:%M') }}</td>
                 <td>{{ info['size'] }}</td>
               </tr>
             {% endfor %}
           {% else %}
-            <tr><td colspan="6">업로드된 파일이 없습니다</td></tr>
+            <tr><td colspan="6" class="text-center">업로드된 파일이 없습니다</td></tr>
           {% endif %}
         </tbody>
       </table>
