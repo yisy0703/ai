@@ -78,10 +78,18 @@ async def download_file(filename):
                       filename=filename) # 생략 가능
 
 
-@app.get('/del/{filename}')
-async def delete(filename:str):
+# @app.get('/del/{filename}')
+# async def delete(filename:str):
+#   os.remove(UPLOAD_FOLDER+filename)
+#   return RedirectResponse('/')
+
+@app.delete('/del/{filename}')
+async def delete_file(filename:str):
+  if not os.path.exists(UPLOAD_FOLDER + filename): # 파일이 존재하지 않으면
+    return f'{filename}은 없는 파일입니다'
   os.remove(UPLOAD_FOLDER+filename)
-  return RedirectResponse('/')
+  return f'{filename} 삭제 성공'
+
 
 
 

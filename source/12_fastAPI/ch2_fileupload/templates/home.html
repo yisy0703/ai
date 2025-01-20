@@ -51,7 +51,16 @@
   <script>
     $(function(){
       $('span').click(function(e){ // e : 클릭된 엘리먼트
-        console.log(e);
+        // console.log(e);
+        filename = e.target.dataset.id;
+        fetch('/del/'+filename, {method:'DELETE'})
+        .then(response=>{
+          return response.text(); // 서버의 응답 내용을 text로 return
+        })
+        .then(data=>{
+          alert(data);
+        });
+        location.reload(); // 현재 페이지('/')를 다시 load
       });
     });
   </script>
