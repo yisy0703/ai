@@ -32,8 +32,8 @@
                   {{ info['name'] }}
                 </td>
                 <td>
-                  <a href="/del/{{ info['name'] }}">삭제</a>
-<!--                  <span>삭제</span>-->
+<!--                  <a href="/del/{{ info['name'] }}">삭제</a>-->
+                  <span data-id="{{info['name']}}">삭제</span>
                 </td>
                 <td>{{ info['create'].strftime('%Y-%m-%d %H:%M') }}</td>
                 <td>{{ info['modify'].strftime('%Y-%m-%d %H:%M') }}</td>
@@ -47,5 +47,21 @@
       </table>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(function(){
+      $('span').click(function(e){ // e : 클릭된 엘리먼트
+        console.log(e);
+      });
+    });
+  </script>
 </body>
 {% endblock %}
+
+
+
+
+
+
+
+
