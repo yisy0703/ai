@@ -24,7 +24,21 @@
       </thead>
       <tbody>
         {% if todos %}
-          
+          {% for todo in todos %}
+            <tr>
+              <th scope="row">{{ todo['id'] }}</th>
+              <td>
+                {% if todo['is_done'] %}
+                  <del>{{ todo['contents'] }}</del>
+                {% else %}
+                  <b>{{ todo['contents'] }}</b>
+                {% endif %}
+              </td>
+              <td>
+                {{ '완료' if todo['is_done'] else '미완료' }}
+              </td>
+            </tr>
+          {% endfor %}
         {% else %}
           <tr>
             <td colspan="3" class="text-center">등록된 todo가 없습니다</td>
