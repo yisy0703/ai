@@ -25,7 +25,7 @@
       <tbody>
         {% if todos %}
           {% for todo in todos %}
-            <tr>
+            <tr onclick="location.href='/todos/{{ todo['id'] }}'">
               <th scope="row">{{ todo['id'] }}</th>
               <td>
                 {% if todo['is_done'] %}

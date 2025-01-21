@@ -23,10 +23,6 @@ app.mount('/static',
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR,
                                                    '../templates'))
 
-@app.get('/')
-async def health_check_handler():
-  return {'status':'ok'}
-
 todo_data = {
   1:{
     'id':1,
@@ -44,6 +40,9 @@ todo_data = {
     'is_done':False
   }
 }
+@app.get('/')
+# async def health_check_handler():
+#   return {'status':'ok'}
 # /todos(할일 1부터 출력) 또는 /todos?order=desc(할일 역순으로 출력)
 @app.get('/todos')
 async def get_todos_handler(request:Request,
@@ -57,6 +56,13 @@ async def get_todos_handler(request:Request,
                                      'todos':todos,
                                      'next_id':next_id,
                                      'order':order.upper() if order else ''})
+
+@app.get('/todos/{todo_id}')
+async def get_todo_detail_handler(request:Request, todo_id:int):
+  todo = todo_data.get(todo_id, {})# todo_data[todo_id]
+  return templates.TemplateResponse('todo.html',
+                                    {'request':request,
+                                     'todo':todo})
 
 
 

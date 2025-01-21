@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4 text-center">
+  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">
+        {{ todo['id'] ~ '번 상세보기' }}
+      </h1>
+    </div>
+    <table class="table table-info">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">할일</th>
+          <th scope="col">수행여부</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if todo %}
+          <tr>
+            <th scope="row">{{ todo['id'] }}</th>
+            <td> {{ todo['contents'] }}</td>
+            <td>
+              {{'완료' if todo['is_done'] else '미완료' }}
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" class="text-center">
+              <button onclick="location='/todos/'" class="btn btn-primary">목록</button>
+              <button onclick="location='/update/{{todo['id']}}'"
+                      class="btn btn-warning">수정</button>
+              <button class="delete btn btn-danger">삭제</button>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="3" class="text-center">해당 id의 todo는 없습니다</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+  </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
