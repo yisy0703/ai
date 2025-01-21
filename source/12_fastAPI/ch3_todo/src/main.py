@@ -1,6 +1,6 @@
 # src -> 소스 루트
 # pip install fastapi
-# pip install uvicorn
+# pip install uvicorn --no-cache-dir
 # pip install jinja2
 # pip install python-multipart (post사용)
 
@@ -46,11 +46,16 @@ todo_data = {
 }
 # /todos(할일 1부터 출력) 또는 /todos?order=desc(할일 역순으로 출력)
 @app.get('/todos')
-async def get_todos_handler(order:str|None=None):
+async def get_todos_handler(request:Request,
+                            order:str|None=None):
   todos = list(todo_data.values()) # 딕셔너리를 리스트로 변환
   if order and order.upper()=='DESC':
     todos = todos[::-1]
-  return todos
+  next_id = max(todo_data.keys())+1
+  return templates.TemplateResponse('todos.html', # todo 목록, todo 입력 form
+                                    {'request':request,
+                                     'todos':todos,
+                                     'next_id':next_id})
 
 
 
