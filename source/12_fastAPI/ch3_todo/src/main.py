@@ -45,6 +45,7 @@ todo_data = {
 #   return {'status':'ok'}
 # /todos(할일 1부터 출력) 또는 /todos?order=desc(할일 역순으로 출력)
 @app.get('/todos')
+@app.post('/todos')
 async def get_todos_handler(request:Request,
                             order:str|None=None):
   todos = list(todo_data.values()) # 딕셔너리를 리스트로 변환
@@ -63,6 +64,13 @@ async def get_todo_detail_handler(request:Request, todo_id:int):
   return templates.TemplateResponse('todo.html',
                                     {'request':request,
                                      'todo':todo})
+
+@app.post('/create')
+async def create_todo_handler(todo:ToDoRequest=Form()):
+  # print('form태그로부터 입력된 todo :',todo)
+  todo_data[todo.id] = todo.dict()
+  # {'id':todo.id, 'contents':todo.contents, 'is_done':todo.is_done}
+  return RedirectResponse('/todos')
 
 
 
