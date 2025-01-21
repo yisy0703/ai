@@ -72,8 +72,14 @@ async def create_todo_handler(todo:ToDoRequest=Form()):
   # {'id':todo.id, 'contents':todo.contents, 'is_done':todo.is_done}
   return RedirectResponse('/todos')
 
-
-
+@app.delete('/delete/{todo_id}', status_code=200)
+async def delete_todo_handler(todo_id:int):
+  # del todo_data[todo_id]
+  # key가 없는 todo_id를 입력할 경우 None
+  todo = todo_data.pop(todo_id, None)
+  if todo:
+    return f'{todo_id}번 todo 삭제 성공'
+  return f'{todo_id}는 등록되지 않는 todo여서 삭제 실패'
 
 
 
