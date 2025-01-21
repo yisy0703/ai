@@ -55,7 +55,8 @@ async def get_todos_handler(request:Request,
   return templates.TemplateResponse('todos.html', # todo 목록, todo 입력 form
                                     {'request':request,
                                      'todos':todos,
-                                     'next_id':next_id})
+                                     'next_id':next_id,
+                                     'order':order.upper() if order else ''})
 
 
 
