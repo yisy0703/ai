@@ -81,6 +81,18 @@ async def delete_todo_handler(todo_id:int):
     return f'{todo_id}번 todo 삭제 성공'
   return f'{todo_id}는 등록되지 않는 todo여서 삭제 실패'
 
+@app.get('/update/{id}')
+async def get_updatetodo_handler(request:Request, id:int):
+  todo = todo_data.get(id)
+  return templates.TemplateResponse('update.html',
+                                    {'request':request,
+                                     'todo':todo})
+
+
+
+
+
+
 
 
 
