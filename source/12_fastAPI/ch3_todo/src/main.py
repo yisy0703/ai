@@ -1,9 +1,4 @@
-# src -> 소스 루트
-# pip install fastapi
-# pip install uvicorn --no-cache-dir
-# pip install jinja2
-# pip install python-multipart (post사용)
-
+# pip freeze > 파일명(requirements.txt)
 from fastapi import FastAPI
 from fastapi import Request # template으로 갈 핸들러 함수 매개변수
 from fastapi.staticfiles import StaticFiles
@@ -57,13 +52,22 @@ async def get_todos_handler(request:Request,
                                      'todos':todos,
                                      'next_id':next_id,
                                      'order':order.upper() if order else ''})
-
-@app.get('/todos/{todo_id}')
+# 상세보기 : 없는 id 조회시 404 예외 발생
+@app.get('/todos/{todo_id}', status_code=200)
 async def get_todo_detail_handler(request:Request, todo_id:int):
   todo = todo_data.get(todo_id, {})# todo_data[todo_id]
-  return templates.TemplateResponse('todo.html',
+  if todo:
+    return templates.TemplateResponse('todo.html',
                                     {'request':request,
                                      'todo':todo})
+  raise HTTPException(status_code=404, 
+                      detail='없는 id입니다')
+
+@app.exception_handler(404)
+def error_handler(requset:Request, exe:HTTPException):
+  return templates.TemplateResponse('page_not_found.html',
+                                    {'request':requset},
+                                    status_code=404)
 
 @app.post('/create')
 async def create_todo_handler(todo:ToDoRequest=Form()):
@@ -79,15 +83,28 @@ async def delete_todo_handler(todo_id:int):
   todo = todo_data.pop(todo_id, None)
   if todo:
     return f'{todo_id}번 todo 삭제 성공'
-  return f'{todo_id}는 등록되지 않는 todo여서 삭제 실패'
+  raise HTTPException(status_code=404,
+                      detail='예외 페이지로 감')
 
-@app.get('/update/{id}')
+@app.get('/update/{id}', status_code=200)
 async def get_updatetodo_handler(request:Request, id:int):
   todo = todo_data.get(id)
-  return templates.TemplateResponse('update.html',
+  if todo:
+    return templates.TemplateResponse('update.html',
                                     {'request':request,
                                      'todo':todo})
+  raise HTTPException(status_code=404,
+                      detail='예외 페이지로 가서 이 detail 메세지는 출력 안 함')
 
+@app.patch('/update/{id}/{contents}/{is_done}', status_code=200)
+async def update_todo_handler(id:int, contents:str, is_done:bool):
+  todo = todo_data.get(id) # 수행될 딕셔너리
+  if todo:
+    todo['contents'] = contents
+    todo['is_done']  = is_done
+    return f'{id}번 {contents} 수정 완료'
+  raise HTTPException(status_code=404,
+                      detail='예외 페이지로 가서 이 detail 메세지는 출력 안 함')
 
 
 
