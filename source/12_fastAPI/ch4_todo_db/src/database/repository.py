@@ -44,6 +44,8 @@ def create_todo(todo:ToDoRequest)->str:
   return '추가 실패'
 
 def update_todo(id:int, contents:str, is_done:bool)->str:
+  cursor = conn.cursor()
+  sql = 'UPDATE TODO SET CONTENTS=:contents, IS_DONE=:is_done WHERE ID=:id'
 
 if __name__=='__main__':
   todo = ToDoRequest()
