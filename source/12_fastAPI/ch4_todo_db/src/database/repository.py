@@ -46,6 +46,26 @@ def create_todo(todo:ToDoRequest)->str:
 def update_todo(id:int, contents:str, is_done:bool)->str:
   cursor = conn.cursor()
   sql = 'UPDATE TODO SET CONTENTS=:contents, IS_DONE=:is_done WHERE ID=:id'
+  cursor.execute(sql, {'id':id,
+                       'contents':contents,
+                       'is_done':is_done})
+  conn.commit()
+  result = cursor.rowcount # sql 수행 행수
+  cursor.close()
+  if result :
+    return f'{id} - {contents} 수정 성공'
+  return '수정 실패'
+
+def delete_todo(todo_id : int) -> str:
+  cursor = conn.cursor()
+  sql = 'DELETE FROM TODO WHERE ID=:id'
+  cursor.execute(sql, {'id':todo_id})
+  conn.commit()
+  result = cursor.rowcount
+  cursor.close()
+  if result:
+    return f'{todo_id} 삭제 성공'
+  return '삭제 실패'
 
 if __name__=='__main__':
   todo = ToDoRequest()
@@ -55,6 +75,8 @@ if __name__=='__main__':
   print('1. 목록 :', get_todos())
   print('2. 상세 :', get_todo(1))
   print('2. 상세 :', get_todo(9))
+  print('4. update :', update_todo(1, '이걸로 바꿔', True))
+  print('5. delete :', delete_todo(1))
 
 
 
