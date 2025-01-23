@@ -49,24 +49,20 @@ def error_handler(requset:Request, exe:HTTPException):
 
 @app.post('/create')
 async def create_todo_handler(todo:ToDoRequest=Form()):
-  # print('form태그로부터 입력된 todo :',todo)
-  todo_data[todo.id] = todo.dict()
-  # {'id':todo.id, 'contents':todo.contents, 'is_done':todo.is_done}
+  create_todo(todo)
   return RedirectResponse('/todos')
 
 @app.delete('/delete/{todo_id}', status_code=200)
 async def delete_todo_handler(todo_id:int):
-  # del todo_data[todo_id]
-  # key가 없는 todo_id를 입력할 경우 None
-  todo = todo_data.pop(todo_id, None)
-  if todo:
-    return f'{todo_id}번 todo 삭제 성공'
+  result = delete_todo(todo_id)
+  if result:
+    return result
   raise HTTPException(status_code=404,
                       detail='예외 페이지로 감')
 
 @app.get('/update/{id}', status_code=200)
 async def get_updatetodo_handler(request:Request, id:int):
-  todo = todo_data.get(id)
+  todo = get_todo(id)
   if todo:
     return templates.TemplateResponse('update.html',
                                     {'request':request,
@@ -76,20 +72,8 @@ async def get_updatetodo_handler(request:Request, id:int):
 
 @app.patch('/update/{id}/{contents}/{is_done}', status_code=200)
 async def update_todo_handler(id:int, contents:str, is_done:bool):
-  todo = todo_data.get(id) # 수행될 딕셔너리
-  if todo:
-    todo['contents'] = contents
-    todo['is_done']  = is_done
-    return f'{id}번 {contents} 수정 완료'
+  result = update_todo(id, contents, is_done)
+  if result:
+    return result
   raise HTTPException(status_code=404,
                       detail='예외 페이지로 가서 이 detail 메세지는 출력 안 함')
-
-
-
-
-
-
-
-
-
-

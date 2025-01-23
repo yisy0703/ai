@@ -54,7 +54,7 @@ def update_todo(id:int, contents:str, is_done:bool)->str:
   cursor.close()
   if result :
     return f'{id} - {contents} 수정 성공'
-  return '수정 실패'
+  return ''
 
 def delete_todo(todo_id : int) -> str:
   cursor = conn.cursor()
@@ -65,7 +65,7 @@ def delete_todo(todo_id : int) -> str:
   cursor.close()
   if result:
     return f'{todo_id} 삭제 성공'
-  return '삭제 실패'
+  return ''
 
 if __name__=='__main__':
   todo = ToDoRequest()
