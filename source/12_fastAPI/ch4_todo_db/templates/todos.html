@@ -5,9 +5,8 @@
     <div class="container-fluid py-5">
       <h1 class="display-5 fw-bold">To-Do List</h1>
       <form action="/create" method="post">
-        <input type="hidden" name="id" value="{{next_id}}">
         <div class="input-group">
-          <span class="input-group-text">{{next_id}}</span>
+          <span class="input-group-text">할일</span>
           <input type="text" name="contents" placeholder="할일"
                 class="form-control"  required>
           <input class="btn btn-dark" type="submit" value="등록">

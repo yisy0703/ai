@@ -33,7 +33,7 @@ async def get_todos_handler(request:Request,
 # 상세보기 : 없는 id 조회시 404 예외 발생
 @app.get('/todos/{todo_id}', status_code=200)
 async def get_todo_detail_handler(request:Request, todo_id:int):
-  todo = todo_data.get(todo_id, {})# todo_data[todo_id]
+  todo = get_todo(todo_id)
   if todo:
     return templates.TemplateResponse('todo.html',
                                     {'request':request,
