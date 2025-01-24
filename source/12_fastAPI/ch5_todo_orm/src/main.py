@@ -82,8 +82,9 @@ async def get_updatetodo_handler(request:Request, id:int,
                       detail='예외 페이지로 가서 이 detail 메세지는 출력 안 함')
 
 @app.patch('/update/{id}/{contents}/{is_done}', status_code=200)
-async def update_todo_handler(id:int, contents:str, is_done:bool):
-  result = update_todo(id, contents, is_done)
+async def update_todo_handler(id:int, contents:str, is_done:bool,
+                              session:Session=Depends(get_db)):
+  result = update_todo(session, id, contents, is_done)
   if result:
     return result
   raise HTTPException(status_code=404,
