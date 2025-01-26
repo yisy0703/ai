@@ -1,16 +1,17 @@
 # (산대특) 스마트 팩토리 혁신을 위한 AI 솔루션 개발 양성과정을 위한 공유 자료실
 
 방문해 주셔서 감사합니다.
-
 본 공유공간은 MBC 아카데미에서 운영하는
-
 "(산대특)스마트 팩토리 혁신을 위한 AI 솔루션 개발 양성과정" 훈련생을 위한 공유의 장입니다.
 
 <span style="color:red"><b>본 레파지트리는 수료(25.3.7) 시점에 폐쇄될 예정이니 미리 다운받아 주셔요</b></span>
 
-![교육이수내역](https://github.com/user-attachments/assets/b568e08d-5272-4bdb-ab38-ac20e014cc33)
 
- # 📚 SKIL
+# 교육이수 기술 내역서
+![교육이수기술내역서](https://github.com/user-attachments/assets/d949939d-1d65-4544-bc5c-ea4976dbce5d)
+
+
+# 📚 SKIL
  ### Programming
 <div>
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=eclipse&logoColor=white">
