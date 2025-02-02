@@ -1,3 +1,3 @@
 git add .
-git commit -m "readme수정"
+git commit -m "MachineLearning입문"
 git push -u origin main
