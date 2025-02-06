@@ -1,3 +1,3 @@
 git add .
-git commit -m "MachineLearning 분류분석"
+git commit -m "MachineLearning 모형최적화"
 git push -u origin main
