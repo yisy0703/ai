@@ -1,3 +1,3 @@
 git add .
-git commit -m "정리"
+git commit -m "django post/get방식"
 git push -u origin main
