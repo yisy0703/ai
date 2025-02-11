@@ -1,3 +1,3 @@
 git add .
-git commit -m "dJango프레임워크"
+git commit -m "dJango 앱"
 git push -u origin main
