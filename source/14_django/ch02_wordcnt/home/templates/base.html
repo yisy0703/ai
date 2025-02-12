@@ -7,12 +7,23 @@
   {% load static %}
   <link href="{% static 'img/brand.png' %}" rel="icon">
   <link href="{% static 'css/ex.css' %}" rel="stylesheet">
-  <title>Title</title>
+  <title>{% block title %}제목{% endblock %}</title>
 </head>
 <body>
   <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-    <h2>{{greeting}}</h2>
-    <h1 onclick="location='{% url 'index' %}'">{{msg}}</h1>
+    {% block content %}
+      기본 컨텐츠 영역
+    {% endblock %}
   </div>
+  {% include "footer.html" with year=2025 %}
 </body>
 </html>
+
+
+
+
+
+
+
+
+
