@@ -13,12 +13,20 @@
   <button onclick="location='{% url 'test' %}'" class="btn btn-outline-primary">TEST</button>
   <br>
   <a href="/showId/123">showId/123</a>
+  <a href="{% url 'showIntId' 1004 %}">showId/1004</a>
   <button onclick="location='/showId/123'" class="btn btn-outline-primary">
     showId/int
   </button>
+  <button onclick="location='{% url 'showIntId' 1004 %}'" class="btn btn-outline-primary">
+    showId/1004
+  </button>
   <br>
   <a href="/showId/abc">showId/abc</a>
+  <a href="{% url 'showStrId' 'abc' %}">showId/abc</a>
   <button onclick="location='/showId/abc'" class="btn btn-outline-primary">
+    showId/str
+  </button>
+  <button onclick="location='{% url 'showStrId' 'good' %}'" class="btn btn-outline-primary">
     showId/str
   </button>
   <br>
