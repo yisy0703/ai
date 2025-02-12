@@ -31,15 +31,3 @@ async def get_todo_handler(request:Request, todo_id:int):
   return templates.TemplateResponse('todo.html',
                                     {'request':request,
                                      'todo':todo})
-
-
-
-
-
-
-
-
-
-
-
-
