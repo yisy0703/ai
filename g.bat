@@ -1,3 +1,3 @@
 git add .
-git commit -m "fastAPI 평가문제범위"
+git commit -m "django post/get방식"
 git push -u origin main
