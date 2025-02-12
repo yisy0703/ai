@@ -1,3 +1,3 @@
 git add .
-git commit -m "django post|get방식"
+git commit -m "CNN후 머신러닝"
 git push -u origin main
