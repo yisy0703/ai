@@ -21,6 +21,14 @@ def showIntId(request:HttpRequest, id:int):
                 {'msg':msg,
                         'type':id_type})
 
+def showStrId(request, id):
+  msg = '문자 ID는 ' + id
+  id_type = '문자입니다'
+  return render(request,
+                'home/showId.html',
+                {'msg':msg,
+                      'type':id_type})
+
 
 
 
