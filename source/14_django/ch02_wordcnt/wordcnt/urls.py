@@ -8,6 +8,19 @@ from wordcnt import views
 app_name = 'wordcnt'
 urlpatterns = [
   path('', views.wordinput, name="wordinput"),
-  #path('result/',),
-  #path('about/',),
+  path('about/',  views.about, name="about"),
+  path('result/', views.result, name="result"),
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
