@@ -1,3 +1,3 @@
 git add .
-git commit -m "django get|postë°©ì‹"
+git commit -m "django orm±â¼ú"
 git push -u origin main
