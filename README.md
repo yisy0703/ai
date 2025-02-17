@@ -2,7 +2,7 @@
 **본 레파지토리는 수료시점에 사라질 예정이니 필요한 데이터는 미리 다운로드 해 주세요**
 
 # 교육이수 기술 내역서
-![Image](https://github.com/user-attachments/assets/bde8dbf6-be12-48e5-9bbc-1b281b2d5c64)
+![교육이수기술내역서](https://github.com/user-attachments/assets/efcb153c-0780-44e9-9b1d-f2bdd9e0d25a)
 
 # 📚 SKIL
  ### Programming
