@@ -9,7 +9,7 @@
 <div>
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=eclipse&logoColor=white">
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
-  <img src="https://img.shields.io/badge/DeeepLearning(tensorflow)-ff00ff?style=for-the-badge&logo=DeeepLearning&logoColor=white">
+  <img src="https://img.shields.io/badge/DeeepLearning(tensorflow)-00ffff?style=for-the-badge&logo=DeeepLearning&logoColor=white">
   <img src="https://img.shields.io/badge/MachineLearning(sklearn)-55ff55?style=for-the-badge&logo=MachineLearning&logoColor=white">
 </div>
 
