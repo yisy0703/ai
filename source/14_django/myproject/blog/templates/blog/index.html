@@ -5,8 +5,10 @@
     <ul>
     {% for post in post_list %}
       <li>
-        <a href="/blog/{{post.id}}/">{{post.id}}.{{post.title}}</a>
+<!--        <a href="/blog/{{post.id}}/">{{post.id}}.{{post.title}}</a>-->
         <a href="{% url 'blog:detail' post.id %}">{{post.id}}.{{post.title}}</a>
+        [{{ post.comment_set.all | length}}개 댓글]
+        [{{post.tags.all | length}}개 태그]
       </li>
     {% endfor %}
     </ul>

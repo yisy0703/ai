@@ -11,6 +11,10 @@ REGION_CHOICE = (
 def lnglat_validator(value):
   if not re.match(r'(\d+\.?\d*),(\d+\.?\d*)', value):
     raise ValidationError('Invalid LngLat. ex:38,125')
+class Tag(models.Model):
+  name = models.CharField(max_length=50, unique=True)
+  def __str__(self):
+    return self.name
 
 class Post(models.Model): # 테이블명 : blog_post
   # id = models.AutoField(primary_key=True) PK가 없을 경우 자동 생성
@@ -30,6 +34,7 @@ class Post(models.Model): # 테이블명 : blog_post
                             help_text="경도,위도 포맷",
                             validators=[lnglat_validator]) # 38.5,125.4125
   url = models.URLField(blank=True, null=True)
+  tags = models.ManyToManyField("Tag")
 
   def __str__(self):
     return "제목:{} - {}작성, {:%Y-%m-%d %p %I:%M:%S} 최종수정".format(self.title,
@@ -37,3 +42,29 @@ class Post(models.Model): # 테이블명 : blog_post
                                                                self.update_at)
   class Meta:
     ordering = ['-update_at']
+
+class Comment(models.Model):
+  # id = models.AutoField(primary_key=True)
+  post = models.ForeignKey(to=Post, # "Post"
+                           on_delete=models.CASCADE)
+  author = models.CharField(verbose_name="이름", max_length=20)
+  message  =models.TextField(verbose_name="댓글")
+  create_at = models.DateField(auto_now_add=True)
+  update_at = models.DateTimeField(auto_now=True)
+  def __str__(self):
+    return "{}({}작성)".format(self.message, self.author)
+  class Meta:
+    ordering = ['-create_at', '-update_at']
+
+
+
+
+
+
+
+
+
+
+
+
+
