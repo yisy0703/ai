@@ -1,3 +1,3 @@
 git add .
-git commit -m "django 프로젝트"
+git commit -m "django ORM"
 git push -u origin main
