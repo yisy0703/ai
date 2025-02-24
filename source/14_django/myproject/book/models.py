@@ -28,11 +28,3 @@ class Book(models.Model):
   class Meta:
     ordering = ['-publication_date']
     unique_together = (('title','author'), )
-
-
-
-
-
-
-
-
