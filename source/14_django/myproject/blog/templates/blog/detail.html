@@ -4,9 +4,10 @@
   {% if post %}
     <h3>{{post.id}}.{{post.title}}</h3>
     <p>
-      {{post.content}}
-      <span>{{post.create_at}}</span>
-      <span>{{post.update_at}}</span>
+      {{post.content}}<br>
+      {{post.content | truncatechars:5 }}<br>
+      <span>{{post.create_at | date:"Y-m-d"}}</span>
+      <span>{{post.update_at | date:"y-m-d A h:i:s"}}</span>
     </p>
     <h4>댓글 : {{ post.comment_set.all | length }}개</h4>
     {% for comment in post.comment_set.all %}
