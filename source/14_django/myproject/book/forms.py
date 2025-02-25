@@ -22,9 +22,3 @@ class BookModelForm(forms.ModelForm): # ModelForm안에 save() 있음
     model = Book
     fields = ['title','author','publisher','sales']
     #fields = '__all__'
-  def clean_author(self):
-    author = self.cleaned_data['author']
-    if author:
-      if len(author)<3:
-        raise forms.ValidationError('저자는 3글자 이상')
-    return author
