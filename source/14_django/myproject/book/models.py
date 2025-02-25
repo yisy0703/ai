@@ -13,7 +13,7 @@ class Book(models.Model):
   author = models.CharField(max_length=50,
                             validators=[#min_length_3_validator
                                         MinLengthValidator(3) ])
-  publisher = models.CharField(max_length=50)
+  publisher = models.CharField(max_length=50, blank=True, null=True)
   publication_date = models.DateTimeField(auto_now_add=True)
   sales     = models.IntegerField(default=1000,
                                   validators=[MinValueValidator(0),

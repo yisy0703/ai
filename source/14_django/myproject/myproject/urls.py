@@ -19,7 +19,7 @@ from django.urls import path, include
 from django.shortcuts import redirect
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", lambda r : redirect("blog:index")),
+    path("", lambda r : redirect("book:list")),
     path("blog/", include("blog.urls")),
     path("book/", include("book.urls")),
 ]
