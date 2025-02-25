@@ -21,4 +21,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", lambda r : redirect("blog:index")),
     path("blog/", include("blog.urls")),
+    path("book/", include("book.urls")),
 ]
