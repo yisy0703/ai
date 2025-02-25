@@ -16,11 +16,17 @@ book_list = ListView.as_view(model=Book)
 def book_new(request):
   if request.method == 'POST':
     # request.POST의 파라미터 값을 book으로 save()
-    return redirect('book:list')
+    form = BookModelForm(request.POST, request.FILES)
+    if form.is_valid():
+      book = Book(**form.cleaned_data)
+      book.ip = request.META['REMOTE_ADDR'] # 요청한 client의 ip
+      book.save()
+      return redirect('book:list')
   else:
     #form = BookForm()
     form = BookModelForm()
-    return render(request, 'book/book_form.html',
+  return render(request,
+                  'book/book_form.html',
                   {'form':form })
 
 def book_edit(request):

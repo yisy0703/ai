@@ -28,33 +28,3 @@ class BookModelForm(forms.ModelForm): # ModelForm안에 save() 있음
       if len(author)<3:
         raise forms.ValidationError('저자는 3글자 이상')
     return author
-  
-  def check_exist(self, title, author):
-    return Book.objects.filter(title=title, author=author).exists()
-  
-  def clean(self):
-    cleaned_data = super().clean() # self.cleand_data
-    if self.check_exist(cleaned_data.get('title'), 
-                        cleaned_data.get('author')):
-      return forms.ValidationError('이미 등록된 책입니다')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
