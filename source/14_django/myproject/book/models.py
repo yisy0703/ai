@@ -3,6 +3,8 @@ from django import forms
 from django.core.validators import MinLengthValidator
 from django.core.validators import MinValueValidator
 from django.core.validators import MaxValueValidator
+from django.urls import reverse
+
 
 def min_length_3_validator(value):
   if len(value)<3:
@@ -29,6 +31,18 @@ class Book(models.Model):
                                          self.author,
                                          self.sales,
                                          self.ip)
+  def get_absolute_url(self):
+    return reverse('book:list')
+    # return reverse('book:edit', args=[self.id])
+
   class Meta:
     ordering = ['-publication_date']
     unique_together = (('title','author'), )
+
+
+
+
+
+
+
+
