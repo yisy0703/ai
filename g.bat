@@ -1,3 +1,3 @@
 git add .
-git commit -m "django 颇老包府"
+git commit -m "django 老:老ORM"
 git push -u origin main
