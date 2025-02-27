@@ -127,7 +127,7 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
 	os.path.join(BASE_DIR, 'myproject', 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR,'..', '_staticfiles') #운영시 static 경로
+STATIC_ROOT = os.path.join(BASE_DIR, '..', '_staticfiles') #운영시 static 경로
 
 MEDIA_URL = '/media/' # media파일의 url
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media') # 업로드한 파일이 저장될 폴더
