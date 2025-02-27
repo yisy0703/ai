@@ -61,7 +61,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, 'myproject', 'templates'),
+           os.path.join(BASE_DIR, 'myproject', 'templates'),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -123,6 +123,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, 'myproject', 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, '_staticfiles') #운영시 경로
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

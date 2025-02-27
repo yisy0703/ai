@@ -1,3 +1,3 @@
 git add .
-git commit -m "django 力匙腐View"
+git commit -m "django 颇老包府"
 git push -u origin main
