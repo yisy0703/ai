@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "book",
     "django.contrib.humanize", # intcomma(세자리마다 ,) 필터 사용
     "article",
+    "filetest",
 ]
 
 MIDDLEWARE = [
