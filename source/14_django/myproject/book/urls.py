@@ -13,9 +13,3 @@ urlpatterns = [
   path("<int:pk>/edit/", views.book_edit, name="edit"),
   path("<int:pk>/delete/", views.book_delete, name="delete"),
 ]
-
-
-
-
-
-
