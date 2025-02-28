@@ -1,7 +1,10 @@
+import os.path
 from django.db import models
 import time
 from datetime import datetime
 from django.urls import reverse
+from myproject import settings
+from django.shortcuts import get_object_or_404
 STATUS_CHOICES = (
   ('d', 'Draft'),
   ('p', 'Published'),
@@ -26,11 +29,21 @@ class Article(models.Model):
     # return reverse('article:list')
     return  reverse('article:detail', args=[self.id])
 
+  def delete(self, *args, **kwargs):
+    if self.photo:
+      # 파일 첨부 했으면 지워
+      file_path = os.path.join(settings.MEDIA_ROOT, str(self.photo))
+      print(file_path, '파일 지운다')
+      if os.path.exists(file_path):
+        os.remove(file_path)
+    super().delete(args, kwargs)
 
-
-
-
-
-
-
-
+  def save(self, *args, **kwargs):
+    if self.pk: # 저장된 내용을 수정하는지 여부?
+      old_instance = get_object_or_404(Article, pk=self.pk)
+      if old_instance.photo and old_instance.photo != self.photo:
+        old_file_path = os.path.join(settings.MEDIA_ROOT,
+                                     str(old_instance.photo))
+        if os.path.exists(old_file_path):
+          os.remove(old_file_path)
+    super().save(*args, **kwargs)

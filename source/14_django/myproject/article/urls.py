@@ -9,7 +9,7 @@ from . import views
 '''
 app_name = "article"
 urlpatterns = [
-  # path("", views.article_list, name="list"),
+  path("", views.article_list, name="list"),
   # path("new/", views.article_new, name="new"),
   # path("<int:pk>/detail", views.article_detail, name='detail'),
   # path("<int:pk>/edit/", views.article_edit, name="edit"),

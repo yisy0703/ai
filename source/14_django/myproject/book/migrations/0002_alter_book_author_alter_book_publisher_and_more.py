@@ -7,12 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("book", "0001_initial"),
+        ("article", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name="book",
+            model_name="article",
             name="author",
             field=models.CharField(
                 max_length=50,
@@ -21,14 +21,14 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AlterField(
-            model_name="book",
+            model_name="article",
             name="publisher",
             field=models.CharField(
                 blank=True, max_length=50, null=True, verbose_name="출판사"
             ),
         ),
         migrations.AlterField(
-            model_name="book",
+            model_name="article",
             name="sales",
             field=models.IntegerField(
                 default=1000,
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             ),
         ),
         migrations.AlterField(
-            model_name="book",
+            model_name="article",
             name="title",
             field=models.CharField(max_length=50, verbose_name="책제목"),
         ),
