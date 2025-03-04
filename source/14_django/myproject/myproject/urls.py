@@ -23,7 +23,7 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("book/", include("book.urls")),
     path("article/", include("article.urls")),
-    # path("file/", include("filetest.urls")),
+    path("file/", include("filetest.urls")),
     path("accounts/", include("accounts.urls")),
 ]
 # 사용자가 업로그한 파일(MEDIA_ROOT)을 url(MEDIA_URL)과 연결

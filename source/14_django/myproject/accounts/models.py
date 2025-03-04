@@ -16,7 +16,8 @@ from django.conf.global_settings import AUTH_USER_MODEL
 from django.core.mail import send_mail
 def on_send_mail(sender, **kwargs):
   if kwargs['created']:
-    user = kwargs['instance']
+    #user = kwargs['instance'].user
+    user = kwargs['instance'].user
     title = user.username +'님 가입을 환영합니다'
     body = user.username + '님 가입 감사합니다'
     bodyhtml = '<h1>{}님 가입 환영합니다</h1><h2>진심진심</h2>'.format(user.username)
@@ -28,7 +29,8 @@ def on_send_mail(sender, **kwargs):
               fail_silently=False, # 메일 전송이 안 되었을 경우 아무일도 하지 않음
               html_message=bodyhtml
     )
-post_save.connect(on_send_mail, sender=AUTH_USER_MODEL)
+#post_save.connect(on_send_mail, sender=AUTH_USER_MODEL)
+post_save.connect(on_send_mail, sender=Profile)
 
 
 
