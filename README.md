@@ -1,6 +1,7 @@
 # (산대특) 스마트 팩토리 혁신을 위한 AI 솔루션 개발 양성과정 
 **본 레파지토리는 <span style="color:red">수료일(2025.03.10)에 사라질 예정</span>이니 필요한 데이터는 미리 다운로드 해 주세요**
-![경고](https://via.placeholder.com/600x50/ff0000/ffffff?text=본+레파지토리는+수료일(2025.03.10)에+사라질+예정이니+필요한+데이터는+미리+다운로드+해+주세요)
+<p style="color:red"><strong>본 레파지토리는 2025.03.10에 사라질 예정이니 필요한 데이터는 미리 다운로드 해 주세요!</strong></p>
+
 # 교육이수 기술 내역서
 ![교육이수기술내역서](https://github.com/user-attachments/assets/efcb153c-0780-44e9-9b1d-f2bdd9e0d25a)
 
