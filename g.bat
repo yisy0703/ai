@@ -1,3 +1,3 @@
 git add .
-git commit -m "django 사용자인증"
+git commit -m "이력서"
 git push -u origin main
